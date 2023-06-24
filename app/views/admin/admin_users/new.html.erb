@@ -1,0 +1,33 @@
+<% breadcrumb :new_admin_user %>
+
+<div class="fl w-100 mb4">
+  <h2>new admin user</h2>
+</div>
+
+<%= form_for AdminUser.new, url: admin_admin_users_path do |f| %>
+  <fieldset class="mt2">
+    <%= f.label :email, 'email' %>
+    <%= f.email_field :email %>
+  </fieldset>
+
+  <fieldset class="mt2">
+    <%= f.label :receive_emails, 'receive emails' %>
+    <%= f.check_box :receive_emails %>
+  </fieldset>
+
+  <fieldset class="mt2">
+    <%= f.label :password, 'password' %>
+    <%= f.password_field :password %>
+    <p class="caption">only fill out the following if you want to change this user's password</p>
+  </fieldset>
+
+  <fieldset class="mt2">
+    <%= f.label :password_confirmation, 'password confirmation' %>
+    <%= f.password_field :password_confirmation %>
+    <p class="caption">only fill out the following if you want to change this user's password</p>
+  </fieldset>
+
+  <fieldset class="mt4">
+    <%= f.submit 'create admin user', class: 'button primary-button' %>
+  </fieldset>
+<% end %>

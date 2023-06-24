@@ -1,0 +1,36 @@
+<% if @modeling_project.present? && @modeling_project.modeler_password.present? && @entered_password_cookie.present? && @entered_password_cookie == @modeling_project.modeler_password %>
+  <% if !@modeling_project.create_project_complete? || !@modeling_project.user_captioned? %>
+    <%= render 'modelers/create_project' %>
+  <% elsif !@modeling_project.user_reviewed? %>
+    <%= render 'modelers/user_reviewing' %>
+  <% elsif !@modeling_project.pricing_group.present? %>
+    <%= render 'modelers/womp_reviewing' %>
+  <% elsif !@modeling_project.paid? %>
+    <%= render 'modelers/checkout' %>
+  <% else %>
+    <%= render 'modelers/modeling' %>
+  <% end %>
+<% elsif @modeling_project.present? && @modeling_project.modeler_password.present? %>
+  <div class="fl w-100 pa2 mt5">
+    <h2 class="tc">enter password</h2>
+  </div>
+
+  <div class="fl w-100 pa2 mv5">
+    <%= form_tag('/modelers', method: :post, class: 'measure center') do %>
+      <%= hidden_field_tag :id, @modeling_project.id %>
+
+      <fieldset class="pb2">
+        <%= label_tag 'password', 'password' %>
+        <%= password_field_tag :password %>
+      </fieldset>
+
+      <fieldset class="pb2">
+        <%= submit_tag 'submit', class: 'fr button primary-button' %>
+      </fieldset>
+    <% end %>
+  </div>
+<% else %>
+  <div class="fl w-100 pa2 mt5">
+    <h2 class="tc">there's nothing to see here</h2>
+  </div>
+<% end %>

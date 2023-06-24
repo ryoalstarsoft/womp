@@ -1,0 +1,25 @@
+<div class="mw8 center pv5 ph2">
+	<h2 class="f4 lh-copy tc fw7 mv4">please review your info</h2>
+
+  <%= render 'scanning_projects/review_container' %>
+
+  <div class="w-100 tr mt6">
+    <h2 class="fw7 f4 lh-title">total: <%= number_to_currency(@scanning_project.total_price) %> usd</h2>
+    <p class="f7 caption i">*prices may vary</p>
+  </div>
+
+	<div class="cf mv4">
+    <% if !@scanning_project.price_override.present? %>
+      <%= link_to 'back', scanning_project_path(@scanning_project, scanning_project: { purge_scanning_images: true }), data: { confirm: 'are you sure? this will delete all the images you uploaded for this project' }, method: :put, class: 'button secondary-button fl' %>
+    <% end %>
+    <% if @scanning_project.cart_id != current_cart.id %>
+      <%= link_to '<i class="fas fa-plus pr1"></i> add to cart'.html_safe, scanning_project_path(@scanning_project, scanning_project: { cart_id: current_cart.id }), method: :put, class: "button primary-button fr" %>
+    <% else %>
+      <%= link_to '<i class="fas fa-minus pr1"></i> remove from cart'.html_safe, scanning_project_path(@scanning_project, scanning_project: { cart_id: nil }), method: :put, class: "button destructive-button fr" %>
+    <% end %>
+	</div>
+
+	<div class="w-100 mv4">
+		<%= render 'comments/comment_module', project_type: 'ScanningProject', project_id: @scanning_project.id, project: @scanning_project %>
+	</div>
+</div>

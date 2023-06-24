@@ -1,0 +1,28 @@
+<% breadcrumb :workspaces %>
+
+<div class="fl w-100 mb4">
+	<h1 class="f3 lh-title">workspaces</h1>
+  <%= link_to 'new workspace', new_admin_workspace_path %>
+</div>
+
+<table class="fl w-100 womp-simple-table mb4">
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>created at</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @workspaces.each do |workspace| %>
+			<tr>
+				<td><%= workspace.name %></td>
+				<td><%= womp_strftime(workspace.created_at).downcase %></td>
+				<td>
+					<%= link_to "view", admin_workspace_path(workspace) %> - <%= link_to "edit", edit_admin_workspace_path(workspace) %> - <%= link_to "delete", admin_workspace_path(workspace), method: :delete, data: { confirm: 'are you sure?' } %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

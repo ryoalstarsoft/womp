@@ -1,0 +1,25 @@
+<table class="fl w-100 womp-simple-table mb4">
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>status</th>
+			<th>cost</th>
+			<th>created at</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% target.each do |scanning_project| %>
+			<tr>
+				<td><%= scanning_project.name.present? ? scanning_project.name : 'not named yet' %></td>
+				<td><%= scanning_project.status %></td>
+				<td><%= scanning_project.total_price.present? ? number_to_currency(scanning_project.total_price) : number_to_currency(0) %></td>
+        <td><%= womp_strftime(scanning_project.created_at).downcase %></td>
+				<td>
+					<%= link_to "view", admin_scanning_project_path(scanning_project) %> - <%= link_to "edit", edit_admin_scanning_project_path(scanning_project) %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

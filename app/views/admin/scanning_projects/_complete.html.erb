@@ -1,0 +1,51 @@
+<div class="cf mb4">
+  <%= render 'shared/viewer', upload: @scanning_project.upload, project: @scanning_project %>
+</div>
+
+<div class="fl w-100">
+  <% if (!@scanning_project.tracking_number.present? && !@scanning_project.carrier.present?) && !@scanning_project.picked_up? %>
+    <div class="fl w-50 pr2">
+      <div class="border-container mb4">
+        <h3>potential action</h3>
+        <p>you must mark the object as picked up</p>
+
+        <%= form_for @scanning_project, url: admin_scanning_project_path(@scanning_project), method: :put do |f| %>
+          <%= f.hidden_field :picked_up, value: true %>
+
+          <fieldset class="mt2">
+            <%= f.submit 'mark picked up', class: 'button primary-button fr' %>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="fl w-50 pl2">
+      <div class="border-container mb4">
+        <h3>potential action</h3>
+        <p>you must enter the tracking information for the user's object</p>
+
+        <%= form_for @scanning_project, url: admin_scanning_project_path(@scanning_project), method: :put do |f| %>
+          <fieldset class="mt2">
+            <%= f.label :tracking_number, 'tracking number' %>
+            <%= f.text_field :tracking_number %>
+          </fieldset>
+
+          <fieldset class="mt2">
+            <%= f.label :carrier, 'carrier' %>
+            <%= f.text_field :carrier %>
+          </fieldset>
+
+          <fieldset class="mt2">
+            <%= f.submit 'submit', class: 'button primary-button fr' %>
+          </fieldset>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'admin/scanning_projects/review_container' %>
+
+<div class="fl w-100 mv4">
+  <%= render 'admin/comments/comment_module', project_type: 'ScanningProject', project_id: @scanning_project.id, project: @scanning_project %>
+</div>

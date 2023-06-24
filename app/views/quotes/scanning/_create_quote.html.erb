@@ -1,0 +1,53 @@
+<div class="fl w-100 pa2 mt4">
+	<%= form_for @quote, html: { class: 'mv4 js-auto-submit' } do |f| %>
+		<h2 class="tc mv2">what is the size of your object?</h2>
+
+		<div class="fl w-20-l w-100 tc pv4">
+			<%= f.radio_button :object_size, "one_inch_to_six_inches", class: 'dn' %>
+			<%= f.label :object_size_one_inch_to_six_inches, "1\" - 6\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 01.png' %><br/>
+				1" - 6"<br/>
+				25mm - 150mm
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-100 tc pv4">
+			<%= f.radio_button :object_size, "seven_inches_to_twenty_four_inches", class: 'dn' %>
+			<%= f.label :object_size_seven_inches_to_twenty_four_inches, "7\" - 24\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 02.png' %><br/>
+				7" - 24"<br/>
+				151mm - 610mm
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-100 tc pv4">
+			<%= f.radio_button :object_size, "twenty_five_inches_to_thirty_two_inches", class: 'dn' %>
+			<%= f.label :object_size_twenty_five_inches_to_thirty_two_inches, "25\" - 32\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 03.png' %><br/>
+				25" - 32"<br/>
+				611mm - 815mm
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-100 tc pv4">
+			<%= f.radio_button :object_size, "thirty_three_inches_to_fifty_six_inches", class: 'dn' %>
+			<%= f.label :object_size_thirty_three_inches_to_fifty_six_inches, "33\" - 56\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 04.png' %><br/>
+				33" - 56"<br/>
+				816mm - 1450mm
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-100 tc pv4">
+			<%= f.radio_button :object_size, "other", class: 'dn' %>
+			<%= f.label :object_size_other, "other" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 05.png' %><br/>
+				other<br/>
+				-
+			<% end %>
+		</div>
+
+		<% # submits automatically on selection due to js-auto-submit %>
+		<%= f.submit 'submit', class: 'dn' %>
+	<% end %>
+</div>

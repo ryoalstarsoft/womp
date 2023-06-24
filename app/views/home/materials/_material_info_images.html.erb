@@ -1,0 +1,103 @@
+<div class="flex pa2 center">
+	<% if finish_group.second.first.ghost_material_info_wrapper_count == 4 || finish_group.second.first.ghost_material_info_wrapper_count == 2 %>
+		<div class="ghost-material-info-wrapper">
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.ghost_material_info_wrapper_count == 4 %>
+		<div class="ghost-material-info-wrapper">
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.chemical_resistant == true # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - chemical resistance.png' %>
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.dishwasher_safe == true # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - dishwasher yes.png' %>
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.food_safe == false # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - food safe no.png' %>
+		</div>
+	<% elsif finish_group.second.first.food_safe == true # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - food safe yes.png' %>
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.heat_proof == "80C/176F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 80C-176F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "163C/325F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 163C-325F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "175C/350F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 175C-350F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "500C/932F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 500C-932F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "570C/1058F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 570C-1058F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "800C/1472F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 800C-1472F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "831C/1521F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 831C-1521F.png' %>
+		</div>
+	<% elsif finish_group.second.first.heat_proof == "850C/1562F" %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - heatproof 850C-1562F.png' %>
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.interlocking == true # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - interlocking yes.png' %>
+		</div>
+	<% end %>
+
+	<!-- <div class="material-info-wrapper">
+		<%= image_tag 'materials/material info - interlocking yes(less then 6).png' %>
+	</div> -->
+
+	<% if finish_group.second.first.skin_friendly == true # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - skin friendly yes.png' %>
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.water_tight == false # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - watertight no.png' %>
+		</div>
+	<% elsif finish_group.second.first.water_tight == true # may be nil so check true or false %>
+		<div class="material-info-wrapper">
+			<%= image_tag 'materials/material info - watertight yes.png' %>
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.ghost_material_info_wrapper_count == 4 || finish_group.second.first.ghost_material_info_wrapper_count == 2 %>
+		<div class="ghost-material-info-wrapper">
+		</div>
+	<% end %>
+
+	<% if finish_group.second.first.ghost_material_info_wrapper_count == 4 %>
+		<div class="ghost-material-info-wrapper">
+		</div>
+	<% end %>
+</div>

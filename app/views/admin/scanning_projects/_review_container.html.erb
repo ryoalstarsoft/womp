@@ -1,0 +1,67 @@
+<div class="cf mb4">
+  <div class="fl w-third-l w-100 pa2 tc">
+    <% if @scanning_project.object_size == "other" %>
+      <p><b>size:</b> <%= @scanning_project.object_size.humanize(capitalize: false) %><br/><span class="i"><%= @scanning_project.length.to_i %>"x<%= @scanning_project.width.to_i %>"x<%= @scanning_project.height.to_i %>"</span></p>
+    <% else %>
+      <p><b>size:</b> <%= @scanning_project.object_size.humanize(capitalize: false) %></p>
+    <% end %>
+  </div>
+
+  <div class="fl w-third-l w-100 pa2 tc">
+    <p><b>resolution:</b> <%= @scanning_project.resolution %></p>
+  </div>
+
+  <div class="fl w-third-l w-100 pa2 tc">
+    <p><b>color:</b> <%= @scanning_project.color.humanize(capitalize: false) %></p>
+  </div>
+</div>
+
+<div class="cf mb4">
+  <div class="fl w-third-l w-100 pa2 tc">
+    <div class="relative reference-image-wrapper">
+      <%= link_to (image_tag @scanning_project.front_image.service_url, class: 'reference-image mb2'), @scanning_project.front_image.service_url, class: 'js-image-modal-link' %>
+      <p>front</p>
+    </div>
+  </div>
+
+  <div class="fl w-third-l w-100 pa2 tc">
+    <div class="relative reference-image-wrapper">
+      <%= link_to (image_tag @scanning_project.right_image.service_url, class: 'reference-image mb2'), @scanning_project.right_image.service_url, class: 'js-image-modal-link' %>
+      <p>right</p>
+    </div>
+  </div>
+
+  <div class="fl w-third-l w-100 pa2 tc">
+    <div class="relative reference-image-wrapper">
+      <%= link_to (image_tag @scanning_project.top_image.service_url, class: 'reference-image mb2'), @scanning_project.top_image.service_url, class: 'js-image-modal-link' %>
+      <p>top</p>
+    </div>
+  </div>
+</div>
+
+<div class="cf mt4">
+  <div class="fl w-third-l w-100 pa2 tc">
+    <div class="relative reference-image-wrapper">
+      <%= link_to (image_tag @scanning_project.back_image.service_url, class: 'reference-image mb2'), @scanning_project.back_image.service_url, class: 'js-image-modal-link' %>
+      <p>back</p>
+    </div>
+  </div>
+
+  <div class="fl w-third-l w-100 pa2 tc">
+    <div class="relative reference-image-wrapper">
+      <%= link_to (image_tag @scanning_project.left_image.service_url, class: 'reference-image mb2'), @scanning_project.left_image.service_url, class: 'js-image-modal-link' %>
+      <p>left</p>
+    </div>
+  </div>
+
+  <div class="fl w-third-l w-100 pa2 tc">
+    <div class="relative reference-image-wrapper">
+      <%= link_to (image_tag @scanning_project.bottom_image.service_url, class: 'reference-image mb2'), @scanning_project.bottom_image.service_url, class: 'js-image-modal-link' %>
+      <p>bottom</p>
+    </div>
+  </div>
+</div>
+
+<div class="mv4">
+	<p class="measure center tc">user's address on file: <%= @scanning_project.user.address.present? ? @scanning_project.user.address : 'n/a' %></p>
+</div>

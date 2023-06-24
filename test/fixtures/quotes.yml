@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quote_type: MyString
+  object_size: MyString
+  model_type: MyString
+  material_name: MyString
+  material_identifier: MyString
+  finish_name: MyString
+  finish_identifier: MyString
+  object_height: 9.99
+  object_width: 9.99
+  object_depth: 9.99
+
+two:
+  quote_type: MyString
+  object_size: MyString
+  model_type: MyString
+  material_name: MyString
+  material_identifier: MyString
+  finish_name: MyString
+  finish_identifier: MyString
+  object_height: 9.99
+  object_width: 9.99
+  object_depth: 9.99

@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  material_type_id: 1
+  provider: MyString
+  name: MyString
+  days_to_ship: 1
+  texture: MyString
+  finish: MyString
+  direct_print: false
+  strength: MyString
+  material_type: MyString
+  resolution: MyString
+  min_x: 1
+  min_y: 1
+  min_z: 1
+  max_x: 1
+  max_y: 1
+  max_z: 1
+  technology: MyString
+  min_wall_thickness: 9.99
+  base_price: 9.99
+  volume_price: 9.99
+  machine_space_price: 9.99
+  bounding_box_price: 9.99
+  surface_area_price: 9.99
+  color: MyString
+  preview_image_url: MyString
+  model_image_url: MyString
+
+two:
+  material_type_id: 1
+  provider: MyString
+  name: MyString
+  days_to_ship: 1
+  texture: MyString
+  finish: MyString
+  direct_print: false
+  strength: MyString
+  material_type: MyString
+  resolution: MyString
+  min_x: 1
+  min_y: 1
+  min_z: 1
+  max_x: 1
+  max_y: 1
+  max_z: 1
+  technology: MyString
+  min_wall_thickness: 9.99
+  base_price: 9.99
+  volume_price: 9.99
+  machine_space_price: 9.99
+  bounding_box_price: 9.99
+  surface_area_price: 9.99
+  color: MyString
+  preview_image_url: MyString
+  model_image_url: MyString

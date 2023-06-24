@@ -1,0 +1,14 @@
+<div class="mw8 center pv5 ph2">
+	<div class="tc mv5 js-primary-workspace">
+		<h2>sit tight! the womp team is reviewing your submission</h2>
+		<p>within the next 3 business days a pricing group will be assigned to your project at which point you'll be able to checkout</p>
+	</div>
+
+	<div class="border-container scroll-box">
+		<%= render 'modeling_projects/review_container', able_to_delete: false %>
+	</div>
+
+	<div class="mv4">
+		<%= render 'comments/comment_module', project_type: 'ModelingProject', project_id: @modeling_project.id, project: @modeling_project %>
+	</div>
+</div>

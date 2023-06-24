@@ -1,0 +1,11 @@
+<div class="fl w-100 pa2 mb4">
+	<div class="mw8 center">
+		<h2 class="tc bold mv4">womp is reviewing your info to assign a price for the scan</h2>
+
+		<%= render 'scanning_projects/review_container' %>
+
+		<div class="fl w-100 mv4">
+			<%= render 'comments/comment_module', project_type: 'ScanningProject', project_id: @scanning_project.id, project: @scanning_project %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="fl w-100 pa2">
+	<%= form_for @quote, html: { class: 'mv4 js-auto-submit' } do |f| %>
+		<h2 class="tc mv4">is your object hollow or solid?</h2>
+
+		<div class="fl w-50-l w-100 tc">
+			<%= f.radio_button :hollow_or_solid, "hollow", class: 'dn' %>
+			<%= f.label :hollow_or_solid_hollow, "hollow", class: "radio-label" %>
+		</div>
+
+		<div class="fl w-50-l w-100 tc">
+			<%= f.radio_button :hollow_or_solid, "solid", class: 'dn' %>
+			<%= f.label :hollow_or_solid_solid, "solid", class: "radio-label" %>
+		</div>
+
+		<% # submits automatically on selection due to js-auto-submit %>
+		<%= f.submit 'submit', class: 'dn' %>
+
+		<div class="fl w-50-l w-100 tc mv4">
+			<%= link_to 'go back', quote_path(@quote, quote: { object_height: nil, object_width: nil, object_depth: nil }), method: :put, class: 'button secondary-button' %>
+		</div>
+	<% end %>
+</div>

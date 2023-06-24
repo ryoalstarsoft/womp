@@ -1,0 +1,32 @@
+<% if materials.present? %>
+	<% materials.sort_by(&:material_category).group_by(&:material_category).each do |group| %>
+		<h2><%= group.first %></h2>
+
+		<ul class="old-tabs js-tabs">
+			<% materials.where(material_category: group.first).group_by(&:material_type).each do |material_type_group| %>
+				<li class="<%= materials.where(material_category: group.first).group_by(&:material_type).count == 1 ? 'dn' : '' %>"><a href="#<%= group.first %>-<%= material_type_group.first.gsub(" ", "-") %>"><%= material_type_group.first %></a></li>
+			<% end %>
+		</ul>
+
+		<% materials.where(material_category: group.first).group_by(&:material_type).each do |material_type_group| %>
+			<div id="<%= group.first %>-<%= material_type_group.first.gsub(" ", "-") %>" class="relative pa4">
+				<ul class="button-tabs js-class-tabs tc">
+					<% materials.where(material_category: group.first, material_type: material_type_group.first).custom_group_by_finish(group.first).each do |finish_group| %>
+						<li><a href="#<%= finish_group_class(group, material_type_group, finish_group) %>"><%= finish_group.first %></a></li>
+					<% end %>
+				</ul>
+
+				<%= render 'home/materials/material_icon_tabs', group: group, material_type_group: material_type_group %>
+				<%= render 'home/materials/material_sample_tab', group: group, material_type_group: material_type_group %>
+				<%= render 'home/materials/material_info_tab', group: group, material_type_group: material_type_group %>
+				<%= render 'home/materials/material_technical_tab', group: group, material_type_group: material_type_group %>
+				<%= render 'home/materials/material_pros_and_cons_tab', group: group, material_type_group: material_type_group %>
+			</div>
+		<% end %>
+	<% end %>
+<% else %>
+	<div class="tc mt4">
+		<h2>there are no materials that meet your criteria</h2>
+		<p>try expanding your search</p>
+	</div>
+<% end %>

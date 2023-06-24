@@ -1,0 +1,144 @@
+<%= form_for material, url: url do |f| %>
+  <%= f.label :material_type, 'material type: ' %>
+  <%= f.select :material_type, options_for_select(['high res', 'low res', 'standard', 'hd', 'tough', 'rush', 'super', 'plated', 'silver', 'platinum', 'bronze', 'gold', 'sandstone'], f.object.material_type), include_blank: true %><br/>
+
+  <%= f.label :provider, 'provider: ' %>
+  <%= f.select :provider, options_for_select(['womp', 'autotiv', 'shapeways'], f.object.provider), include_blank: true %><br/>
+
+  <%= f.label :name, 'name: ' %>
+  <%= f.text_field :name %><br/>
+
+  <%= f.label :material_category, 'material category: ' %>
+  <%= f.select :material_category, options_for_select(['pla', 'resin', 'nylon', 'aluminium', 'steel', 'silver', 'brass', 'bronze', 'gold', 'platinum', 'sandstone'], f.object.material_category), include_blank: true %><br/>
+
+  <%= f.label :finish, 'finish: ' %>
+  <%= f.select :finish, options_for_select(['satin', 'matte', 'flat', 'semi-gloss', 'unpolished', 'polished', 'hd polished', 'brushed', 'blackened', 'gloss', 'coated'], f.object.finish), include_blank: true %><br/>
+
+  <%= f.label :resin_finish, 'resin finish: ' %>
+  <%= f.select :resin_finish, options_for_select(['clear', 'regular', 'flexible', 'hd', 'rigid'], f.object.resin_finish), include_blank: true %><br/>
+
+  <%= f.label :direct_print, 'direct print: ' %>
+  <%= f.check_box :direct_print, checked: material.direct_print? %><br/>
+
+  <%= f.label :resolution, 'resolution: ' %>
+  <%= f.select :resolution, options_for_select(['low', 'medium low', 'medium', 'medium high', 'high', 'extra high'], f.object.resolution), include_blank: true %><br/>
+
+  <%= f.label :min_x, 'min x: ' %>
+  <%= f.number_field :min_x %><br/>
+
+  <%= f.label :min_y, 'min y: ' %>
+  <%= f.number_field :min_y %><br/>
+
+  <%= f.label :min_z, 'min z: ' %>
+  <%= f.number_field :min_z %><br/>
+
+  <%= f.label :max_x, 'max x: ' %>
+  <%= f.number_field :max_x %><br/>
+
+  <%= f.label :max_y, 'max y: ' %>
+  <%= f.number_field :max_y %><br/>
+
+  <%= f.label :max_z, 'max z: ' %>
+  <%= f.number_field :max_z %><br/>
+
+  <%= f.label :min_size, 'min size: ' %>
+  <%= f.text_field :min_size %><br/>
+
+  <%= f.label :max_size, 'max size: ' %>
+  <%= f.text_field :max_size %><br/>
+
+  <%= f.label :min_wall_supported, 'min wall supported: ' %>
+  <%= f.number_field :min_wall_supported, step: :any %><br/>
+
+  <%= f.label :min_wall_unsupported, 'min wall unsupported: ' %>
+  <%= f.number_field :min_wall_unsupported, step: :any %><br/>
+
+  <%= f.label :min_wire_supported, 'min wire supported: ' %>
+  <%= f.number_field :min_wire_supported, step: :any %><br/>
+
+  <%= f.label :min_wire_unsupported, 'min wire unsupported: ' %>
+  <%= f.number_field :min_wire_unsupported, step: :any %><br/>
+
+  <%= f.label :min_wire_supported, 'min wire supported: ' %>
+  <%= f.number_field :min_wire_supported, step: :any %><br/>
+
+  <%= f.label :min_wire_unsupported, 'min wire unsupported: ' %>
+  <%= f.number_field :min_wire_unsupported, step: :any %><br/>
+
+  <%= f.label :min_detail_concave, 'min detail concave: ' %>
+  <%= f.number_field :min_detail_concave, step: :any %><br/>
+
+  <%= f.label :min_detail_convex, 'min detail convex: ' %>
+  <%= f.number_field :min_detail_convex, step: :any %><br/>
+
+  <%= f.label :escape_hole_single, 'escape hole single: ' %>
+  <%= f.number_field :escape_hole_single %><br/>
+
+  <%= f.label :escape_hole_multiple, 'escape hole multiple: ' %>
+  <%= f.number_field :escape_hole_multiple, step: :any %><br/>
+
+  <%= f.label :clearance, 'clearance: ' %>
+  <%= f.number_field :clearance, step: :any %><br/>
+
+  <%= f.label :technology, 'technology: ' %>
+  <%= f.select :technology, options_for_select(['fdm', 'polyjet', 'material jetting', 'sla', 'sls', 'dmls', 'binder jet', 'casted', 'cpg'], f.object.technology), include_blank: true %><br/>
+
+  <%= f.label :archived, 'archived: ' %>
+  <%= f.check_box :archived, checked: material.archived? %><br/>
+
+  <%= f.label :per_part_price, 'per part price: ' %>
+  <%= f.number_field :per_part_price, step: :any %><br/>
+
+  <%= f.label :volume_price, 'volume price: ' %>
+  <%= f.number_field :volume_price, step: :any %><br/>
+
+  <%= f.label :machine_space_price, 'machine space price: ' %>
+  <%= f.number_field :machine_space_price, step: :any %><br/>
+
+  <%= f.label :bounding_box_price, 'bounding box price: ' %>
+  <%= f.number_field :bounding_box_price, step: :any %><br/>
+
+  <%= f.label :surface_area_price, 'surface area price: ' %>
+  <%= f.number_field :surface_area_price, step: :any %><br/>
+
+  <%= f.label :handling_price, 'handling price: ' %>
+  <%= f.number_field :handling_price, step: :any %><br/>
+
+  <%= f.label :support_price, 'support price: ' %>
+  <%= f.number_field :support_price, step: :any %><br/>
+
+  <%= f.label :roll_inventory, 'roll inventory: ' %>
+  <%= f.number_field :roll_inventory %><br/>
+
+  <%= f.label :days_to_print, 'days to print: ' %>
+  <%= f.number_field :days_to_print %><br/>
+
+  <%= f.label :cost_level, 'cost level: ' %>
+  <%= f.number_field :cost_level %><br/>
+
+  <%= f.label :material_spec, 'material spec: ' %>
+  <%= f.select :material_spec, options_for_select(['bio plastic/polyactic acid', 'plastic/acrylic', 'plastic/PA12/polymide', '60% steel (iron base metal) + 40% bronze', '92.5% Ag', '95% Pt + %5 Ru ', '80% Cu + 17% Zn + 5% Tn', '14k & 18k electroplated onto brass', '90% Cu + 10% Tn', '58% Au + 31% Cu + 10% Ag + 1% Zn', '58% Au + 40% Cu + 1% Ag + 1% Zn', '58% Au + 24% Cu + 9% Ag + 9% Ni', '75% Au + 10% Cu + 15% Ag', 'gypsum'], f.object.material_spec), include_blank: true %><br/>
+
+  <%= f.label :heat_proof, 'heat proof: ' %>
+  <%= f.select :heat_proof, options_for_select(['80C/176F', 'yes', '163C/325F', '175C/350F', '831C/1521F', '850C/1562F', '800C/1472F'], f.object.heat_proof), include_blank: true %><br/>
+
+  <%= f.label :skin_friendly, 'skin friendly: ' %>
+  <%= f.check_box :skin_friendly, checked: material.skin_friendly? %><br/>
+
+  <%= f.label :interlocking, 'interlocking: ' %>
+  <%= f.check_box :interlocking, checked: material.interlocking? %><br/>
+
+  <%= f.label :water_tight, 'water tight: ' %>
+  <%= f.check_box :water_tight, checked: material.water_tight? %><br/>
+
+  <%= f.label :chemical_resistant, 'chemical resistant: ' %>
+  <%= f.check_box :chemical_resistant, checked: material.chemical_resistant? %><br/>
+
+  <%= f.label :food_safe, 'food safe: ' %>
+  <%= f.check_box :food_safe, checked: material.food_safe? %><br/>
+
+  <%= f.label :dishwasher_safe, 'dishwasher safe: ' %>
+  <%= f.check_box :dishwasher_safe, checked: material.dishwasher_safe? %><br/>
+
+  <%= f.submit 'update material', class: 'button primary-button' %>
+<% end %>

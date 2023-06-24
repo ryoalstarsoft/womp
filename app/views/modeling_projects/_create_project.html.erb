@@ -1,0 +1,70 @@
+<%= form_for @modeling_project, html: { class: 'mw8 center pv5 ph2' } do |f| %>
+	<% unless @modeling_project.uploads.present? %>
+  	<div class="w-100 mv4">
+  		<%= f.text_field :name, placeholder: 'enter project name', autofocus: true, class: 'f6 lh-copy mb0', style: 'max-width: 24em' %>
+  	</div>
+	<% end %>
+
+	<div class="ba bg-white bw1 b--black br4 cf">
+		<div class="dib fl w-100 w-50-l bw1 bb bb-0-l br-l b--black pv5 ph6 overflow-y-scroll" style="height: 450px;max-height: 450px">
+			<%= f.label :description, 'description', class: 'f4 lh-title fw7 mv0' %>
+			<p class="f6 fw6 mt0 lh-copy mb4">tell us about your project, the more info you provide, the more satisfaction we can guarantee ;) thanks!</p>
+			<%= f.hidden_field :description %>
+			<trix-editor class="trix-content overflow-scroll" input="modeling_project_description" style="max-height:300px;min-height:250px;"></trix-editor>
+		</div>
+
+		<div class="dib fl w-100 w-50-l pv5 ph6 overflow-y-scroll" style="height: 450px;max-height: 450px">
+			<p class="f4 lh-copy fw7 mv0">reference files</p>
+			<p class="f6 fw6 lh-copy mv0">upload files to help explain your project</p>
+			<p class="f7 lh-title mt0 mb4">(max file size is 350mb. you may only upload .stl, .obj, .png, .jpg, .jpeg, .svg,  and single page .pdf files)</p>
+			<% if @modeling_project.errors.present? %>
+				<p class="tc mb4 red"><%= @modeling_project.errors.full_messages.to_sentence.downcase %></p>
+			<% end %>
+			<% if @modeling_project.uploads.present? %>
+				<p class="db w-100 f6 fw6 lh-copy mt4">explain each reference with as much detail and background information as you can</p>
+				<div class="cf">
+					<%= f.fields_for :uploads do |ff| %>
+						<!-- this is the same as uploads/upload_grid but it instead uses the form objects -->
+						<div class="fl w-100 w-50-l pa2 br4">
+							<div class="relative reference-image-wrapper br4">
+								<% if ff.object.file.previewable? || ff.object.file.variable? %>
+								  <%= image_tag ff.object.file_image_url, class: 'reference-image br4' %>
+								<% else %>
+								  <%= image_tag "file-empty-icon.png", class: 'reference-image br4' %>
+								<% end %>
+
+								<div class="reference-overlay">
+									<p class="absolute top-1 left-1 white"><%= ff.object.filename_with_annotations %></p>
+
+									<div class="reference-actions w-100 tc">
+										<%= link_to '<i class="fa fa-trash tooltip" title="delete"></i>'.html_safe, upload_path(ff.object), method: :delete, data: { confirm: 'are you sure? this will delete this upload' }, class: 'womp-red pa1' %>
+										<% if ff.object.file.variable? || ff.object.file.previewable? %>
+											<%= link_to '<i class="fas fa-eye tooltip" title="view"></i>'.html_safe, ff.object.file_image_url, class: 'white pa1 js-image-modal-link' %>
+										<% elsif ff.object.file_type == "3d_model" %>
+											<%= link_to '<i class="fas fa-eye tooltip" title="view"></i>'.html_safe, upload_path(ff.object), class: 'white pa1', target: "_blank" %>
+										<% end %>
+										<%= link_to '<i class="fas fa-download tooltip" title="download"></i>'.html_safe, download_upload_path(ff.object), class: 'white pa1' %>
+									</div>
+								</div>
+							</div>
+
+							<fieldset>
+								<%= ff.text_area :description, placeholder: 'describe this reference', class: 'f6 lh-title' %>
+							</fieldset>
+						</div>
+					<% end %>
+				</div>
+			<% else %>
+				<%= f.file_field :temp_uploads, direct_upload: true, multiple: true, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+				<%= f.label :temp_uploads do %>
+					<span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="cf mv4">
+		<%= link_to '< back', modeling_project_path(@modeling_project), method: :delete, data: { confirm: 'are you sure? this will delete the project' }, class: 'fl button secondary-button' %>
+		<%= f.submit 'next >', class: 'fr button primary-button', id: 'js-submit' %>
+	</div>
+<% end %>

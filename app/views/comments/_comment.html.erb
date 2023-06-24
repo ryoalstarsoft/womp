@@ -1,0 +1,33 @@
+<div class="dt w-100 mv2">
+	<div class="dtc v-mid w-20 w-10-l pa2">
+		<% if comment.user.present? && comment.user.profile_picture.attached? %>
+			<%= image_tag comment.user.profile_picture, class: 'profile-picture profile-picture-comment' %>
+		<% elsif comment.user.present? %>
+			<%= image_tag 'avatar.png', class: 'profile-picture profile-picture-comment' %>
+		<% end %>
+	</div>
+
+	<div class="dtc v-mid w-60 w-80-l border-container relative">
+		<div class="comment-carrot <%= comment.user.present? ? 'comment-carrot-left' : 'comment-carrot-right' %>">
+		</div>
+
+		<div class="fl w-100 ph3 trix-content">
+			<p class="caption"><%= comment.commenter_name %> - <%= time_ago_in_words(comment.created_at) %></p>
+			<%= sanitize comment.body %>
+
+			<% if !comment.body.present? && !comment.uploads.present? %>
+				<p class="i mt2">the uploads associated with this comment have been deleted by an admin</p>
+			<% end %>
+		</div>
+
+		<% if comment.uploads.present? %>
+			<%= render 'uploads/upload_grid', uploads: comment.uploads, able_to_delete: false %>
+		<% end %>
+	</div>
+
+	<div class="dtc v-mid w-20 w-10-l pa2">
+		<% if comment.admin_user.present? %>
+			<%= image_tag 'womp-avatar.png', class: 'profile-picture profile-picture-comment fr' %>
+		<% end %>
+	</div>
+</div>

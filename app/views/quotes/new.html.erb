@@ -1,0 +1,35 @@
+<%= render 'shared/page_hero', title: 'pricing quiz', 'sub_title': 'what should we work on first?' %>
+
+
+<div class="center cf mw8 ph6 pv6 w-100">
+  <div class="fl w-third-l w-100 ph3 ph4-l tc">
+		<%= link_to quotes_path(quote: { quote_type: "scanning" }), class: 'dib w-100 trio-icon-hover trio-icon-scanning', method: :post do %>
+			<div class="aspect-ratio aspect-ratio--1x1">
+				<div class="aspect-ratio--object contain trio-icon-hover-image">
+				</div>
+			</div>
+			<h2 class="f5 black b--black br0 bt bw1 ph3 pt2 mb1 dib">3d scanning</h2>
+			<p class="black f7 measure-narrow center trio-icon-hover-content">i have something i'd like to send in to get 3d scanned, including scans i need modified using 3d modeling</p>
+		<% end %>
+	</div>
+  <div class="fl w-third-l w-100 ph3 ph4-l tc">
+		<%= link_to quotes_path(quote: { quote_type: "modeling" }), class: 'dib w-100 trio-icon-hover trio-icon-modeling', method: :post do %>
+			<div class="aspect-ratio aspect-ratio--1x1">
+				<div class="aspect-ratio--object contain trio-icon-hover-image">
+				</div>
+			</div>
+			<h2 class="f5 black b--black br0 bt bw1 ph3 pt2 mb1 dib">3d modeling</h2>
+			<p class="black f7 measure-narrow center trio-icon-hover-content">i need help making my idea into a 3d model, or modifying a 3d model</p>
+		<% end %>
+	</div>
+	<div class="fl w-third-l w-100 ph3 ph4-l tc">
+		<%= link_to quotes_path(quote: { quote_type: "printing" }), class: 'dib w-100 trio-icon-hover trio-icon-printing', method: :post do %>
+			<div class="aspect-ratio aspect-ratio--1x1">
+				<div class="aspect-ratio--object contain trio-icon-hover-image">
+				</div>
+			</div>
+			<h2 class="f5 black b--black br0 bt bw1 ph3 pt2 mb1 dib">3d printing</h2>
+			<p class="black f7 measure-narrow center trio-icon-hover-content">(coming soon)<br>please email <a href="mailto:&#105;&#110;&#102;&#111;&#064;&#119;&#111;&#109;&#112;&#046;&#120;&#121;&#122;">&#105;&#110;&#102;&#111;&#064;&#119;&#111;&#109;&#112;&#046;&#120;&#121;&#122;</a></p>
+		<% end %>
+	</div>
+</div>

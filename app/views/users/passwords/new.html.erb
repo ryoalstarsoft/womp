@@ -1,0 +1,10 @@
+<div class="fl w-100 pa2 mv5">
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'measure center' }) do |f| %>
+		<h3 class="mb2">forgot your password?</h3>
+		<%= render 'shared/error_messages', object: resource %>
+
+		<%= f.email_field :email, autofocus: true, placeholder: 'email', class: 'w-100 mv3' %>
+
+		<%= f.submit "send me reset instructions", class: 'button primary-button fr' %>
+	<% end %>
+</div>

@@ -1,0 +1,269 @@
+<% if params[:q].present? %>
+	<p class="mb4">
+		<%= raw filters_text(params[:q]) %><br/>
+		<%= link_to 'reset filters', request.path, remote: true %>
+	</p>
+<% end %>
+
+<%= search_form_for @q, url: request.path, remote: true, html: { class: 'js-auto-submit' } do %>
+	<% unless params[:controller] == "home" %>
+		<label>
+			<% checked = params[:show_non_printable_materials].present? && params[:show_non_printable_materials] == "true" %>
+			<%= check_box_tag 'show_non_printable_materials', "true", checked %>
+			show non printable materials
+		</label>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 <%= 'mt4' unless params[:controller] == 'home' %>">material</h3>
+	<% Material.where.not(archived: true).sort_by(&:material_category).group_by(&:material_category).each do |group| %>
+		<div class="fl w-50">
+			<label>
+				<% checked = params[:q].present? && params[:q][:material_category_cont_any].present? && params[:q][:material_category_cont_any].include?(group.first) %>
+				<%= check_box_tag 'q[material_category_cont_any][]', group.first, checked %>
+				<%= group.first %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">prints in</h3>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:days_to_print_lteq_any].present? && params[:q][:days_to_print_lteq_any].include?("5") %>
+			<%= check_box_tag 'q[days_to_print_lteq_any][]', 5, checked %>
+			&le; 5
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:days_to_print_lteq_any].present? && params[:q][:days_to_print_lteq_any].include?("10") %>
+			<%= check_box_tag 'q[days_to_print_lteq_any][]', 10, checked %>
+			&le; 10
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:days_to_print_lteq_any].present? && params[:q][:days_to_print_lteq_any].include?("15") %>
+			<%= check_box_tag 'q[days_to_print_lteq_any][]', 15, checked %>
+			&le; 15
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:days_to_print_lteq_any].present? && params[:q][:days_to_print_lteq_any].include?("20") %>
+			<%= check_box_tag 'q[days_to_print_lteq_any][]', 20, checked %>
+			&le; 20
+		</label>
+	</div>
+
+	<h3 class="fl w-100 mb2 mt4">color</h3>
+	<% @colors.sort.each do |color| %>
+		<div class="fl w-50">
+			<label>
+				<% checked = params[:q].present? && params[:q][:color_contains_any].present? && params[:q][:color_contains_any].include?(color) %>
+				<%= check_box_tag 'q[color_contains_any][]', color, checked %>
+				<%= color %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">price</h3>
+	<% Material.where.not(archived: true).sort_by(&:cost_level).group_by(&:cost_level).each do |group| %>
+		<div class="fl w-100">
+			<label>
+				<% checked = params[:q].present? && params[:q][:cost_level_eq_any].present? && params[:q][:cost_level_eq_any].include?(group.first.to_s) %>
+				<%= check_box_tag 'q[cost_level_eq_any][]', group.first, checked %>
+				<%= "$" * group.first %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">size (mm only)</h3>
+	<div class="fl w-100">
+		<% min_x_or_min_y_or_min_z_gteq_value = params[:q].present? ? (params[:q][:min_x_or_min_y_or_min_z_gteq].present? ? params[:q][:min_x_or_min_y_or_min_z_gteq] : nil) : nil %>
+		<%= number_field_tag 'q[min_x_or_min_y_or_min_z_gteq]', min_x_or_min_y_or_min_z_gteq_value, min: 1, max: 250, placeholder: 'min', class: 'pa2 mb2' %>
+
+		<%= range_field_tag 'min_dimension_slider', min_x_or_min_y_or_min_z_gteq_value.nil? ? '1' : min_x_or_min_y_or_min_z_gteq_value, min: 1, max: 250, step: 1, class: 'w-100' %>
+
+		<p class="fl w-50 tl">1</p>
+		<p class="fl w-50 tr">250</p>
+
+		<% max_x_or_max_y_or_max_z_lteq_value = params[:q].present? ? (params[:q][:max_x_or_max_y_or_max_z_lteq].present? ? params[:q][:max_x_or_max_y_or_max_z_lteq] : nil) : nil %>
+		<%= number_field_tag 'q[max_x_or_max_y_or_max_z_lteq]', max_x_or_max_y_or_max_z_lteq_value, min: 1, max: 990, placeholder: 'max', class: 'pa2 mb2' %>
+
+		<%= range_field_tag 'max_dimension_slider', max_x_or_max_y_or_max_z_lteq_value.nil? ? '1' : max_x_or_max_y_or_max_z_lteq_value, min: 1, max: 990, step: 1, class: 'w-100' %>
+
+		<p class="fl w-50 tl">1</p>
+		<p class="fl w-50 tr">990</p>
+	</div>
+
+	<h3 class="fl w-100 mb2 mt4">uses</h3>
+	<% ['accessories + decor', 'figurines', 'jewelry', 'mechanical parts', 'prosthetics', 'prototypes', 'scale models', 'sculptures', 'structural', 'tools'].each do |use| %>
+		<div class="fl w-100">
+			<label>
+				<% checked = params[:q].present? && params[:q][:uses_contains_any].present? && params[:q][:uses_contains_any].include?(use) %>
+				<%= check_box_tag 'q[uses_contains_any][]', use, checked %>
+				<%= use %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">attributes</h3>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:skin_friendly_eq].present? && params[:q][:skin_friendly_eq] == "true" %>
+			<%= check_box_tag 'q[skin_friendly_eq]', true, checked %>
+			skin friendly
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:interlocking_eq].present? && params[:q][:interlocking_eq] == "true" %>
+			<%= check_box_tag 'q[interlocking_eq]', true, checked %>
+			interlocking
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:water_tight_eq].present? && params[:q][:water_tight_eq] == "true" %>
+			<%= check_box_tag 'q[water_tight_eq]', true, checked %>
+			watertight
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:chemical_resistant_eq].present? && params[:q][:chemical_resistant_eq] == "true" %>
+			<%= check_box_tag 'q[chemical_resistant_eq]', true, checked %>
+			chemical resistant
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:heat_proof_present].present? && params[:q][:heat_proof_present] == "true" %>
+			<%= check_box_tag 'q[heat_proof_present]', true, checked %>
+			heat proof
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:dishwasher_safe_eq].present? && params[:q][:dishwasher_safe_eq] == "true" %>
+			<%= check_box_tag 'q[dishwasher_safe_eq]', true, checked %>
+			dishwasher safe
+		</label>
+	</div>
+	<!-- not doing food safe because there are no options that are food safe -->
+
+	<h3 class="fl w-100 mb2 mt4">finish</h3>
+	<% Material.where.not(archived: true).sort_by(&:finish_sort).group_by(&:finish).each do |group| %>
+		<div class="fl w-100">
+			<label>
+				<% checked = params[:q].present? && params[:q][:finish_eq_any].present? && params[:q][:finish_eq_any].include?(group.first.to_s) %>
+				<%= check_box_tag 'q[finish_eq_any][]', group.first, checked %>
+				<%= group.first %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">texture</h3>
+	<% Material.where.not(archived: true).sort_by(&:texture_sort).group_by(&:texture).each do |group| %>
+		<div class="fl w-100">
+			<label>
+				<% checked = params[:q].present? && params[:q][:texture_eq_any].present? && params[:q][:texture_eq_any].include?(group.first.to_s) %>
+				<%= check_box_tag 'q[texture_eq_any][]', group.first, checked %>
+				<%= group.first %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">resolution</h3>
+	<% Material.where.not(archived: true).sort_by(&:resolution_sort).group_by(&:resolution).each do |group| %>
+		<div class="fl w-100">
+			<label>
+				<% checked = params[:q].present? && params[:q][:resolution_eq_any].present? && params[:q][:resolution_eq_any].include?(group.first.to_s) %>
+				<%= check_box_tag 'q[resolution_eq_any][]', group.first, checked %>
+				<%= group.first %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">technology</h3>
+	<% Material.where.not(archived: true).sort_by(&:technology_sort).group_by(&:technology).each do |group| %>
+		<div class="fl w-100">
+			<label>
+				<% checked = params[:q].present? && params[:q][:technology_eq_any].present? && params[:q][:technology_eq_any].include?(group.first.to_s) %>
+				<%= check_box_tag 'q[technology_eq_any][]', group.first, checked %>
+				<%= group.first %>
+			</label>
+		</div>
+	<% end %>
+
+	<h3 class="fl w-100 mb2 mt4">min wall (mm)</h3>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_wall_supported_lteq_any].present? && params[:q][:min_wall_supported_lteq_any].include?("0.5") %>
+			<%= check_box_tag 'q[min_wall_supported_lteq_any][]', 0.5, checked %>
+			&le; 0.5
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_wall_supported_lteq_any].present? && params[:q][:min_wall_supported_lteq_any].include?("1") %>
+			<%= check_box_tag 'q[min_wall_supported_lteq_any][]', 1, checked %>
+			&le; 1
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_wall_supported_lteq_any].present? && params[:q][:min_wall_supported_lteq_any].include?("2") %>
+			<%= check_box_tag 'q[min_wall_supported_lteq_any][]', 2, checked %>
+			&le; 2
+		</label>
+	</div>
+
+	<h3 class="fl w-100 mb2 mt4">min detail (mm)</h3>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_detail_convex_lteq_any].present? && params[:q][:min_detail_convex_lteq_any].include?("0.1") %>
+			<%= check_box_tag 'q[min_detail_convex_lteq_any][]', 0.1, checked %>
+			&le; 0.1
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_detail_convex_lteq_any].present? && params[:q][:min_detail_convex_lteq_any].include?("0.5") %>
+			<%= check_box_tag 'q[min_detail_convex_lteq_any][]', 0.5, checked %>
+			&le; 0.5
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_detail_convex_lteq_any].present? && params[:q][:min_detail_convex_lteq_any].include?("1") %>
+			<%= check_box_tag 'q[min_detail_convex_lteq_any][]', 1, checked %>
+			&le; 1
+		</label>
+	</div>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:min_detail_convex_lteq_any].present? && params[:q][:min_detail_convex_lteq_any].include?("2") %>
+			<%= check_box_tag 'q[min_detail_convex_lteq_any][]', 2, checked %>
+			&le; 2
+		</label>
+	</div>
+
+	<%= submit_tag 'submit', class: 'dn' %>
+<% end %>
+
+<script>
+	$('#min_dimension_slider').on('input change', function() {
+		$('#q_min_x_or_min_y_or_min_z_gteq').val($(this).val());
+	});
+	$('#q_min_x_or_min_y_or_min_z_gteq').on('input change', function() {
+		$('#min_dimension_slider').val($(this).val());
+	});
+
+	$('#max_dimension_slider').on('input change', function() {
+		$('#q_max_x_or_max_y_or_max_z_lteq').val($(this).val());
+	});
+	$('#q_max_x_or_max_y_or_max_z_lteq').on('input change', function() {
+		$('#max_dimension_slider').val($(this).val());
+	});
+</script>

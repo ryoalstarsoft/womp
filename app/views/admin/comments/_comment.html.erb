@@ -1,0 +1,37 @@
+<div class="w-100 dt cf mv2">
+	<div class="dtc v-mid w-10 pa2">
+		<% if comment.admin_user.present? %>
+			<%= image_tag 'womp-avatar.png', class: 'profile-picture profile-picture-comment' %>
+		<% end %>
+	</div>
+
+	<div class="dtc v-mid w-80 border-container relative">
+		<div class="comment-carrot <%= comment.user.present? ? 'comment-carrot-right' : 'comment-carrot-left' %>">
+		</div>
+
+		<div class="fl w-100 ph3 trix-content">
+			<% if comment.admin_user.present? %>
+				<p class="caption"><%= comment.commenter_name %> - <%= time_ago_in_words(comment.created_at) %> - <%= link_to 'delete', admin_comment_path(comment), method: :delete, data: { confirm: 'are you sure? this will delete the comment but it will leave associated files on the project' }, class: 'red' %></p>
+			<% else %>
+				<p class="caption"><%= comment.commenter_name %> - <%= time_ago_in_words(comment.created_at) %></p>
+			<% end %>
+			<%= sanitize comment.body.html_safe %>
+
+			<% if !comment.body.present? && !comment.uploads.present? %>
+				<p class="i mt2">the uploads associated with this comment have been deleted by an admin</p>
+			<% end %>
+		</div>
+
+		<% if comment.uploads.present? %>
+			<%= render 'admin/uploads/upload_grid', uploads: comment.uploads %>
+		<% end %>
+	</div>
+
+	<div class="dtc v-mid w-10 pa2">
+		<% if comment.user.present? && comment.user.profile_picture.attached? %>
+			<%= image_tag comment.user.profile_picture, class: 'profile-picture profile-picture-comment fr' %>
+		<% elsif comment.user.present? %>
+			<%= image_tag 'avatar.png', class: 'profile-picture profile-picture-comment fr' %>
+		<% end %>
+	</div>
+</div>

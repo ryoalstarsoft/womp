@@ -1,0 +1,17 @@
+<% uploads.order('created_at desc').each do |upload| %>
+  <div class="fl w-third-l w-50-m w-100 pa2">
+    <%= f.check_box 'allowed_for_modeler_upload_ids', { multiple: true, class: 'existing-attachments-check-box dn', checked: upload.modeler_can_see }, upload.id, false %>
+    <%= f.label 'allowed_for_modeler_upload_ids', for: "modeling_project_allowed_for_modeler_upload_ids_#{upload.id}", class: 'existing-attachments-label relative' do %>
+      <% if upload.file.previewable? || upload.file.variable? %>
+        <%= image_tag upload.file_image_url, class: 'reference-image pointer' %>
+      <% else %>
+        <%= image_tag "file-empty-icon.png", class: 'reference-image pointer' %>
+      <% end %>
+
+      <div class="reference-overlay">
+        <p class="absolute top-1 left-1 white"><%= upload.file.blob.filename.to_s %></p>
+      </div>
+      <i class="far fa-check-circle tc circle-check"></i>
+    <% end %>
+  </div>
+<% end %>

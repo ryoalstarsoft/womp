@@ -1,0 +1,19 @@
+<div class="mw8 center pv5 ph2">
+	<div class="tc mv4">
+		<% if @scanning_project.womp_received? && @scanning_project.received_at.present? %>
+			<p>good news! we've received your item</p>
+			<p><b>received:</b> <%= @scanning_project.received_at.strftime('%D') %></p>
+			<p><b>3d model:</b> <%= @scanning_project.model_at.strftime('%D') %></p>
+		<% else %>
+			<p>please ship/drop off your object to womp's offices at 515 johnson avenue, brooklyn, ny 11237</p>
+			<p>then, hold on tight while we receive and review your order</p>
+			<p>we take 7 business days or less after we have received your object to upload your scan.</p>
+		<% end %>
+	</div>
+
+	<%= render 'scanning_projects/review_container' %>
+
+	<div class="fl w-100 mv4">
+		<%= render 'comments/comment_module', project_type: 'ScanningProject', project_id: @scanning_project.id, project: @scanning_project %>
+	</div>
+</div>

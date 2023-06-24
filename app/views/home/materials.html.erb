@@ -1,0 +1,13 @@
+<%= render 'shared/page_hero', title: 'materials', sub_title: nil %>
+
+
+<div class="cf ph2 ph6-ns pv6 w-100 mw8 center">
+	<div class="dn db-ns fl-ns mb4 w-20-ns pr3-ns br bw1 b--gray">
+		<div id="js-filters-wrapper">
+			<%= render 'home/materials/filters_wrapper' %>
+		</div>
+	</div>
+	<div class="fl ph2 pl6-ns pv0 w-100 w-80-ns">
+		<%= render 'home/materials/materials_wrapper', materials: @materials %>
+	</div>
+</div>

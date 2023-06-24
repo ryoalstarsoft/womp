@@ -1,0 +1,33 @@
+<% breadcrumb :edit_admin_user, @admin_user %>
+
+<div class="fl w-100 mb4">
+  <h2>edit admin user - <%= @admin_user.email %></h2>
+</div>
+
+<%= form_for @admin_user, url: admin_admin_user_path(@admin_user) do |f| %>
+  <fieldset class="mt2">
+    <%= f.label :email, 'email' %>
+    <%= f.email_field :email %>
+  </fieldset>
+
+  <fieldset class="mt2">
+    <%= f.label :receive_emails, 'receive emails' %>
+    <%= f.check_box :receive_emails, checked: @admin_user.receive_emails? %>
+  </fieldset>
+
+  <fieldset class="mt2">
+    <%= f.label :password, 'password' %>
+    <%= f.password_field :password %>
+    <p class="caption">only fill out the following if you want to change this user's password</p>
+  </fieldset>
+
+  <fieldset class="mt2">
+    <%= f.label :password_confirmation, 'password confirmation' %>
+    <%= f.password_field :password_confirmation %>
+    <p class="caption">only fill out the following if you want to change this user's password</p>
+  </fieldset>
+
+  <fieldset class="mt4">
+    <%= f.submit 'update admin user', class: 'button primary-button' %>
+  </fieldset>
+<% end %>

@@ -1,0 +1,32 @@
+<div class="mw8 center pv5 ph2">
+	<div class="cf mv5 js-primary-workspace">
+		<div class="fl w-100 w-50-l tc tl-l">
+			<h2 class="f4 lh-copy">hi, your pricing has been assigned</h2>
+			<p class="f5 lh-copy">after careful review, the womp team has assigned a cost for your project</p>
+		</div>
+
+		<div class="fl w-100 w-50-l tc tr-l mv4 mv0-l">
+			<h2>total: <%= number_to_currency(@modeling_project.total_price) %> usd</h2>
+			<% if @modeling_project.cart_id != current_cart.id %>
+				<%= link_to '<i class="fas fa-plus pr1"></i> add to cart'.html_safe, modeling_project_path(@modeling_project, modeling_project: { cart_id: current_cart.id }), method: :put, class: "button primary-button" %>
+			<% else %>
+				<%= link_to '<i class="fas fa-minus pr1"></i> remove from cart'.html_safe, modeling_project_path(@modeling_project, modeling_project: { cart_id: nil }), method: :put, class: "button destructive-button" %>
+			<% end %><br/>
+		</div>
+
+		<div class="fl w-100 mt4 tc">
+			<p class="caption measure center">if you have any questions, please use the comment section below to speak directly to a member of the womp team</p>
+		</div>
+	</div>
+
+	<div class="w-100 js-secondary-workspace dn">
+  </div>
+
+	<div class="pa2 border-container scroll-box">
+		<%= render 'modeling_projects/review_container', able_to_delete: false %>
+	</div>
+
+	<div class="cf w-100 mv4">
+		<%= render 'comments/comment_module', project_type: 'ModelingProject', project_id: @modeling_project.id, project: @modeling_project %>
+	</div>
+</div>

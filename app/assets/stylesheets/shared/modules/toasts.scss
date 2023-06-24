@@ -1,0 +1,26 @@
+.toast {
+  z-index: 9999;
+  max-width: 689px;
+  border-radius: 20px;
+  padding: 20px;
+  position: fixed;
+  bottom: -500px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.positive-toast {
+  background-color: #E1F2EA;
+}
+
+.negative-toast {
+  background-color: #F9E6E7;
+}
+
+.info-toast {
+  background-color: #E6E8F3;
+}
+
+.other-toast {
+  background-color: #F9E8E0;
+}

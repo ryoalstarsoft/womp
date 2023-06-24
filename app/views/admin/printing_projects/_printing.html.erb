@@ -1,0 +1,53 @@
+<div class="cf mb4 ">
+  <%= render 'shared/viewer', upload: @printing_project.uploads.last, project: @printing_project %>
+</div>
+
+<div class="cf mv4">
+  <div class="w-100 tc center">
+    <p class="f5 lh-copy">the project is to print an object with <b><%= @printing_project.material.display_name.downcase %></b></p>
+    <p class="f5 lh-copy">it will ship to <b><%= @printing_project.user.address.downcase %></b></p>
+    <p class="f5 lh-copy">you must print <b><%= @printing_project.quantity %></b> units</p>
+  </div>
+</div>
+
+<div class="fl w-50 pr2">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>you must mark the print as picked up once the print is complete</p>
+
+    <%= form_for @printing_project, url: admin_printing_project_path(@printing_project), method: :put do |f| %>
+      <%= f.hidden_field :picked_up, value: true %>
+
+      <fieldset class="mt2">
+        <%= f.submit 'mark picked up', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="fl w-50 pl2">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>you must enter the tracking information for the user's print once it's shipped</p>
+
+    <%= form_for @printing_project, url: admin_printing_project_path(@printing_project), method: :put do |f| %>
+      <fieldset class="mt2">
+        <%= f.label :tracking_number, 'tracking number' %>
+        <%= f.text_field :tracking_number %>
+      </fieldset>
+
+      <fieldset class="mt2">
+        <%= f.label :carrier, 'carrier' %>
+        <%= f.text_field :carrier %>
+      </fieldset>
+
+      <fieldset class="mt2">
+        <%= f.submit 'submit', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="mv4 cf">
+  <%= render 'admin/comments/comment_module', project_type: 'PrintingProject', project_id: @printing_project.id, project: @printing_project %>
+</div>

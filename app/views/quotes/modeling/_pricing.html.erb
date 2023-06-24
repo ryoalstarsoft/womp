@@ -1,0 +1,14 @@
+<div class="tc mv5">
+	<p>you're looking to model an object that is <b><%= @quote.model_type.humanize(capitalize: false) %></b></p>
+	<p>this will cost <b><%= number_to_currency(@quote.total_price) %></b></p><br/>
+
+	<div class="cf mt4">
+		<div class="fl w-50 tc">
+			<p><%= link_to 'go back', quote_path(@quote, quote: { model_type: nil }), method: :put, class: 'button secondary-button' %></p>
+		</div>
+
+		<div class="fl w-50 tc">
+			<p><%= link_to 'start a project', new_project_path, class: 'button primary-button' %></p>
+		</div>
+	</div>
+</div>

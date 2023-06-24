@@ -1,0 +1,7 @@
+<% breadcrumb :edit_workspace, @workspace %>
+
+<div class="fl w-100 mb4">
+  <h1 class="f3 lh-title">edit workspace - <%= @workspace.name %></h1>
+</div>
+
+<%= render 'admin/workspaces/form', workspace: @workspace, url: admin_workspace_path(@workspace) %>

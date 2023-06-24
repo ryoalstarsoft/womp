@@ -1,0 +1,142 @@
+<%= form_for @scanning_project, html: { class: 'mw8 center pv5 ph2' } do |f| %>
+  <h2 class="f4 lh-copy tc fw7 mv4">upload images of your object</h2>
+
+  <div class="flex flex-wrap">
+    <!-- Start Image Front -->
+    <div class="w-50 w-third-l pa2 pa6-ns tc">
+      <p class="f6 lh-copy fw7 mt2">front</p>
+      <% if @scanning_project.front_image.attached? %>
+        <%= f.label :front_image, class: 'br4 ba bw1 b--light-gray pb0' do %>
+          <%= image_tag @scanning_project.front_image.service_url, class: 'w-100 h-auto br4 v-mid' %>
+        <% end %>
+      <% else %>
+        <div class="aspect-ratio aspect-ratio--1x1 bg-light-gray ba bw1 br4 b--light-gray">
+          <div class="aspect-ratio--object dt">
+            <div class="dtc v-mid">
+              <%= f.file_field :front_image, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+              <%= f.label :front_image do %>
+                <span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Image Front -->
+
+    <!-- Start Image Right -->
+    <div class="w-50 w-third-l pa2 pa6-ns tc">
+      <p class="f6 lh-copy fw7 mt2">right</p>
+      <% if @scanning_project.right_image.attached? %>
+        <%= f.label :right_image, class: 'br4 ba bw1 b--light-gray pb0' do %>
+          <%= image_tag @scanning_project.right_image.service_url, class: 'w-100 h-auto br4 v-mid' %>
+        <% end %>
+      <% else %>
+        <div class="aspect-ratio aspect-ratio--1x1 bg-light-gray ba bw1 br4 b--light-gray">
+          <div class="aspect-ratio--object dt">
+            <div class="dtc v-mid">
+              <%= f.file_field :right_image, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+              <%= f.label :right_image do %>
+                <span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Image Front -->
+
+    <!-- Start Image Top -->
+    <div class="w-50 w-third-l pa2 pa6-ns tc">
+      <p class="f6 lh-copy fw7 mt2">top</p>
+      <% if @scanning_project.top_image.attached? %>
+        <%= f.label :top_image, class: 'br4 ba bw1 b--light-gray pb0' do %>
+          <%= image_tag @scanning_project.top_image.service_url, class: 'w-100 h-auto br4 v-mid' %>
+        <% end %>
+      <% else %>
+        <div class="aspect-ratio aspect-ratio--1x1 bg-light-gray ba bw1 br4 b--light-gray">
+          <div class="aspect-ratio--object dt">
+            <div class="dtc v-mid">
+              <%= f.file_field :top_image, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+              <%= f.label :top_image do %>
+                <span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Image Top -->
+
+    <!-- Start Image Back -->
+    <div class="w-50 w-third-l pa2 pa6-ns tc">
+      <p class="f6 lh-copy fw7 mt2">back</p>
+      <% if @scanning_project.back_image.attached? %>
+        <%= f.label :back_image, class: 'br4 ba bw1 b--light-gray pb0' do %>
+          <%= image_tag @scanning_project.back_image.service_url, class: 'w-100 h-auto br4 v-mid' %>
+        <% end %>
+      <% else %>
+        <div class="aspect-ratio aspect-ratio--1x1 bg-light-gray ba bw1 br4 b--light-gray">
+          <div class="aspect-ratio--object dt">
+            <div class="dtc v-mid">
+              <%= f.file_field :back_image, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+              <%= f.label :back_image do %>
+                <span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Image Back -->
+
+    <!-- Start Image Left -->
+    <div class="w-50 w-third-l pa2 pa6-ns tc">
+      <p class="f6 lh-copy fw7 mt2">left</p>
+      <% if @scanning_project.left_image.attached? %>
+        <%= f.label :left_image, class: 'br4 ba bw1 b--light-gray pb0' do %>
+          <%= image_tag @scanning_project.left_image.service_url, class: 'w-100 h-auto br4 v-mid' %>
+        <% end %>
+      <% else %>
+        <div class="aspect-ratio aspect-ratio--1x1 bg-light-gray ba bw1 br4 b--light-gray">
+          <div class="aspect-ratio--object dt">
+            <div class="dtc v-mid">
+              <%= f.file_field :left_image, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+              <%= f.label :left_image do %>
+                <span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Image Left -->
+
+    <!-- Start Image Bottom -->
+    <div class="w-50 w-third-l pa2 pa6-ns tc">
+      <p class="f6 lh-copy fw7 mt2">bottom</p>
+      <% if @scanning_project.bottom_image.attached? %>
+        <%= f.label :bottom_image, class: 'br4 ba bw1 b--light-gray pb0' do %>
+          <%= image_tag @scanning_project.bottom_image.service_url, class: 'w-100 h-auto br4 v-mid' %>
+        <% end %>
+      <% else %>
+        <div class="aspect-ratio aspect-ratio--1x1 bg-light-gray ba bw1 br4 b--light-gray">
+          <div class="aspect-ratio--object dt">
+            <div class="dtc v-mid">
+              <%= f.file_field :bottom_image, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+              <%= f.label :bottom_image do %>
+                <span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- End Image Bottom -->
+  </div>
+
+	<div class="cf mv4">
+		<%= link_to '< back', scanning_project_path(@scanning_project, scanning_project: { color: nil }), method: :put, class: 'button secondary-button fl' %>
+    <%= f.submit 'next >', class: 'button primary-button fr' %>
+	</div>
+<% end %>

@@ -1,0 +1,22 @@
+<div class="fl w-100 pa2 mb4">
+	<div class="cf mv4">
+		<div class="js-primary-workspace">
+			<% if @modeling_project.uploads.where(reviewable: true, released_to_user: true).present? %>
+				<div class="cf mb4">
+					<div class="fl w-100">
+						<p><%= @modeling_project.uploads.where(reviewable: true, released_to_user: true).count.ordinalize %> draft</p>
+
+						<%= render 'shared/viewer', upload: @modeling_project.uploads.where(reviewable: true, released_to_user: true).last, project: @modeling_project %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+		<div class="js-secondary-workspace dn">
+		</div>
+
+		<div class="pa2 border-container scroll-box">
+			<%= render 'modelers/review_container', able_to_delete: false %>
+		</div>
+	</div>
+</div>

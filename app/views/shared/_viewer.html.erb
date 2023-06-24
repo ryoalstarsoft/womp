@@ -1,0 +1,41 @@
+<% if browser.device.mobile? || browser.device.tablet? %>
+	<div class="tc mv5">
+		<p>please log on via desktop to view your model</p>
+	</div>
+<% elsif upload.is_viewer_ready? %>
+	<div class="js-container viewer-container" id="js-viewer-container" data-link="<%= upload.viewer_link %>" data-upload-id="<%= upload.id %>" data-smoothing="<%= upload.smoothing %>" data-filename="<%= upload.file.blob.filename %>" data-screenshot-type="<%= project.present? && project.model_name == "ModelingProejct" && params[:controller] != 'modelers' ? 'aws' : 'download' %>">
+		<div id="viewer-info">
+			<div class="datafield">
+				<p>Volume: <%= number_with_delimiter(upload.volume.round(2), delimiter: ',') %>mm<sup>3</sup></p>
+			</div>
+			<div class="datafield">
+				<p>Surface Area: <%= number_with_delimiter(upload.surface_area.round(2), delimiter: ',') %>mm<sup>2</sup></p>
+			</div>
+			<div class="datafield">
+				<p>Bounding Box: <%= upload.bounding_box_x.round(2) %>mm x <%= upload.bounding_box_y.round(2) %>mm x <%= upload.bounding_box_z.round(2) %>mm</p>
+			</div>
+		</div>
+		<ul id="mats-info"></ul>
+		<div id="print-data">
+			<div id="price"></div>
+			<div id="cur-mats-info"></div>
+		</div>
+		<a href="javascript:void(0)" class="viewer-fullscreen js-container-fullscreen tooltip" title="fullscreen"><i class="fas fa-arrows-alt"></i></a>
+		<a href="javascript:void(0)" class="viewer-smoothing js-viewer-smoothing tooltip" title="toggle smoothing (may improve model edges)"><i class="fas fa-adjust"></i></a>
+		<a href="javascript:void(0)" class="viewer-snapshot js-viewer-snapshot tooltip" title="take screenshot"><i class="fas fa-camera"></i></a>
+	</div>
+<% else %>
+	<div class="tc mv5">
+		<h2><i class="fas fa-spinner spin"></i></h2>
+		<p>your model is currently processing<br/>please check back in 5-10 minutes to see it here</p>
+		<p class="caption mt2">the page will refresh automatically</p>
+	</div>
+
+	<% if upload.thirty_minutes_old? %>
+		<div class="tc">
+			<p>something appears to have gone wrong processing your model</p>
+		</div>
+	<% end %>
+
+	<div id="js-poll-to-refresh" data-upload-id="<%= upload.id %>"></div>
+<% end %>

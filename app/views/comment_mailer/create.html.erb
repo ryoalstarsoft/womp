@@ -1,0 +1,19 @@
+<p>
+	Hi,<br/><br/>
+
+	A new comment is waiting for you on Womp for <%= @comment.projectable.name %>.<br/>
+
+	<% if @comment.user.present? %>
+		<% if @comment.projectable_type == "ScanningProject" %>
+			To view this comment, <b><%= link_to 'click here', admin_scanning_project_url(@comment.projectable) %>.</b><br/><br/>
+		<% elsif @comment.projectable_type == "ModelingProject" %>
+			To view this comment, <b><%= link_to 'click here', admin_modeling_project_url(@comment.projectable) %>.</b><br/><br/>
+		<% elsif @comment.projectable_type == "PrintingProject" %>
+			To view this comment, <b><%= link_to 'click here', admin_printing_project_url(@comment.projectable) %>.</b><br/><br/>
+		<% end %>
+	<% else %>
+		To view this comment, <b><%= link_to 'click here', @comment.projectable %>.</b><br/><br/>
+	<% end %>
+
+	-The Womp Team
+</p>

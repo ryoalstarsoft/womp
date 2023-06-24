@@ -1,0 +1,55 @@
+<div class="cf mw-100 w-100">
+	<div class="fl w-10">
+		<% if current_user.profile_picture.attached? %>
+			<%= image_tag current_user.profile_picture, class: 'profile-picture profile-picture-comment' %>
+		<% else %>
+			<%= image_tag 'avatar.png', class: 'profile-picture profile-picture-comment' %>
+		<% end %>
+	</div>
+
+	<div class="fl w-80">
+		<%= form_for project.comments.new, html: { class: 'relative' } do |f| %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field :projectable_type, value: project_type %>
+			<%= f.hidden_field :projectable_id, value: project_id %>
+
+			<fieldset class="pb2">
+				<%= f.hidden_field :body %>
+				<trix-editor class="trix-content mw-100 br4" input="comment_body"></trix-editor>
+			</fieldset>
+
+			<% if project_type == "ModelingProject" %>
+				<fieldset>
+					<%= link_to 'add files you\'ve already uploaded', 'javascript:void(0)', class: 'fl mr2 button secondary-button js-toggle-scroll-box' if current_user.uploads.present? %>
+					<%= f.file_field :temp_uploads, direct_upload: true, multiple: true, class: 'dn' , data: { 'multiple-caption': '{count} files selected' } %>
+					<%= f.label :temp_uploads, class: 'fl' do %>
+						<span class="button secondary-button mr1">choose file</span> <span class="update-text">no file chosen</span>
+					<% end %>
+
+					<%= f.submit 'submit', class: "button primary-button fr" %>
+				</fieldset>
+
+				<% if current_user.uploads.present? %>
+					<div class="fl w-100 scroll-box js-comment-scroll-box mb4 dn">
+						<% if current_user.uploads.where(project_id: project_id).present? %>
+							<h3 class="fl w-100">this project's files</h3>
+							<%= render 'comments/upload_grid', f: f, uploads: current_user.uploads.where(project_id: project_id) %>
+						<% end %>
+
+						<% if current_user.uploads.where.not(project_id: project_id).present? %>
+							<h3 class="fl w-100">other files</h3>
+							<%= render 'comments/upload_grid', f: f, uploads: current_user.uploads.where.not(project_id: project_id) %>
+						<% end %>
+					</div>
+				<% end %>
+			<% else %>
+				<fieldset>
+					<%= f.submit 'submit', class: "button primary-button fr" %>
+				</fieldset>
+			<% end %>
+		<% end %>
+	</div>
+
+	<div class="fl w-10">
+	</div>
+</div>

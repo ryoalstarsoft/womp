@@ -1,0 +1,61 @@
+<%= form_for @scanning_project, html: { class: 'mw8 center js-auto-submit pv5 ph2' } do |f| %>
+
+	<%= f.text_field :name, placeholder: 'project name', autofocus: true, class: 'f6 lh-copy', style: 'max-width: 24em' %>
+
+	<h2 class="f4 lh-copy tc fw7 mv4">choose the size of your object</h2>
+
+	<fieldset class="cf db mv4">
+		<div class="fl w-20-l w-50 pa2 tc">
+			<%= f.radio_button :object_size, "one_inch_to_six_inches", class: 'dn' %>
+			<%= f.label :object_size_one_inch_to_six_inches, "1\" - 6\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 01.png', class: 'ph4' %>
+				<p class="f6 lh-copy fw7">1" - 6"</p>
+				<span class="db f7 lh-copy">$150-$400</span>
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-50 pa2 tc">
+			<%= f.radio_button :object_size, "seven_inches_to_twenty_four_inches", class: 'dn' %>
+			<%= f.label :object_size_seven_inches_to_twenty_four_inches, "7\" - 24\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 02.png', class: 'ph4' %>
+				<p class="f6 lh-copy fw7">7" - 24"</p>
+				<span class="db f7 lh-copy">$150-$500</span>
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-50 pa2 tc">
+			<%= f.radio_button :object_size, "twenty_five_inches_to_thirty_two_inches", class: 'dn' %>
+			<%= f.label :object_size_twenty_five_inches_to_thirty_two_inches, "25\" - 32\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 03.png', class: 'ph4' %>
+				<p class="f6 lh-copy fw7">25" - 32"</p>
+				<span class="db f7 lh-copy">$250-$750</span>
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-50 pa2 tc">
+			<%= f.radio_button :object_size, "thirty_three_inches_to_fifty_six_inches", class: 'dn' %>
+			<%= f.label :object_size_thirty_three_inches_to_fifty_six_inches, "33\" - 56\"" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 04.png', class: 'ph4' %>
+				<p class="f6 lh-copy fw7">33" - 56"</p>
+				<span class="db f7 lh-copy">$300-$950</span>
+			<% end %>
+		</div>
+
+		<div class="fl w-20-l w-50 pa2 tc">
+			<%= f.radio_button :object_size, "other", class: 'dn' %>
+			<%= f.label :object_size_other, "other" do %>
+				<%= image_tag 'pricing-quiz/quiz scan 05.png', class: 'ph4' %>
+				<p class="f6 lh-copy fw7">other</p>
+				<span class="db f7 lh-copy">inquire for pricing</span>
+				<span class="db f7 lh-copy i">*includes body scans</span>
+			<% end %>
+		</div>
+	</fieldset>
+
+	<div class="cf mv4">
+		<%= link_to '< back', scanning_project_path(@scanning_project), method: :delete, data: { confirm: 'are you sure? this will delete the project' }, class: 'fl button secondary-button' %>
+	</div>
+
+	<!-- submits automatically on selection due to js-auto-submit -->
+	<%= f.submit 'submit', class: "dn" %>
+<% end %>

@@ -1,0 +1,4 @@
+toolbar:
+  - styleselect | bold italic underline | link
+plugins:
+  - link

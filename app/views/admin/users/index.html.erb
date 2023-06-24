@@ -1,0 +1,31 @@
+<% breadcrumb :users %>
+
+<div class="fl w-100 mb4">
+	<h1 class="f3 lh-title">users</h1>
+</div>
+
+<table class="fl w-100 womp-simple-table mb4">
+	<thead>
+		<tr>
+			<th>email</th>
+			<th>last sign in at</th>
+			<th>sign in count</th>
+			<th>created at</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.email %></td>
+				<td><%= womp_strftime(user.current_sign_in_at).downcase %></td>
+				<td><%= user.sign_in_count %></td>
+				<td><%= womp_strftime(user.created_at).downcase %></td>
+				<td>
+					<%= link_to "view", admin_user_path(user) %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

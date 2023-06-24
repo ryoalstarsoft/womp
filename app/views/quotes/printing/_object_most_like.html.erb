@@ -1,0 +1,23 @@
+<div class="fl w-100 pa2 mt4">
+	<%= form_for @quote, html: { class: 'mv4 js-auto-submit' } do |f| %>
+		<h2 class="tc mv4">which looks most like your object?</h2>
+
+		<div class="fl w-third-l w-100 tc">
+			<%= f.radio_button :object_most_like, "cube", class: 'dn' %>
+			<%= f.label :object_most_like_cube, "cube" %>
+		</div>
+
+		<div class="fl w-third-l w-100 tc">
+			<%= f.radio_button :object_most_like, "sphere", class: 'dn' %>
+			<%= f.label :object_most_like_sphere, "sphere" %>
+		</div>
+
+		<div class="fl w-third-l w-100 tc">
+			<%= f.radio_button :object_most_like, "cone", class: 'dn' %>
+			<%= f.label :object_most_like_cone, "cone" %>
+		</div>
+
+		<% # submits automatically on selection due to js-auto-submit %>
+		<%= f.submit 'submit', class: 'dn' %>
+	<% end %>
+</div>

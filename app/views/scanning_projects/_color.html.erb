@@ -1,0 +1,45 @@
+<%= form_for @scanning_project, html: { class: 'mw8 center js-auto-submit pv5 ph2' } do |f| %>
+
+  <h2 class="f4 lh-copy tc fw7 mv4">choose the color of your scan</h2>
+
+  <fieldset class="cf db mv4">
+    <div class="dn db-l fl-l w-20-l pa2 tc">
+      &nbsp;
+    </div>
+    <div class="fl w-30-l w-50 pa2 tc">
+      <%= f.radio_button :color, "full_color", class: 'dn' %>
+      <%= f.label :color_full_color, "full color", class: 'w-100 w-60-ns' do %>
+        <div class="aspect-ratio aspect-ratio--1x1 w-100">
+          <div class="aspect-ratio--object bg-rainbow-gradient br4 pa4 w-100">
+            &nbsp;
+          </div>
+        </div>
+        <p class="f6 lh-copy fw7">full color</p>
+				<span class="db f7 lh-copy i">+<%= @scanning_project.color_cost("full_color").present? ? number_to_currency(@scanning_project.color_cost("full_color"), precision: 0) : 'tba' %></span>
+				<p>*color may vary</p>
+      <% end %>
+    </div>
+    <div class="fl w-30-l w-50 pa2 tc">
+      <%= f.radio_button :color, "no_color", class: 'dn' %>
+      <%= f.label :color_no_color, "no color", class: 'w-100 w-60-ns' do %>
+        <div class="aspect-ratio aspect-ratio--1x1 w-100">
+          <div class="aspect-ratio--object bg-light-gray br4 pa4 w-100">
+            &nbsp;
+          </div>
+        </div>
+        <p class="f6 lh-copy fw7">no color</p>
+				<span class="db f7 lh-copy i">+<%= number_to_currency(@scanning_project.color_cost("no_color"), precision: 0) %></span>
+      <% end %>
+    </div>
+    <div class="dn db-l fl-l w-20-l pa2 tc">
+      &nbsp;
+    </div>
+  </fieldset>
+
+	<div class="cf mv4">
+		<%= link_to '< back', scanning_project_path(@scanning_project, scanning_project: { resolution: nil }), method: :put, class: 'button secondary-button fl' %>
+	</div>
+
+	<!-- submits automatically on selection due to js-auto-submit -->
+	<%= f.submit 'submit', class: "dn" %>
+<% end %>

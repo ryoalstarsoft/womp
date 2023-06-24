@@ -1,0 +1,49 @@
+<%= form_for @scanning_project, html: { class: 'measure center pv5 ph2 mb4' } do |f| %>
+	<h2 class="tc bold mv4">enter the exact size of your object</h2>
+
+  <fieldset class="mv4">
+    <%= f.label :length, 'length (in)' %>
+    <%= f.number_field :length, min: 1, step: 1, value: @scanning_project.length.present? ? @scanning_project.length : 1, required: true %>
+    <%= f.range_field :object_length, min: 1, max: 500, step: 1, value: @scanning_project.length.present? ? @scanning_project.length : 1, tabindex: 0, type: :range, class: 'w-100 mt2', id: 'length_slider' %><br/>
+  </fieldset>
+
+  <fieldset class="mv4">
+    <%= f.label :width, 'width (in)' %>
+    <%= f.number_field :width, min: 1, step: 1, value: @scanning_project.width.present? ? @scanning_project.width : 1, required: true %>
+    <%= f.range_field :object_width, min: 1, max: 500, step: 1, value: @scanning_project.width.present? ? @scanning_project.width : 1, tabindex: 0, type: :range, class: 'w-100 mt2', id: 'width_slider' %><br/>
+  </fieldset>
+
+  <fieldset class="mv4">
+    <%= f.label :height, 'height (in)' %>
+    <%= f.number_field :height, min: 1, step: 1, value: @scanning_project.height.present? ? @scanning_project.height : 1, required: true %>
+    <%= f.range_field :object_height, min: 1, max: 500, step: 1, value: @scanning_project.height.present? ? @scanning_project.height : 1, tabindex: 0, type: :range, class: 'w-100 mt2', id: 'height_slider' %><br/>
+  </fieldset>
+
+	<div class="mv4">
+		<%= link_to 'back', scanning_project_path(@scanning_project, scanning_project: { object_size: nil, name: nil }), method: :put, class: 'button secondary-button fl' %>
+    <%= f.submit 'submit', class: 'button primary-button fr' %>
+	</div>
+<% end %>
+
+<script>
+	$('#length_slider').on('input change', function() {
+		$('#scanning_project_length').val($(this).val());
+	});
+	$('#scanning_project_length').on('input change', function() {
+		$('#length_slider').val($(this).val());
+	});
+
+  $('#width_slider').on('input change', function() {
+		$('#scanning_project_width').val($(this).val());
+	});
+	$('#scanning_project_width').on('input change', function() {
+		$('#width_slider').val($(this).val());
+	});
+
+  $('#height_slider').on('input change', function() {
+		$('#scanning_project_height').val($(this).val());
+	});
+	$('#scanning_project_height').on('input change', function() {
+		$('#height_slider').val($(this).val());
+	});
+</script>

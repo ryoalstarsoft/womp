@@ -1,0 +1,196 @@
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  line-height: 19px;
+}
+
+fieldset p {
+  padding: .4em 0 0 0;
+  max-width: 635px;
+}
+
+fieldset.left-icon-fieldset {
+	position: relative;
+}
+fieldset.left-icon-fieldset .left-icon {
+	position: absolute;
+	top: 2px;
+	left: 0;
+}
+fieldset.left-icon-fieldset input {
+	text-indent: 20px;
+}
+
+label {
+  font-size: 14px;
+  line-height: 19px;
+  display: block;
+  max-width: 635px;
+  padding: 0 0 .4em 0;
+}
+
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  background-image: asset-url("sort-solid.svg");
+  background-position: 99% 50%;
+  background-repeat: no-repeat;
+  background-size: 8px;
+}
+
+option[value=""][disabled] {
+  display: none;
+}
+
+textarea,
+select,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  padding: 0;
+  vertical-align: middle;
+  min-width: 50px;
+  max-width: 635px;
+  width: 100%;
+  min-height: 32px;
+  background-color: $white;
+  border: none;
+  border-bottom: 1px solid $secondary-brand-color;
+  &:hover {
+    border-bottom: 1px solid $primary-brand-color;
+  }
+  &:focus {
+    border-bottom: 2px solid $blue;
+    outline: none;
+  }
+  &:disabled {
+    border-bottom: 1px solid $secondary-brand-color;
+    opacity: 0.5;
+  }
+  &.valid {
+    border-bottom: 2px solid $green;
+  }
+  &.invalid {
+    border-bottom: 2px solid $red;
+  }
+}
+
+input[type="text"].valid ~ p,
+input[type="password"].valid ~ p,
+input[type="datetime"].valid ~ p,
+input[type="datetime-local"].valid ~ p,
+input[type="date"].valid ~ p,
+input[type="month"].valid ~ p,
+input[type="time"].valid ~ p,
+input[type="week"].valid ~ p,
+input[type="number"].valid ~ p,
+input[type="email"].valid ~ p,
+input[type="url"].valid ~ p,
+input[type="search"].valid ~ p,
+input[type="tel"].valid ~ p,
+input[type="color"].valid ~ p {
+  color: $green;
+}
+
+input[type="text"].invalid ~ p,
+input[type="password"].invalid ~ p,
+input[type="datetime"].invalid ~ p,
+input[type="datetime-local"].invalid ~ p,
+input[type="date"].invalid ~ p,
+input[type="month"].invalid ~ p,
+input[type="time"].invalid ~ p,
+input[type="week"].invalid ~ p,
+input[type="number"].invalid ~ p,
+input[type="email"].invalid ~ p,
+input[type="url"].invalid ~ p,
+input[type="search"].invalid ~ p,
+input[type="tel"].invalid ~ p,
+input[type="color"].invalid ~ p {
+  color: $red;
+}
+
+// input[type="file"] {
+// 	width: 0.1px;
+// 	height: 0.1px;
+// 	opacity: 0;
+// 	overflow: hidden;
+// 	position: absolute;
+// 	z-index: -1;
+// }
+
+input[type="checkbox"] {
+	width: 1rem;
+	height: 1rem;
+	vertical-align: middle;
+}
+input[type="checkbox"] ~ label {
+	display: inline-block;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+	margin-top: -2px;
+	width: 1rem;
+}
+input[type="radio"] ~ label {
+	display: inline-block;
+  cursor: pointer;
+}
+
+.stripe-button-el {
+	display: none !important;
+}
+
+// Attachments
+.direct-upload {
+  border: 1px solid $primary-brand-color;
+  color: $primary-brand-color;
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.direct-upload--pending {
+	opacity: 0.6;
+}
+.direct-upload__progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	opacity: 0.2;
+	background: #0076ff !important;
+	transition: width 120ms ease-out, opacity 60ms 60ms ease-in;
+	transform: translate3d(0, 0, 0);
+}
+.direct-upload--complete .direct-upload__progress {
+	background: none !important;
+}
+.direct-upload--error {
+	border-color: red;
+}
+input[type=file][data-direct-upload-url][disabled] {
+	display: none;
+}

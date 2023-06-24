@@ -1,0 +1,17 @@
+<% uploads.includes(file_attachment: :blob).order('created_at desc').each do |upload| %>
+  <div class="fl w-50-l w-100 pa2">
+    <%= f.check_box 'temp_existing_attachment_ids', { multiple: true, class: 'existing-attachments-check-box dn' }, upload.id, false %>
+    <%= f.label 'temp_existing_attachment_ids', for: "comment_temp_existing_attachment_ids_#{upload.id}", class: 'existing-attachments-label relative' do %>
+      <% if upload.file.previewable? || upload.file.variable? %>
+        <%= image_tag upload.file_image_url, class: 'reference-image pointer' %>
+      <% else %>
+        <%= image_tag "file-empty-icon.png", class: 'reference-image pointer' %>
+      <% end %>
+
+      <div class="reference-overlay">
+        <p class="absolute top-1 left-1 white"><%= upload.file.blob.filename.to_s %></p>
+      </div>
+      <i class="far fa-check-circle tc circle-check"></i>
+    <% end %>
+  </div>
+<% end %>

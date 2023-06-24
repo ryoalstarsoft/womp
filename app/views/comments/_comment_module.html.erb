@@ -1,0 +1,13 @@
+<div class="w-100">
+	<h3 class="mb4">comments</h3>
+
+	<% if project_type == "ModelingProject" && project.next_version_modeling_project.present? %>
+		<p class="tc mb4">new comments are disabled for this project version</p>
+	<% else %>
+		<div id="js-comment-form">
+			<%= render 'comments/form', project_type: project_type, project_id: project_id, project: project %>
+		</div>
+	<% end %>
+
+	<%= render project.comments.order('created_at desc') if project.comments.present? %>
+</div>

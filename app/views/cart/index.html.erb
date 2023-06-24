@@ -1,0 +1,47 @@
+<div class="mw8 center ph2 pv6 tl w-100">
+	<h1 class="f3 fw7 lh-title">cart</h1>
+</div>
+
+<div class="cf mw8 center pv5 ph2">
+
+	<% if current_cart.scanning_projects.present? || current_cart.printing_projects.present? %>
+		<h2 class="f4 lh-copy fw7 mv4">shipping</h2>
+		<% if current_user.address.present? %>
+			<p class="f6 lh-copy mv0"><%= current_user.address %> - <%= link_to 'edit', edit_user_registration_path, class: 'link blue dim' %></p>
+		<% else %>
+			<p class="f6 lh-copy mv0"><%= link_to 'add your address', edit_user_registration_path, class: 'link blue dim' %></p>
+		<% end %>
+	<% end %>
+
+	<div class="w-100 pv3">
+		<% if current_cart.all_projects.present? %>
+			<%= render 'cart/table', target: current_cart.all_projects.sort_by(&:id) %>
+
+			<div class="w-100 tr mt5">
+				<p class="tr mb0">
+					<% if current_cart.sales_tax > 0 %>
+						subtotal: <b><%= number_to_currency(current_cart.subtotal) %></b><br/>
+						sales tax (8.88% for printing orders): <b><%= number_to_currency(current_cart.sales_tax) %></b><br/>
+					<% end %><br/>
+					total: <b><%= number_to_currency(current_cart.total) %> usd</b><br/><br/>
+				</p>
+			</div>
+
+				<div class="cf">
+					<%= form_for Order.new, html: { class: 'fr w-100' } do |f| %>
+						<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+							data-email="<%= current_user.email %>"
+							data-key="<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>"
+							data-description="Womp Checkout"
+							data-amount="<%= current_cart.stripe_amount %>"
+							data-locale="auto">
+						</script>
+						<%= f.submit 'checkout', class: 'fr button primary-button' %>
+					<% end %>
+				</div>
+			</div>
+		<% else %>
+			<p>your cart is empty</p>
+		<% end %>
+	</div>
+</div>

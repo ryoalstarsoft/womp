@@ -1,0 +1,96 @@
+<div class="fl w-100 pa2 mt4">
+	<%= form_for @quote, html: { class: 'mv4 js-auto-submit' } do |f| %>
+		<h2 class="tc mv2">what most describes your model?</h2>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "sharp_transitions", class: 'dn' %>
+			<%= f.label :model_type_sharp_transitions, "sharp transitions" do %>
+				<%= image_tag 'pricing-quiz/quiz model 01.png' %><br/>
+				sharp transitions
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "soft_transitions", class: 'dn' %>
+			<%= f.label :model_type_soft_transitions, "soft transitions" do %>
+				<%= image_tag 'pricing-quiz/quiz model 05.png' %><br/>
+				soft transitions
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "replica", class: 'dn' %>
+			<%= f.label :model_type_replica, "replica" do %>
+				<%= image_tag 'pricing-quiz/quiz model 03.png' %><br/>
+				replica
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "organic_shapes", class: 'dn' %>
+			<%= f.label :model_type_organic_shapes, "organic shapes" do %>
+				<%= image_tag 'pricing-quiz/quiz model 04.png' %><br/>
+				organic shapes
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "engraving_and_extrusion", class: 'dn' %>
+			<%= f.label :model_type_engraving_and_extrusion, "engraving and extrusion" do %>
+				<%= image_tag 'pricing-quiz/quiz model 02.png' %><br/>
+				engraving & extrusion
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "jewelry", class: 'dn' %>
+			<%= f.label :model_type_jewelry, "jewelry" do %>
+				<%= image_tag 'pricing-quiz/quiz model 06.png' %><br/>
+				jewelry
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "architectural", class: 'dn' %>
+			<%= f.label :model_type_architectural, "architectural" do %>
+				<%= image_tag 'pricing-quiz/quiz model 07.png' %><br/>
+				architectural
+			<% end %>
+		</div>
+
+		<div class="fl w-25-l w-third-m w-100 tc">
+			<%= f.radio_button :model_type, "file_fixing", class: 'dn' %>
+			<%= f.label :model_type_file_fixing, "file fixing" do %>
+				<%= image_tag 'pricing-quiz/quiz model 08.png' %><br/>
+				file fixing
+			<% end %>
+		</div>
+
+		<div class="fl w-third-ns w-100 tc">
+			<%= f.radio_button :model_type, "parametric", class: 'dn' %>
+			<%= f.label :model_type_parametric, "parametric" do %>
+				<%= image_tag 'pricing-quiz/quiz model 09.png' %><br/>
+				parametric
+			<% end %>
+		</div>
+
+		<div class="fl w-third-ns w-50-m w-100 tc">
+			<%= f.radio_button :model_type, "extreme_precision", class: 'dn' %>
+			<%= f.label :model_type_extreme_precision, "extreme precision" do %>
+				<%= image_tag 'pricing-quiz/quiz model 10.png' %><br/>
+				extreme precision
+			<% end %>
+		</div>
+
+		<div class="fl w-third-ns w-50-m w-100 tc">
+			<%= f.radio_button :model_type, "other", class: 'dn' %>
+			<%= f.label :model_type_other, "other" do %>
+				<%= image_tag 'pricing-quiz/quiz model 11.png' %><br/>
+				other
+			<% end %>
+		</div>
+
+		<% # submits automatically on selection due to js-auto-submit %>
+		<%= f.submit 'submit', class: 'dn' %>
+	<% end %>
+</div>

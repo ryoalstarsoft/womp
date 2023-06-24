@@ -1,0 +1,24 @@
+<div class="bg-white pv6 ph2">
+	<div class="cf mw8 center pv6">
+		<div class="fl w-50-l w-100 tc tl-l mt3 mb5 mv0-l">
+			<h2 class="f3 fw7 lh-title">3d scanning project</h2>
+			<div>
+				<span class="v-mid"><%= @scanning_project.created_at.strftime('%D') %> • <%= @scanning_project.name.present? ? @scanning_project.name : 'not named yet' %></span>
+			</div>
+		</div>
+		<div class="fr w-50-l w-100">
+      <ul class="progress-indicator">
+      	<li class="completed"><span class="bubble"></span> create<br/>project </li>
+      	<li class="<%= @scanning_project.create_project_complete? ? 'completed' : '' %>"><span class="bubble"></span> specify</br>details </li>
+      	<% if @scanning_project.object_size == "other" %>
+      		<li class="<%= @scanning_project.scanning_details_complete? ? 'completed' : '' %>"><span class="bubble"></span> review </li>
+      		<li class="<%= @scanning_project.user_reviewed? && @scanning_project.price_override.present? ? 'completed' : '' %>"><span class="bubble"></span> checkout </li>
+      	<% else %>
+      		<li class="<%= @scanning_project.scanning_details_complete? ? 'completed' : '' %>"><span class="bubble"></span> checkout </li>
+      	<% end %>
+      	<li class="<%= @scanning_project.paid? ? 'completed' : '' %>"><span class="bubble"></span> womp<br/>scanning </li>
+      	<li class="<%= @scanning_project.upload.present? ? 'completed' : '' %>"><span class="bubble"></span> complete </li>
+      </ul>
+		</div>
+	</div>
+</div>

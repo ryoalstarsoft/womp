@@ -1,0 +1,36 @@
+<% breadcrumb :project, @modeling_project %>
+
+<div class="mb4">
+  <h2>3d modeling project</h2>
+  <p><%= @modeling_project.display_name %> - #<%= @modeling_project.slug %></p>
+  <%= link_to 'edit workspace / generate instructions', edit_admin_modeling_project_path(@modeling_project) %>
+</div>
+
+<div class="mb4">
+  <h3>basic information</h3>
+
+  <p><b>user:</b> <%= @modeling_project.user.email %></p>
+  <p><b>workspace:</b> <%= @modeling_project.workspace.present? ? (link_to @modeling_project.workspace.name, admin_workspace_path(@modeling_project.workspace)) : (link_to 'add workspace', edit_admin_modeling_project_path(@modeling_project)) %></p>
+  <p><b>status:</b> <%= @modeling_project.status %></p>
+  <p><b>paid at:</b> <%= @modeling_project.paid_at.present? ? womp_strftime(@modeling_project.paid_at) : 'n/a' %></p>
+
+  <% if @modeling_project.modeler_password.present? %>
+    <p><b>modeler deadline:</b> <%= @modeling_project.modeler_deadline.present? ? womp_strftime(@modeling_project.modeler_deadline) : 'n/a' %></p>
+    <p><b>modeler password:</b> <%= @modeling_project.modeler_password %></p>
+    <p><b>modeler link:</b> <%= link_to modeler_url(@modeling_project), modeler_path(@modeling_project), target: "_blank" %></p>
+  <% end %>
+</div>
+
+<% if !@modeling_project.create_project_complete? || !@modeling_project.user_captioned? %>
+  <p>this project is currently being created by the user. check back later for more information.</p>
+<% elsif !@modeling_project.user_reviewed? %>
+  <p>this project is currently being reviewed by the user. check back later for more information.</p>
+<% elsif !@modeling_project.pricing_group.present? %>
+  <%= render 'admin/modeling_projects/womp_reviewing' %>
+<% elsif !@modeling_project.paid? %>
+  <%= render 'admin/modeling_projects/checkout' %>
+<% elsif !@modeling_project.uploads.where(reviewable: true, accepted: true).present? %>
+  <%= render 'admin/modeling_projects/modeling' %>
+<% else %>
+  <%= render 'admin/modeling_projects/complete' %>
+<% end %>

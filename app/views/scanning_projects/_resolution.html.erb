@@ -1,0 +1,92 @@
+<%= form_for @scanning_project, html: { class: 'mw8 center js-auto-submit pv5 ph2' } do |f| %>
+	<h2 class="f4 lh-copy tc fw7 mv4">choose the resolution for your scan</h2>
+
+  <% if @scanning_project.object_size == "one_inch_to_six_inches" %>
+    <fieldset class="cf db mv4">
+    	<div class="dn db-l fl-l w-20-l pa2 tc">
+    		&nbsp;
+    	</div>
+      <div class="fl w-30-l w-50 pa2 tc">
+        <%= f.radio_button :resolution, "medium", class: 'dn' %>
+        <%= f.label :resolution_medium, "medium", class: 'w-100 w-60-ns' do %>
+          <div class="aspect-ratio aspect-ratio--1x1 w-100">
+            <div class="aspect-ratio--object bg-light-gray br4 pa4 w-100">
+              &nbsp;
+            </div>
+          </div>
+          <p class="f6 lh-copy fw7">medium</p>
+          <span class="db f7 lh-copy">captures basic overall shape with some detail</span>
+					<span class="db f7 lh-copy i"><%= number_to_currency(@scanning_project.resolution_cost("medium"), precision: 0) %></span>
+        <% end %>
+      </div>
+
+      <div class="fl w-30-l w-50 pa2 tc">
+        <%= f.radio_button :resolution, "high", class: 'dn' %>
+        <%= f.label :resolution_high, "high", class: 'w-100 w-60-ns' do %>
+          <div class="aspect-ratio aspect-ratio--1x1 w-100">
+            <div class="aspect-ratio--object bg-light-gray br4 pa4 w-100">
+              &nbsp;
+            </div>
+          </div>
+          <p class="f6 lh-copy fw7">high</p>
+          <span class="db f7 lh-copy">captures basic overall shape with all detail</span>
+					<span class="db f7 lh-copy i"><%= number_to_currency(@scanning_project.resolution_cost("high"), precision: 0) %></span>
+        <% end %>
+      </div>
+      <div class="dn db-l fl-l w-20-l pa2 tc">
+      	&nbsp;
+      </div>
+    </fieldset>
+  <% else %>
+		<fieldset class="cf db mv4">
+			<div class="fl w-third-l w-50 pa2 tc">
+				<%= f.radio_button :resolution, "low", class: 'dn' %>
+				<%= f.label :resolution_low, "low", class: 'w-100 w-60-ns' do %>
+					<div class="aspect-ratio aspect-ratio--1x1 w-100">
+					  <div class="aspect-ratio--object bg-light-gray br4 pa4 w-100">
+					    &nbsp;
+					  </div>
+					</div>
+					<p class="f6 lh-copy fw7">low</p>
+					<span class="db f7 lh-copy">captures basic overall shape</span>
+					<span class="db f7 lh-copy i"><%= number_to_currency(@scanning_project.resolution_cost("low"), precision: 0) %></span>
+				<% end %>
+			</div>
+
+      <div class="fl w-third-l w-50 pa2 tc">
+				<%= f.radio_button :resolution, "medium", class: 'dn' %>
+				<%= f.label :resolution_medium, "medium", class: 'w-100 w-60-ns' do %>
+					<div class="aspect-ratio aspect-ratio--1x1 w-100">
+					  <div class="aspect-ratio--object bg-light-gray br4 pa4 w-100">
+					    &nbsp;
+					  </div>
+					</div>
+					<p class="f6 lh-copy fw7">medium</p>
+					<span class="db f7 lh-copy">captures basic overall shape with some detail</span>
+					<span class="db f7 lh-copy i"><%= number_to_currency(@scanning_project.resolution_cost("medium"), precision: 0) %></span>
+				<% end %>
+			</div>
+
+      <div class="fl w-third-l w-50 pa2 tc">
+				<%= f.radio_button :resolution, "high", class: 'dn' %>
+				<%= f.label :resolution_high, "high", class: 'w-100 w-60-ns' do %>
+					<div class="aspect-ratio aspect-ratio--1x1 w-100">
+					  <div class="aspect-ratio--object bg-light-gray br4 pa4 w-100">
+					    &nbsp;
+					  </div>
+					</div>
+					<p class="f6 lh-copy fw7">high</p>
+					<span class="db f7 lh-copy">captures basic overall shape with all detail</span>
+					<span class="db f7 lh-copy i"><%= number_to_currency(@scanning_project.resolution_cost("high"), precision: 0) %></span>
+				<% end %>
+			</div>
+    </fieldset>
+  <% end %>
+
+	<div class="cf mv4">
+		<%= link_to '< back', scanning_project_path(@scanning_project, scanning_project: { object_size: nil, name: nil, length: nil, width: nil, height: nil }), method: :put, class: 'button secondary-button fl' %>
+	</div>
+
+	<!-- submits automatically on selection due to js-auto-submit -->
+	<%= f.submit 'submit', class: "dn" %>
+<% end %>

@@ -1,0 +1,45 @@
+<div class="fl w-50 pr2">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>you must assign a pricing group to this project</p>
+
+    <%= form_for @modeling_project, url: admin_modeling_project_path(@modeling_project), method: :put do |f| %>
+      <fieldset class="mt2">
+        <%= f.label :pricing_group, 'pricing group' %>
+        <%= f.select :pricing_group, options_for_select(modeling_pricing_groups), { include_blank: true } %>
+      </fieldset>
+
+      <fieldset class="mt2">
+        <%= f.submit 'submit', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="fl w-50 pl2">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>if you don't want to assign a pricing group, you may manually assign a price</p>
+
+    <%= form_for @modeling_project, url: admin_modeling_project_path(@modeling_project), method: :put do |f| %>
+      <%= f.hidden_field :pricing_group, value: 'override' %>
+
+      <fieldset class="mt2">
+        <%= f.label :price_override, 'price override' %>
+        <%= f.number_field :price_override, step: :any, placeholder: '--', class: 'mw-100 w-100' %>
+      </fieldset>
+
+      <fieldset class="mt2">
+        <%= f.submit 'submit', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="border-container scroll-box">
+  <%= render 'admin/modeling_projects/review_container', able_to_delete: false %>
+</div>
+
+<div class="mv4 cf">
+  <%= render 'admin/comments/comment_module', project_type: 'ModelingProject', project_id: @modeling_project.id, project: @modeling_project %>
+</div>

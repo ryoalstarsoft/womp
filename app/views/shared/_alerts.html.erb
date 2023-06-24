@@ -1,0 +1,22 @@
+<!-- <div class="cf">
+	<div class="fr w-100 pa3 ph5-l mt4">
+		<% if notice %>
+			<p class="tr fr alert-success"><%= notice.downcase.gsub(".", "") %> <span class="notice-exit pointer"><i class="fas fa-times"></i></span></p>
+		<% end %>
+		<% if alert %>
+			<p class="tr fr alert-error"><%= alert.downcase.gsub(".", "") %> <span class="notice-exit pointer"><i class="fas fa-times"></i></span></p>
+		<% end %>
+	</div>
+</div> -->
+
+<% if notice %>
+	<div class="toast positive-toast">
+		<p><%= notice.downcase.gsub(".", "") %></p>
+	</div>
+<% end %>
+
+<% if alert %>
+	<div class="toast negative-toast">
+		<p><%= alert.downcase.gsub(".", "") %></p>
+	</div>
+<% end %>

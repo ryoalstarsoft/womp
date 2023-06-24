@@ -1,0 +1,66 @@
+// load the page with scheme 2 hidden
+.show-on-scheme-1 {
+  opacity: 1;
+  transition: transform 2s ease-out, opacity 1s ease-out;
+}
+.show-on-scheme-2 {
+  opacity: 0;
+  transition: transform 2s ease-out, opacity 1s ease-out;
+}
+
+body.scheme-2 .show-on-scheme-1 { opacity: 1; transform: scale(1); z-index: 2;}
+body.scheme-1 .show-on-scheme-1 { opacity: 0; transform: scale(.69); z-index: 1;}
+body.scheme-2 .show-on-scheme-2 { opacity: 0; transform: scale(.69); z-index: 1;}
+body.scheme-1 .show-on-scheme-2 { opacity: 1; transform: scale(1); z-index: 2;}
+
+
+.js-scheme-1.js-scheme-image:before {
+  background-image: asset-url('home_page/home-page-banner-background-image-1.jpg');
+}
+.js-scheme-1.js-scheme-image:after {
+  background-image: asset-url('home_page/home-page-banner-image-1.png');
+}
+.js-scheme-2.js-scheme-image:before {
+  background-image: asset-url('home_page/home-page-banner-background-image-2.jpg');
+}
+.js-scheme-2.js-scheme-image:after {
+  background-image: asset-url('home_page/home-page-banner-image-2.png');
+}
+
+.slider {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  margin: auto;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100vw;
+  min-height:100vh;
+  position: absolute;
+  padding-bottom: 100%;
+  
+  // Add transition
+  transition: transform 1.5s ease-out;
+  will-change: transform;
+  
+  // Move slides off to the left  by default
+  transform: translate(-100%, 0);
+  
+  // Set active slide to be in the viewport
+  &.active {
+    transform: translate(0, 0);
+    
+    // Use sibling selector to position all slides after the active slide to the right
+    & ~ .slide {
+      transform: translate(100%, 0);
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .slide, .slider {
+    min-height:80vh;
+  }
+}

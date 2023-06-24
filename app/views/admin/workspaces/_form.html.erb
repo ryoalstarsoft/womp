@@ -1,0 +1,6 @@
+<%= form_for workspace, url: url do |f| %>
+  <%= f.label :name, 'name: ' %>
+  <%= f.text_field :name %><br/>
+
+  <%= f.submit 'create workspace' %>
+<% end %>

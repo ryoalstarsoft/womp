@@ -1,0 +1,13 @@
+<p>
+	Hi,<br/><br/>
+
+	Womp has shipped your model back to you. Here is the tracking information:<br/><br/>
+
+  <p><b>Tracking Number:</b> <%= @scanning_project.tracking_number %></p>
+  <p><b>Carrier:</b> <%= @scanning_project.carrier %></p><br/>
+
+	No further action is needed by you, this is just a notification. To view your project, <b><%= link_to 'click here', scanning_project_url(@scanning_project) %>.</b><br/><br/>
+
+	Thanks!<br/>
+	The Womp Team
+</p>

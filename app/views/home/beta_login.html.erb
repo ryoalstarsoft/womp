@@ -1,0 +1,10 @@
+<div class="fl w-100 pa2 mv5">
+	<%= form_tag({action: 'beta_login_submit'}, { class: 'measure center' }) do %>
+		<h3 class="mb2">login</h3>
+
+		<%= text_field_tag :beta_password, nil, { class: 'w-100 mv3', placeholder: 'beta password' } %>
+		<p class="mb3">email <a href="mailto:info@womp.xyz">info@womp.xyz</a> for a beta password</p>
+
+		<%= submit_tag "submit", class: 'button primary-button fr' %>
+	<% end %>
+</div>

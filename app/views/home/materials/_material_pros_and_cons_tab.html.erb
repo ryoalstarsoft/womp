@@ -1,0 +1,31 @@
+<div id="<%= group.first %>-<%= material_type_group.first.gsub(" ", "-") %>-pros-cons" class="mv5">
+	<% @materials.where(material_category: group.first, material_type: material_type_group.first).custom_group_by_finish(group.first).each do |finish_group| %>
+		<div class="<%= finish_group_class(group, material_type_group, finish_group) %>">
+			<table class="w-80 center womp-simple-table">
+				<thead>
+					<th>pros</th>
+					<th>cons</th>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>
+							<ul>
+								<% finish_group.second.first.pros.each do |pro| %>
+									<li><%= pro %></li>
+								<% end %>
+							</ul>
+						</td>
+						<td>
+							<ul>
+								<% finish_group.second.first.cons.each do |con| %>
+									<li><%= con %></li>
+								<% end %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<% end %>
+</div>

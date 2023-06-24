@@ -1,0 +1,20 @@
+<div class="cf mw8 center pv5 ph2">
+	<div class="cf mv4">
+		<%= render 'shared/viewer', upload: @modeling_project.uploads.where(reviewable: true).last, project: @modeling_project %>
+	</div>
+
+	<div class="cf mv4">
+		<%= link_to "download", @modeling_project.uploads.where(reviewable: true).last.file.blob.service_url(expires_in: 1.week), class: 'button primary-button fr' %>
+	</div>
+
+	<div class="w-100 js-secondary-workspace dn">
+  </div>
+
+	<div class="pa2 border-container scroll-box">
+		<%= render 'modeling_projects/review_container', able_to_delete: false %>
+	</div>
+
+	<div class="fl w-100 mv4">
+		<%= render 'comments/comment_module', project_type: 'ModelingProject', project_id: @modeling_project.id, project: @modeling_project %>
+	</div>
+</div>

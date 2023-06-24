@@ -1,0 +1,60 @@
+<% breadcrumb :material, @material %>
+
+<div class="fl w-100 mb4">
+  <h3>material - <%= @material.display_name %></h3>
+  <%= link_to 'edit', edit_admin_material_path(@material) %>
+</div>
+
+<div class="fl w-50">
+  <h4>basic info</h4>
+  <p><b>material type:</b> <%= @material.material_type %></p>
+  <p><b>provider:</b> <%= @material.provider %></p>
+  <p><b>direct print:</b> <%= @material.direct_print? ? 'yes' : 'no' %></p>
+  <p><b>resolution:</b> <%= @material.resolution %></p>
+  <p><b>min size:</b> <%= @material.min_size %></p>
+  <p><b>max size:</b> <%= @material.max_size %></p>
+  <p><b>min wall supported:</b> <%= @material.min_wall_supported %></p>
+  <p><b>min wall unsupported:</b> <%= @material.min_wall_unsupported %></p>
+  <p><b>min wire supported:</b> <%= @material.min_wire_supported %></p>
+  <p><b>min wire unsupported:</b> <%= @material.min_wire_unsupported %></p>
+  <p><b>min detail concave:</b> <%= @material.min_detail_concave %></p>
+  <p><b>min detail convex:</b> <%= @material.min_detail_convex %></p>
+  <p><b>escape hole single:</b> <%= @material.escape_hole_single %></p>
+  <p><b>escape hole multiple:</b> <%= @material.escape_hole_multiple %></p>
+  <p><b>clearance:</b> <%= @material.clearance %></p>
+  <p><b>technology:</b> <%= @material.technology %></p>
+  <p><b>archived:</b> <%= @material.archived? ? 'yes' : 'no' %></p>
+  <p><b>created at:</b> <%= womp_strftime(@material.created_at).downcase %></p>
+  <p><b>updated at:</b> <%= womp_strftime(@material.updated_at).downcase %></p>
+</div>
+
+<div class="fl w-50">
+  <h4>pricing</h4>
+  <p><b>per part price:</b> <%= number_to_currency(@material.per_part_price) %></p>
+  <p><b>volume price:</b> <%= number_to_currency(@material.volume_price) %></p>
+  <p><b>machine space price:</b> <%= number_to_currency(@material.machine_space_price) %></p>
+  <p><b>bounding box price:</b> <%= number_to_currency(@material.bounding_box_price) %></p>
+  <p><b>surface area price:</b> <%= number_to_currency(@material.surface_area_price) %></p>
+  <p><b>handling price:</b> <%= number_to_currency(@material.handling_price) %></p>
+  <p><b>support price:</b> <%= number_to_currency(@material.support_price) %></p>
+</div>
+
+<div class="fl w-50">
+  <h4>misc</h4>
+  <p><b>roll inventory:</b> <%= @material.roll_inventory %></p>
+  <p><b>resin finish:</b> <%= @material.resin_finish %></p>
+  <p><b>color(s):</b> <%= @material.color.map{|color| color}.join(", ") %></p>
+  <p><b>days to print:</b> <%= @material.days_to_print %></p>
+  <p><b>cost level:</b> <%= @material.cost_level %></p>
+  <p><b>material spec:</b> <%= @material.material_spec %></p>
+  <p><b>heat proof:</b> <%= @material.heat_proof %></p>
+  <p><b>skin friendly:</b> <%= @material.skin_friendly? ? 'yes' : 'no' %></p>
+  <p><b>interlocking:</b> <%= @material.interlocking? ? 'yes' : 'no' %></p>
+  <p><b>water tight:</b> <%= @material.water_tight? ? 'yes' : 'no' %></p>
+  <p><b>chemical resistant:</b> <%= @material.chemical_resistant? ? 'yes' : 'no' %></p>
+  <p><b>food safe:</b> <%= @material.food_safe? ? 'yes' : 'no' %></p>
+  <p><b>dishwasher safe:</b> <%= @material.dishwasher_safe? ? 'yes' : 'no' %></p>
+  <p><b>use(s):</b> <%= @material.uses.map{|use| use}.join(", ") %></p>
+  <p><b>pro(s):</b> <%= @material.pros.map{|pro| pro}.join(", ") %></p>
+  <p><b>con(s):</b> <%= @material.cons.map{|con| con}.join(", ") %></p>
+</div>

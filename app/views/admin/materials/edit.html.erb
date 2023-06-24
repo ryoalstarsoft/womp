@@ -1,0 +1,7 @@
+<% breadcrumb :edit_material, @material %>
+
+<div class="fl w-100 mb4">
+  <h1 class="f3 lh-title">edit material - <%= @material.display_name %></h1>
+</div>
+
+<%= render 'admin/materials/form', material: @material, url: admin_material_path(@material) %>

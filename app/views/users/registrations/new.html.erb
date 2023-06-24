@@ -1,0 +1,28 @@
+<div class="fl w-100 pa2 mv5">
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'measure center' }) do |f| %>
+		<h3 class="mb2">sign up</h3>
+
+		<%= render 'shared/error_messages', object: resource %>
+
+		<%= f.text_field :name, autofocus: true, placeholder: 'name', class: "w-100 mv3" %>
+		<%= f.email_field :email, placeholder: 'email', class: "w-100 mv3" %>
+		<%= f.password_field :password, autocomplete: "off", placeholder: 'password', class: "w-100 mv3" %>
+		<%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'password confirmation', class: "w-100 mv3" %>
+
+		<%= f.submit "sign up", class: 'button primary-button fr' %>
+
+		<div class="fl w-100 mv4">
+			<p class="caption tc">by signing up you agree to womp's <%= link_to 'terms and conditions', terms_and_conditions_path %></p>
+		</div>
+	<% end %>
+
+	<div class="measure center tc mv4">
+		<p>already have an account? <%= link_to "login", new_session_path(resource_name) %>
+	</div>
+
+	<div class="tc">
+		<% resource_class.omniauth_providers.each do |provider| %>
+			<p><%= link_to "sign in with #{provider.to_s.gsub("_oauth2", "")}", omniauth_authorize_path(resource_name, provider) %></p>
+		<% end %>
+	</div>
+</div>

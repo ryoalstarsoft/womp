@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  object_size: MyString
+  price_override: 9.99
+  womp_received: false
+  tracking_number: MyString
+  carrier: MyString
+  final_price: 9.99
+  received_at: 2018-12-04 16:26:50
+  slug: MyString
+  user_reviewed: false
+  resolution: MyString
+  color: MyString
+  length: 9.99
+  width: 9.99
+  height: 9.99
+  picked_up: false
+  status: MyString
+  paid: false
+  paid_at: 2018-12-04 16:26:50
+  cart_id: 1
+  order_id: 1
+  workspace_id: 1
+
+two:
+  user_id: 1
+  name: MyString
+  object_size: MyString
+  price_override: 9.99
+  womp_received: false
+  tracking_number: MyString
+  carrier: MyString
+  final_price: 9.99
+  received_at: 2018-12-04 16:26:50
+  slug: MyString
+  user_reviewed: false
+  resolution: MyString
+  color: MyString
+  length: 9.99
+  width: 9.99
+  height: 9.99
+  picked_up: false
+  status: MyString
+  paid: false
+  paid_at: 2018-12-04 16:26:50
+  cart_id: 1
+  order_id: 1
+  workspace_id: 1

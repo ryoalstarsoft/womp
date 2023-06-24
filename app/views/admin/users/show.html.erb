@@ -1,0 +1,36 @@
+<% breadcrumb :user, @user %>
+
+<div class="fl w-100 mb4">
+  <h2>user - <%= @user.email %></h2>
+</div>
+
+<div class="fl w-100">
+  <p><b>email:</b> <%= @user.email %></p>
+  <p><b>last sign in at:</b> <%= womp_strftime(@user.current_sign_in_at).downcase %></p>
+  <p><b>sign in count:</b> <%= @user.sign_in_count %></p>
+  <p><b>created at:</b> <%= womp_strftime(@user.created_at).downcase %></p>
+  <p><b>updated at:</b> <%= womp_strftime(@user.updated_at).downcase %></p>
+</div>
+
+<div class="fl w-100">
+  <h2 class="f4 lh-title">scanning projects</h2>
+  <% if @user.scanning_projects.present? %>
+    <%= render 'admin/scanning_projects/table', target: @user.scanning_projects %>
+  <% else %>
+    <p>no scanning projects</p>
+  <% end %>
+
+  <h2 class="f4 lh-title">modeling projects</h2>
+  <% if @user.modeling_projects.present? %>
+    <%= render 'admin/modeling_projects/table', target: @user.modeling_projects %>
+  <% else %>
+    <p>no modeling projects</p>
+  <% end %>
+
+  <h2 class="f4 lh-title">printing projects</h2>
+  <% if @user.printing_projects.present? %>
+    <%= render 'admin/printing_projects/table', target: @user.printing_projects %>
+  <% else %>
+    <p>no printing projects</p>
+  <% end %>
+</div>

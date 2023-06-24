@@ -1,0 +1,9 @@
+<% breadcrumb :annotate_upload, @upload %>
+
+<div class="fl w-100">
+	<% if @upload.file.previewable? || @upload.file.variable? %>
+		<%= react_component("Annotator", { imageUrl: @upload.file_image_url, imageAltText: 'Womp Image', projectId: @upload.project.id, uploadId: @upload.id, existingAnnotations: @upload.formatted_annotations, readOnly: @upload.annotate_read_only(current_admin_user) }) %>
+	<% else %>
+		<p class="mv0">only image files can be annotated</p>
+	<% end %>
+</div>

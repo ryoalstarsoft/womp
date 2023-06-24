@@ -1,0 +1,11 @@
+<%= javascript_pack_tag 'react-application' %>
+
+<div class="fl w-100 mb4 annotate-container">
+  <% if (@upload.file.previewable? || @upload.file.variable?) && params[:read_only].present? # read only %>
+    <%= react_component("Annotator", { imageUrl: @upload.file_image_url, imageAltText: 'Womp Image', projectId: @upload.project.id, uploadId: @upload.id, existingAnnotations: @upload.formatted_annotations, readOnly: true }) %>
+  <% elsif @upload.file.previewable? || @upload.file.variable? %>
+    <%= react_component("Annotator", { imageUrl: @upload.file_image_url, imageAltText: 'Womp Image', projectId: @upload.project.id, uploadId: @upload.id, existingAnnotations: @upload.formatted_annotations, readOnly: @upload.annotate_read_only(current_user) }) %>
+  <% else %>
+    <p>only image files can be annotated</p>
+  <% end %>
+</div>

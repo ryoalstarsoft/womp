@@ -1,0 +1,16 @@
+<div class="fl w-100 pa2 mv5">
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'measure center' }) do |f| %>
+		<h3>change your password</h3>
+		<%= render 'shared/error_messages', object: resource %>
+
+		<%= f.hidden_field :reset_password_token %>
+
+		<% if @minimum_password_length %>
+			<em class="tiny">(<%= @minimum_password_length %> characters minimum)</em><br />
+		<% end %>
+		<%= f.password_field :password, autofocus: true, autocomplete: "off", placeholder: 'new password', class: 'w-100 mv3' %>
+		<%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'password confirmation', class: 'w-100 mv3' %>
+
+		<%= f.submit "change my password", class: 'button primary-button fr' %>
+	<% end %>
+</div>

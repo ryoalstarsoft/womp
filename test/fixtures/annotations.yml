@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  upload_id: 1
+  x: 9.99
+  'y': 9.99
+  width: 9.99
+  height: 9.99
+  type: 
+  text: MyText
+
+two:
+  upload_id: 1
+  x: 9.99
+  'y': 9.99
+  width: 9.99
+  height: 9.99
+  type: 
+  text: MyText

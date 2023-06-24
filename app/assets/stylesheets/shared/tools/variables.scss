@@ -1,0 +1,43 @@
+/* ==|====================
+	Tools/Variables
+	Variables
+	======================= */
+
+// Colors
+	// Brand Colors
+	$primary-brand-color: #545259; // used as primary text color
+	$secondary-brand-color: #CBCACD; // used as link hover color
+
+	// Secondary Colors
+	$blue-link: #2196F3;
+	$blue: #4348A6;
+	$black: #6c6970;
+	$white: #FFFFFF;
+	$green: #18AA53;
+	$yellow: #FFCC33;
+	$red: #CC3300;
+
+	// Aliases
+	$success: $green;
+	$warning: $yellow;
+	$error: $red;
+
+	.womp-red {
+		color: $red;
+	}
+	.womp-green {
+		color: $green;
+	}
+
+// Materials
+$material-red: #FF0000;
+$material-pink: #FF69B4;
+$material-blue: #0000FF;
+$material-green: #20A30D;
+$material-yellow: #FFFF00;
+$material-orange: #FF8C00;
+$material-purple: #8A2BE2;
+$material-gray: #CBCACD;
+$material-brown: #A0522D;
+$material-warm-neutral: #CC9F7F;
+$material-cool-neutral: #B2B2B2;

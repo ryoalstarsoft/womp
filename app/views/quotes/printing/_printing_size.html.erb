@@ -1,0 +1,44 @@
+<div class="fl w-100 pa2">
+	<%= form_for @quote, html: { class: 'mv4' } do |f| %>
+		<h2 class="tc mv4">what size is your object?</h2>
+
+		<div class="w-third-l w-50-m w-100 tc center pv4">
+			<p>Object Height (MM): <%= f.number_field :object_height, min: 1, max: 1500, step: 0.1, value: 1, required: true %></p><br/>
+			<%= f.range_field :object_height, min: 1, max: 1500, step: 0.1, value: 1, tabindex: 0, type: :range, class: 'w-100 mb4', id: 'quote_object_height_slider' %><br/>
+
+			<p>Object Width (MM): <%= f.number_field :object_width, min: 1, max: 1500, step: 0.1, value: 1, required: true %></p><br/>
+			<%= f.range_field :object_width, min: 1, max: 1500, step: 0.1, value: 1, tabindex: 0, type: :range, class: 'w-100 mb4', id: 'quote_object_width_slider' %><br/>
+
+			<p>Object Depth (MM): <%= f.number_field :object_depth, min: 1, max: 1500, step: 0.1, value: 1, required: true %></p><br/>
+			<%= f.range_field :object_depth, min: 1, max: 1500, step: 0.1, value: 1, tabindex: 0, type: :range, class: 'w-100', id: 'quote_object_depth_slider' %>
+
+			<div class="mt4">
+				<%= f.submit 'submit', class: 'fr button primary-button' %>
+				<%= link_to 'go back', quote_path(@quote, quote: { object_most_like: nil }), method: :put, class: 'fl button secondary-button' %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<script>
+	$('#quote_object_height_slider').on('input change', function() {
+		$('#quote_object_height').val($(this).val());
+	});
+	$('#quote_object_height').on('input change', function() {
+		$('#quote_object_height_slider').val($(this).val());
+	});
+
+	$('#quote_object_width_slider').on('input change', function() {
+		$('#quote_object_width').val($(this).val());
+	});
+	$('#quote_object_width').on('input change', function() {
+		$('#quote_object_width_slider').val($(this).val());
+	});
+
+	$('#quote_object_depth_slider').on('input change', function() {
+		$('#quote_object_depth').val($(this).val());
+	});
+	$('#quote_object_depth').on('input change', function() {
+		$('#quote_object_depth_slider').val($(this).val());
+	});
+</script>

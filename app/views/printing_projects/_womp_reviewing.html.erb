@@ -1,0 +1,23 @@
+<div class="cf mw8 center pv5 ph2">
+  <h2 class="tc bold">womp is reviewing your info to ensure that there are no issues with your model</h2>
+  <p class="tc f5 lh-copy">you'll receive an email notification when your project is approved ready for you to pay</p>
+
+	<div class="cf mv4">
+		<%= render 'shared/viewer', upload: @printing_project.uploads.last, project: @printing_project %>
+	</div>
+
+  <div class="cf mv4">
+    <div class="w-100 tc center">
+      <p class="f5 lh-copy">your project is to print an object with <b><%= @printing_project.material.display_name.downcase %></b></p>
+      <p class="f5 lh-copy">we will ship your print to <b><%= current_user.address.downcase %></b></p>
+    </div>
+  </div>
+
+  <div class="cf mv4">
+		<%= link_to '< back', printing_project_path(@printing_project, printing_project: { material_id: nil }), method: :put, data: { confirm: 'are you sure? womp is currently reviewing the project with your current material selection' }, class: 'fl button secondary-button' %>
+	</div>
+
+  <div class="cf mv4">
+    <%= render 'comments/comment_module', project_type: 'PrintingProject', project_id: @printing_project.id, project: @printing_project %>
+  </div>
+</div>

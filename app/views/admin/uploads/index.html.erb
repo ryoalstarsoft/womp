@@ -1,0 +1,41 @@
+<div class="fl w-100 mb4">
+	<h1 class="f3 lh-title">calculatable uploads</h1>
+</div>
+
+<div class="fl w-100 mb4">
+	<%= form_for Upload.new, url: upload_printing_price_upload_admin_uploads_path do |f| %>
+	  <fieldset class="mt2">
+			<%= f.file_field :file, direct_upload: true, multiple: false %>
+			<%= f.label :file, class: 'fl' do %>
+				<span class="button secondary-button mr1">choose file</span> <span class="update-text">no file chosen</span>
+			<% end %>
+	  </fieldset>
+
+	  <fieldset class="mt4">
+	    <%= f.submit 'create upload', class: 'button primary-button' %>
+	  </fieldset>
+	<% end %>
+
+</div>
+
+<table class="fl w-100 womp-simple-table mb4">
+	<thead>
+		<tr>
+			<th>file name</th>
+			<th>created at</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @uploads.each do |upload| %>
+			<tr>
+				<td><%= upload.file.filename %></td>
+				<td><%= womp_strftime(upload.created_at).downcase %></td>
+				<td>
+					<%= link_to "view printing prices", printing_prices_admin_upload_path(upload) %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

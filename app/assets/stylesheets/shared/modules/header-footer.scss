@@ -1,0 +1,76 @@
+// header, header nav, header nav .header-height {
+// 	height: 56px;
+// }
+
+.carrot {
+	right: 3px;
+	top: -7px;
+	transform: rotate(45deg);
+}
+
+.js-dropdown-content {
+	top: 86px;
+	right: 0px;
+	width: 150px;
+	a {
+		width: 150px;
+		display: block;
+		text-align: center;
+	}
+}
+
+// Mobile
+.header-on-mobile {
+	max-height: 4.5rem;
+	overflow: hidden;
+	transition: max-height 0.2s ease;
+}
+.header-on-mobile.open {
+	max-height: 34rem;
+	transition: max-height 0.2s ease;
+}
+
+.js-toggle-hamburger-menu {
+	width: 2rem;
+	height: 2rem;
+	display: block;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+}
+
+.js-toggle-hamburger-menu .bar {
+	background-color: $primary-brand-color;
+	display: block;
+	width: 20px;
+	height: 2px;
+	border-radius: 100px;
+	position: absolute;
+	top: 23px;
+	right: 7px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.js-toggle-hamburger-menu .bar:first-child {
+	-webkit-transform: translateY(-6px);
+	-moz-transform: translateY(-6px);
+	-ms-transform: translateY(-6px);
+	transform: translateY(-6px);
+}
+
+.js-toggle-hamburger-menu.x .bar {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.js-toggle-hamburger-menu.x .bar:first-child {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}

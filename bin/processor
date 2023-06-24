@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+require 'open-uri'
+require 'net/http'
+require 'benchmark'
+
+file_location = ARGV[0]
+file_name = file_location.split("/").last
+file_extension = File.extname(file_name)
+file_name_stripped = file_name.sub(file_extension, "")
+tmp_file_path = "tmp/#{file_name}"
+
+File.open(tmp_file_path, "wb") do |file|
+	puts "Downloading file..."
+	file.write open(file_location).read
+end
+
+if file_extension == ".stl"
+	puts "Detected STL File"
+	puts "Converting to OBJ"
+
+	# convert file to obj
+	obj_tmp_file_path = "tmp/#{file_name_stripped}.obj"
+	obj_tmp_file_path_mtl = "tmp/#{file_name_stripped}.obj.mtl"
+
+	`bin/assimp export #{tmp_file_path} #{obj_tmp_file_path}`
+
+	# cleanup
+	FileUtils.rm(tmp_file_path)
+	FileUtils.rm(obj_tmp_file_path_mtl)
+
+	puts "Completed OBJ Conversion"
+	puts "Converting to DRC"
+
+	# convert file to drc
+	drc_tmp_file_path = "tmp/#{file_name_stripped}.drc"
+
+	`bin/draco_encoder -i #{obj_tmp_file_path} -o #{drc_tmp_file_path}`
+
+	# cleanup
+	FileUtils.rm(obj_tmp_file_path)
+
+	puts "Completed DRC Conversion"
+elsif file_extension == ".obj"
+	puts "Detected OBJ File"
+	puts "Converting to DRC"
+
+	drc_tmp_file_path = "tmp/#{file_name_stripped}.drc"
+
+	`bin/draco_encoder -i #{tmp_file_path} -o #{drc_tmp_file_path} -cl 10`
+
+	FileUtils.rm(tmp_file_path)
+
+	puts "Completed DRC Conversion"
+end

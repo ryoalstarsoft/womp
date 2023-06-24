@@ -1,0 +1,44 @@
+<table class="w-100 womp-simple-table">
+	<thead class="bg-white">
+		<tr>
+			<th>name</th>
+			<th>type</th>
+			<th>cost</th>
+			<th>date</th>
+			<th>quantity</th>
+			<th class="cf"><span class="fr">actions</span></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% target.each do |project| %>
+			<tr>
+				<td><%= link_to (project.name.present? ? project.name : 'not named yet'), project %></td>
+				<td><%= "3d #{project.model_name.human.downcase}" %></td>
+				<td><%= project.total_price.present? ? number_to_currency(project.total_price) : '' %></td>
+				<td><%= project.created_at.strftime('%D') %></td>
+				<td>
+					<% if project.class.name == "PrintingProject" %>
+						<%= link_to "-", decrement_quantity_printing_project_path(project), method: :put %> <%= project.quantity %> <%= link_to "+", increment_quantity_printing_project_path(project), method: :put %>
+					<% else %>
+						n/a
+					<% end %>
+				</td>
+				<td class="relative cf">
+					<a href="javascript:void(0)" class="fr js-toggle-actions blue dim"><i class="fa fa-ellipsis-v blue dim" aria-hidden="true"></i></a>
+					<div class="js-dropdown-content absolute top-5 bg-white w5 z-999 shadow-4 br2 dn">
+						<%= link_to "view project", project, class: "db pv3" %>
+
+						<% if project.class.name == "ScanningProject" %>
+							<%= link_to '<i class="fas fa-minus pr1"></i> remove from cart'.html_safe, scanning_project_path(project, scanning_project: { cart_id: nil }), method: :put, class: "db pv3 womp-red" %>
+						<% elsif project.class.name == "ModelingProject" %>
+							<%= link_to '<i class="fas fa-minus pr1"></i> remove from cart'.html_safe, modeling_project_path(project, modeling_project: { cart_id: nil }), method: :put, class: "db pv3 womp-red" %>
+						<% elsif project.class.name == "PrintingProject" %>
+							<%= link_to '<i class="fas fa-minus pr1"></i> remove from cart'.html_safe, printing_project_path(project, printing_project: { cart_id: nil }), method: :put, class: "db pv3 womp-red" %>
+						<% end %>
+					</div>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

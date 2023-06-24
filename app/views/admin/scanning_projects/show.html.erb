@@ -1,0 +1,33 @@
+<% breadcrumb :project, @scanning_project %>
+
+<div class="mb4">
+  <h2>3d scanning project</h2>
+  <p><%= @scanning_project.display_name %> - #<%= @scanning_project.slug %></p>
+  <%= link_to 'edit workspace', edit_admin_scanning_project_path(@scanning_project) %>
+</div>
+
+<div class="mb4">
+  <h3>basic information</h3>
+
+  <p><b>user:</b> <%= @scanning_project.user.email %></p>
+  <p><b>workspace:</b> <%= @scanning_project.workspace.present? ? (link_to @scanning_project.workspace.name, admin_workspace_path(@scanning_project.workspace)) : (link_to 'add workspace', edit_admin_scanning_project_path(@scanning_project)) %></p>
+  <p><b>status:</b> <%= @scanning_project.status %></p>
+  <p><b>received at:</b> <%= @scanning_project.received_at.present? ? womp_strftime(@scanning_project.received_at) : 'n/a' %></p>
+  <p><b>paid at:</b> <%= @scanning_project.paid_at.present? ? womp_strftime(@scanning_project.paid_at) : 'n/a' %></p>
+</div>
+
+<% if !@scanning_project.create_project_complete? || (@scanning_project.object_size == "other" && !@scanning_project.exact_size_present?) || !@scanning_project.resolution.present? || !@scanning_project.color.present? || !@scanning_project.all_images_attached? || (!@scanning_project.user_reviewed? && @scanning_project.object_size == "other") %>
+  <p>this project is currently being created by the user. check back later for more information.</p>
+<% elsif !@scanning_project.price_override.present? && @scanning_project.object_size == "other" %>
+  <%= render 'admin/scanning_projects/womp_reviewing' %>
+<% elsif !@scanning_project.paid? %>
+  <%= render 'admin/scanning_projects/review_container' %>
+
+  <div class="fl w-100 mv4">
+    <%= render 'admin/comments/comment_module', project_type: 'ScanningProject', project_id: @scanning_project.id, project: @scanning_project %>
+  </div>
+<% elsif !@scanning_project.upload.present? || !@scanning_project.upload.released_to_user? %>
+  <%= render 'admin/scanning_projects/womp_scanning' %>
+<% else %>
+  <%= render 'admin/scanning_projects/complete' %>
+<% end %>

@@ -1,0 +1,35 @@
+<% breadcrumb :workspace, @workspace %>
+
+<div class="fl w-100 mb4">
+  <h2>workspace - <%= @workspace.name %></h2>
+  <%= link_to 'edit', edit_admin_workspace_path(@workspace) %> - <%= link_to 'delete', admin_workspace_path(@workspace), method: :delete, data: { confirm: 'are you sure?' } %>
+</div>
+
+<div class="fl w-100">
+  <p><b>name:</b> <%= @workspace.name %></p>
+  <p><b>created at:</b> <%= womp_strftime(@workspace.created_at).downcase %></p>
+  <p><b>updated at:</b> <%= womp_strftime(@workspace.updated_at).downcase %></p>
+</div>
+
+<div class="fl w-100">
+  <h2 class="f4 lh-title">scanning projects</h2>
+  <% if @workspace.scanning_projects.present? %>
+    <%= render 'admin/scanning_projects/table', target: @workspace.scanning_projects %>
+  <% else %>
+    <p>no scanning projects</p>
+  <% end %>
+
+  <h2 class="f4 lh-title mt2">modeling projects</h2>
+  <% if @workspace.modeling_projects.present? %>
+    <%= render 'admin/modeling_projects/table', target: @workspace.modeling_projects %>
+  <% else %>
+    <p>no modeling projects</p>
+  <% end %>
+
+  <h2 class="f4 lh-title mt2">printing projects</h2>
+  <% if @workspace.printing_projects.present? %>
+    <%= render 'admin/printing_projects/table', target: @workspace.printing_projects %>
+  <% else %>
+    <p>no printing projects</p>
+  <% end %>
+</div>

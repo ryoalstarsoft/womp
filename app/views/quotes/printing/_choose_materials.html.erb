@@ -1,0 +1,30 @@
+<div class="fl w-100 pa2 mv4">
+	<div id="quiz-container" class="viewer-container" data-quote-id="<%= @quote.id %>">
+		<div id="viewer-info">
+			<div class="datafield">
+				<p>Volume: <%= number_with_delimiter(@quote.volume.round(2), delimiter: ',') %>mm<sup>3</sup></p>
+			</div>
+			<div class="datafield">
+				<p>Surface Area: <%= number_with_delimiter(@quote.surface_area.round(2), delimiter: ',') %>mm<sup>2</sup></p>
+			</div>
+			<div class="datafield">
+				<p>Bounding Box (x, y, z): <%= @quote.object_width.round(2) %>mm x <%= @quote.object_depth.round(2) %>mm x <%= @quote.object_height.round(2) %>mm</p>
+			</div>
+		</div>
+		<!-- need to put viewer here constructing model from /viewer-from-quote?quote_id=insertquoteidhere -->
+	</div>
+
+	<%= link_to 'go back', quote_path(@quote, quote: { hollow_or_solid: nil, wall_thickness: nil }), method: :put, class: 'button secondary-button mt2' %>
+</div>
+
+<div class="fl w-100 pa2">
+	<div class="fl w-20-ns db-ns w-100 dn pr2-ns">
+		<div id="js-filters-wrapper">
+			<%= render 'home/materials/filters_wrapper' %>
+		</div>
+	</div>
+
+	<div id="js-materials-wrapper" class="fl w-80-ns w-100 pl2-ns bl-ns b--light-gray">
+		<%= render 'home/materials/materials_wrapper', materials: @materials %>
+	</div>
+</div>

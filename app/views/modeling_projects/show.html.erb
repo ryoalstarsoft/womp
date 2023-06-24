@@ -1,0 +1,15 @@
+<%= render 'modeling_projects/header' %>
+
+<% if !@modeling_project.create_project_complete? || !@modeling_project.user_captioned? %>
+  <%= render 'modeling_projects/create_project' %>
+<% elsif !@modeling_project.user_reviewed? %>
+  <%= render 'modeling_projects/user_reviewing' %>
+<% elsif !@modeling_project.pricing_group.present? %>
+  <%= render 'modeling_projects/womp_reviewing' %>
+<% elsif !@modeling_project.paid? %>
+  <%= render 'modeling_projects/checkout' %>
+<% elsif !@modeling_project.uploads.where(reviewable: true, accepted: true).present?  %>
+  <%= render 'modeling_projects/modeling' %>
+<% else %>
+  <%= render 'modeling_projects/complete' %>
+<% end %>

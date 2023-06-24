@@ -1,0 +1,19 @@
+<%= render 'printing_projects/header' %>
+
+<% if !@printing_project.create_project_complete? %>
+	<%= render 'printing_projects/create_project' %>
+<% elsif !@printing_project.uploads.last.is_viewer_ready? %>
+	<%= render 'printing_projects/model_processing' %>
+<% elsif !@printing_project.material.present? %>
+	<%= render 'printing_projects/choose_materials' %>
+<% elsif !@printing_project.enter_address_complete? %>
+	<%= render 'printing_projects/enter_address' %>
+<% elsif !@printing_project.womp_approved? %>
+	<%= render 'printing_projects/womp_reviewing' %>
+<% elsif !@printing_project.paid? %>
+	<%= render 'printing_projects/checkout' %>
+<% elsif !@printing_project.tracking_number.present? && !@printing_project.picked_up? %>
+	<%= render 'printing_projects/printing' %>
+<% else %>
+	<%= render 'printing_projects/complete' %>
+<% end %>

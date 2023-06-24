@@ -1,0 +1,42 @@
+//*= require trix
+//*= require jquery-ui/datepicker
+
+/* Tools */
+@import "shared/tools/variables";
+@import "shared/tools/mixins";
+
+/* Base */
+@import "shared/normalize.scss";
+@import "shared/global.scss";
+@import "shared/base/typography.scss";
+
+/* Modules */
+@import "shared/modules/header-footer.scss";
+@import "shared/modules/buttons.scss";
+@import "shared/modules/forms.scss";
+@import "shared/modules/navigation.scss";
+@import "shared/modules/projects.scss";
+@import "shared/modules/viewer.scss";
+@import "shared/modules/toasts.scss";
+@import "shared/modules/tables.scss";
+
+/* Vendor */
+@import "application/vendor/progress-wizard.scss";
+
+// Add Border To Top/Bottom Indicate You're On Admin Panel
+body:before, body:after {
+	content: "";
+	position: fixed;
+	background: $blue;
+	left: 0;
+	right: 0;
+	height: 15px;
+}
+body:before {
+	top: 0;
+	z-index: 99999;
+}
+body:after {
+	bottom: 0;
+	z-index: 99999;
+}

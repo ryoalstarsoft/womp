@@ -1,0 +1,14 @@
+<% breadcrumb :projects %>
+
+<div class="fl w-100 mb4">
+	<h1 class="f3 lh-title">projects</h1>
+</div>
+
+<h3>scanning projects</h3>
+<%= render 'admin/scanning_projects/table', target: @scanning_projects %>
+
+<h3>modeling projects</h3>
+<%= render 'admin/modeling_projects/table', target: @modeling_projects %>
+
+<h3>printing projects</h3>
+<%= render 'admin/printing_projects/table', target: @printing_projects %>

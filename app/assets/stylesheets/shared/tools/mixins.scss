@@ -1,0 +1,16 @@
+/* ==|====================
+	Tools/Mixins
+	Mixins and placeholders
+	======================= */
+
+//Calculates rem and pixel values for fonts
+@function calculateRem($size) {
+	$remSize: $size / 16px;
+	@return $remSize * 1rem;
+}
+
+//Declares rem and pixel values for font
+@mixin font-size($size) {
+	font-size: $size;
+	font-size: calculateRem($size);
+}

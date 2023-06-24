@@ -1,0 +1,20 @@
+<div class="mw8 center pv5 ph2">
+	<div class="cf mb4">
+    <div class="cf mv4">
+  		<%= render 'shared/viewer', upload: @printing_project.uploads.last, project: @printing_project %>
+  	</div>
+
+		<div class="fl w-100 tc tl-l">
+      <p class="f5 lh-copy tc">your project is to print an object with <b><%= @printing_project.material.display_name.downcase %></b></p>
+      <p class="f5 lh-copy tc">we will ship your print to <b><%= current_user.address.downcase %></b></p>
+		</div>
+
+		<div class="fl w-100 mt4 tc">
+			<p class="caption measure center">if you have any questions, please use the comment section below to speak directly to a member of the womp team</p>
+		</div>
+	</div>
+
+	<div class="cf w-100 mv4">
+		<%= render 'comments/comment_module', project_type: 'PrintingProject', project_id: @printing_project.id, project: @printing_project %>
+	</div>
+</div>

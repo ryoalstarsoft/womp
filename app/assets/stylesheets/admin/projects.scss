@@ -1,0 +1,42 @@
+.img-with-overlay {
+	height: 200px;
+	width: 100%;
+	object-fit: cover;
+	object-position: 50% 0%;
+}
+
+.images-wrapper:hover .annotate-center {
+	display: inline;
+}
+
+.annotate-center {
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 200px;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: $primary-brand-color;
+}
+
+.overlay-with-opacity {
+	opacity: 0.9;
+}
+
+.images-wrapper:hover .overlay {
+	opacity: 0.9;
+}
+
+.scroll-box {
+	max-height: 750px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}

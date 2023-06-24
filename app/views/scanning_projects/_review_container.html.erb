@@ -1,0 +1,131 @@
+<div class="flex flex-wrap">
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 w-100">
+        <div class="aspect-ratio--object z-0 bg-light-gray br4 pa4 w-100">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+    <% if @scanning_project.object_size == "other" %>
+      <p class="f6 lh-copy fw7 mv1"><b>size:</b> <%= @scanning_project.object_size.humanize(capitalize: false) %><br/><span class="i"><%= @scanning_project.length.to_i %>"x<%= @scanning_project.width.to_i %>"x<%= @scanning_project.height.to_i %>"</span></p>
+    <% else %>
+      <p class="f6 lh-copy fw7 mv1"><b>size:</b> <%= @scanning_project.display_scanning_object_size.humanize(capitalize: false) %></p>
+    <% end %>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 w-100">
+        <div class="aspect-ratio--object z-0 bg-light-gray br4 pa4 w-100">
+          &nbsp;
+        </div>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1"><b>resolution:</b> <%= @scanning_project.resolution %></p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <% if (@scanning_project.color.humanize(capitalize: false) == "full color") %>
+      <div class="w-100 w-60-m w-80-l center">
+        <div class="aspect-ratio aspect-ratio--1x1 w-100">
+          <div class="aspect-ratio--object z-0 bg-rainbow-gradient br4 pa4 w-100">
+            &nbsp;
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="w-100 w-60-m w-80-l center">
+        <div class="aspect-ratio aspect-ratio--1x1 w-100">
+          <div class="aspect-ratio--object z-0 bg-light-gray br4 pa4 w-100">
+            &nbsp;
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <p class="f6 lh-copy fw7 mv1"><b>color:</b> <%= @scanning_project.color.humanize(capitalize: false) %></p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 br4">
+        <%= link_to @scanning_project.front_image.service_url, class: 'js-image-modal-link' do %>
+          <div class="aspect-ratio--object z-0 cover bg-center br4" style="background-image:url(<%=@scanning_project.front_image.service_url%>)">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1">front</p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 br4">
+        <%= link_to @scanning_project.right_image.service_url, class: 'js-image-modal-link' do %>
+          <div class="aspect-ratio--object z-0 cover bg-center br4" style="background-image:url(<%=@scanning_project.right_image.service_url%>)">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1">right</p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 br4">
+        <%= link_to @scanning_project.top_image.service_url, class: 'js-image-modal-link' do %>
+          <div class="aspect-ratio--object z-0 cover bg-center br4" style="background-image:url(<%=@scanning_project.top_image.service_url%>)">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1">top</p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 br4">
+        <%= link_to @scanning_project.back_image.service_url, class: 'js-image-modal-link' do %>
+          <div class="aspect-ratio--object z-0 cover bg-center br4" style="background-image:url(<%=@scanning_project.back_image.service_url%>)">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1">back</p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 br4">
+        <%= link_to @scanning_project.left_image.service_url, class: 'js-image-modal-link' do %>
+          <div class="aspect-ratio--object z-0 cover bg-center br4" style="background-image:url(<%=@scanning_project.left_image.service_url%>)">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1">left</p>
+  </div>
+
+  <div class="fl w-third-l w-50 pa2 tc">
+    <div class="w-100 w-60-m w-80-l center">
+      <div class="aspect-ratio aspect-ratio--1x1 br4">
+        <%= link_to @scanning_project.bottom_image.service_url, class: 'js-image-modal-link' do %>
+          <div class="aspect-ratio--object z-0 cover bg-center br4" style="background-image:url(<%=@scanning_project.bottom_image.service_url%>)">
+            &nbsp;
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <p class="f6 lh-copy fw7 mv1">bottom</p>
+  </div>
+
+  <div class="mt4 center tc w-100">
+    <p class="measure center tc">we'll ship your object back to the address on file: <%= current_user.address %> (<%= link_to 'edit', edit_user_registration_path %>)</p>
+    <p class="measure center tc caption i">you may also drop off/pick up from the womp offices</p>
+  </div>
+</div>

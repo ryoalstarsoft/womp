@@ -1,0 +1,73 @@
+<!-- Start Header on Desktop -->
+<header class="dn header-flex bg-white minw-6375 flex-column">
+	<div class="f7 tc pt625 pb625 bb-header">
+		<span>free shipping on orders over $250</span>
+	</div>
+	<div class="tc pt625">
+		<%= link_to image_tag("logo.png", height: 18, class: 'v-btm', alt: 'womp logo'), root_path, class: 'dib v-btm black f6 pr5' %>
+	</div>
+	<div class="flex justify-center-ns pt5625 pt1375">
+		<div class="pl9375-ns justify-center-ns flex flex-09">
+			<%= link_to "how it works", how_it_works_path, class: 'dib v-btm black f6 pr4' %>
+			<%= link_to "materials", asset_path('materials.pdf'), class: 'dib v-btm black f6 pr4', target: "_blank" %>
+			<%= link_to "examples", '#', class: 'dib v-btm black f6 pr4', target: "_blank" %>
+			<%= link_to "blog", '#', class: 'dib v-btm black f6 pr4', target: "_blank" %>
+			<%= link_to "pricing quiz", new_quote_path, class: 'dib v-btm black f6 pr4' %>
+			<%= link_to "+ start a project", new_project_path, class: 'dib v-btm black f6 pr4' %>
+		</div>
+		<div class="">
+			<% if user_signed_in? %>
+				<%= link_to cart_text, cart_path, data: { turbolinks: false }, class: 'pr3 dib v-btm black f6 pr4' %>
+				<%= link_to "#{image_tag('icon-comments.svg', class: 'mw-100 w-auto v-mid', style: 'height:20px;', alt: 'comments')}".html_safe, dashboard_path(anchor: 'projects'), class: 'pr3 dib v-btm black f6 pr4' %>
+				<%= link_to "#{image_tag('icon-dashboard.svg', class: 'mw-100 w-auto v-mid', style: 'height:20px;', alt: 'dashboard')}".html_safe, dashboard_path(anchor: 'projects'), class: 'pr3 dib v-btm black f6 pr4' %>
+
+				<% if current_user.profile_picture.attached? %>
+					<%= link_to 'javascript:void(0)', class: 'js-toggle-header-dropdown dib v-btm black f6 pr4' do %>
+					<%= image_tag current_user.profile_picture, class: 'profile-picture profile-picture-header' %>
+					<% end %>
+				<% else %>
+					<%= link_to "#{image_tag('icon-user.svg', class: 'mw-100 w-auto v-mid', style: 'height: 16px', alt: 'settings')}".html_safe, 'javascript:void(0)', class: 'js-toggle-header-dropdown dib v-btm f6' %>
+				<% end %>
+
+				<div class="js-dropdown-content absolute bg-white z-999 shadow-4 dn">
+					<div class="carrot w1 h1 absolute bg-white">
+					</div>
+
+					<%= link_to "my dashboard", dashboard_path(anchor: 'projects'), class: 'pv3 f6 black' %>
+					<%= link_to "orders", orders_path, class: 'pv3 f6 black' %>
+					<%= link_to "settings", edit_user_registration_path, class: 'pv3 f6 black' %>
+					<%= link_to "logout", destroy_user_session_path, method: :delete, class: 'pv3 f6 black' %>
+				</div>
+			<% else %>
+				<%= link_to "login/signup", new_user_session_path, class: 'dib v-btm f6 black' %>
+			<% end %>
+		</div>
+	</div>
+</header>
+<!-- End Header on Desktop -->
+
+
+<!-- Start Header on Mobile -->
+<header class="db dn-l w-100 bg-white relative pt3 pb4 ph6 tc header-on-mobile">
+	<%= link_to image_tag("logo.png", height: 32, class: 'dib v-mid', alt: 'logo'), root_path %>
+	<a href="#" class="js-toggle-hamburger-menu"><s class="bar"></s><s class="bar"></s></a>
+
+	<ul class="tc list pt2 ph0 pb0 ma0">
+		<li class="pv2"><%= link_to "how it works", how_it_works_path, class: 'black f6' %></li>
+		<li class="pv2"><%= link_to "materials", asset_path('materials.pdf'), class: 'black f6', target: "_blank" %></li>
+		<li class="pv2"><%= link_to "examples", '#', class: 'black f6', target: "_blank" %></li>
+		<li class="pv2"><%= link_to "blog", '#', class: 'black f6', target: "_blank" %></li>
+		<li class="pv2"><%= link_to "pricing quiz", new_quote_path, class: 'black f6' %></li>
+		<li class="pv2"><%= link_to "+ start a project", new_project_path, class: 'black f6' %></li>
+		<% if user_signed_in? %>
+			<li class="pv2"><%= link_to mobile_cart_text, cart_path, data: { turbolinks: false }, class: 'black f6' %></li>
+			<li class="pv2"><%= link_to "my dashboard", dashboard_path(anchor: 'projects'), class: 'black f6' %></li>
+			<li class="pv2"><%= link_to "orders", orders_path, class: 'black f6' %></li>
+			<li class="pv2"><%= link_to "settings", edit_user_registration_path, class: 'black f6' %></li>
+			<li class="pt2 pb0"><%= link_to "logout", destroy_user_session_path, method: :delete, class: 'black f6' %></li>
+		<% else %>
+			<li class="pt2 pb0"><%= link_to "login/signup", new_user_session_path, class: 'black f6' %></li>
+		<% end %>
+	</ul>
+</header>
+<!-- End Header on Mobile -->

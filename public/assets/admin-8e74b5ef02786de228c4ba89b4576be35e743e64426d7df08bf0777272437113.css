@@ -1,0 +1,3220 @@
+
+/*
+Trix 0.10.1
+Copyright © 2017 Basecamp, LLC
+http://trix-editor.org/*/
+
+trix-editor {
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  margin: 0;
+  padding: 0.4em 0.6em;
+  min-height: 5em;
+  outline: none; }
+trix-toolbar * {
+  box-sizing: border-box; }
+trix-toolbar .button_row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between; }
+trix-toolbar .button_group {
+  display: flex;
+  margin-bottom: 10px;
+  border: 1px solid #bbb;
+  border-top-color: #ccc;
+  border-bottom-color: #888;
+  border-radius: 3px; }
+  trix-toolbar .button_group button, trix-toolbar .button_group input[type=button] {
+    position: relative;
+    float: left;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0;
+    background: transparent; }
+    trix-toolbar .button_group button:not(:first-child), trix-toolbar .button_group input[type=button]:not(:first-child) {
+      border-left: 1px solid #ccc; }
+    trix-toolbar .button_group button:not(:disabled), trix-toolbar .button_group input[type=button]:not(:disabled) {
+      cursor: pointer; }
+    trix-toolbar .button_group button.active, trix-toolbar .button_group input[type=button].active {
+      background: #cbeefa; }
+    trix-toolbar .button_group button.icon, trix-toolbar .button_group input[type=button].icon {
+      width: 2.6em;
+      height: 1.6em;
+      max-width: calc(0.8em + 4vw);
+      text-indent: -9999px; }
+      @media (max-device-width: 768px) {
+        trix-toolbar .button_group button.icon, trix-toolbar .button_group input[type=button].icon {
+          height: 2em;
+          max-width: calc(0.8em + 3.5vw); } }
+      trix-toolbar .button_group button.icon::before, trix-toolbar .button_group input[type=button].icon::before {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 0.6;
+        content: "";
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; }
+        @media (max-device-width: 768px) {
+          trix-toolbar .button_group button.icon::before, trix-toolbar .button_group input[type=button].icon::before {
+            right: 6%;
+            left: 6%; } }
+      trix-toolbar .button_group button.icon.bold::before, trix-toolbar .button_group input[type=button].icon.bold::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M15.6%2011.8c1-.7%201.6-1.8%201.6-2.8a4%204%200%200%200-4-4H7v14h7c2.1%200%203.7-1.7%203.7-3.8%200-1.5-.8-2.8-2.1-3.4zM10%207.5h3a1.5%201.5%200%201%201%200%203h-3v-3zm3.5%209H10v-3h3.5a1.5%201.5%200%201%201%200%203z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.italic::before, trix-toolbar .button_group input[type=button].icon.italic::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M10%205v3h2.2l-3.4%208H6v3h8v-3h-2.2l3.4-8H18V5h-8z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.link::before, trix-toolbar .button_group input[type=button].icon.link::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M9.88%2013.7a4.3%204.3%200%200%201%200-6.07l3.37-3.37a4.26%204.26%200%200%201%206.07%200%204.3%204.3%200%200%201%200%206.06l-1.96%201.72a.91.91%200%201%201-1.3-1.3l1.97-1.71a2.46%202.46%200%200%200-3.48-3.48l-3.38%203.37a2.46%202.46%200%200%200%200%203.48.91.91%200%201%201-1.3%201.3z%22%2F%3E%3Cpath%20d%3D%22M4.25%2019.46a4.3%204.3%200%200%201%200-6.07l1.93-1.9a.91.91%200%201%201%201.3%201.3l-1.93%201.9a2.46%202.46%200%200%200%203.48%203.48l3.37-3.38c.96-.96.96-2.52%200-3.48a.91.91%200%201%201%201.3-1.3%204.3%204.3%200%200%201%200%206.07l-3.38%203.38a4.26%204.26%200%200%201-6.07%200z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.strike::before, trix-toolbar .button_group input[type=button].icon.strike::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M12.73%2014l.28.14c.26.15.45.3.57.44.12.14.18.3.18.5%200%20.3-.15.56-.44.75-.3.2-.76.3-1.39.3A13.52%2013.52%200%200%201%207%2014.95v3.37a10.64%2010.64%200%200%200%204.84.88c1.26%200%202.35-.19%203.28-.56.93-.37%201.64-.9%202.14-1.57s.74-1.45.74-2.32c0-.26-.02-.51-.06-.75h-5.21zm-5.5-4c-.08-.34-.12-.7-.12-1.1%200-1.29.52-2.3%201.58-3.02%201.05-.72%202.5-1.08%204.34-1.08%201.62%200%203.28.34%204.97%201l-1.3%202.93c-1.47-.6-2.73-.9-3.8-.9-.55%200-.96.08-1.2.26-.26.17-.38.38-.38.64%200%20.27.16.52.48.74.17.12.53.3%201.05.53H7.23zM3%2013h18v-2H3v2z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.quote::before, trix-toolbar .button_group input[type=button].icon.quote::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M6%2017h3l2-4V7H5v6h3zm8%200h3l2-4V7h-6v6h3z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.heading-1::before, trix-toolbar .button_group input[type=button].icon.heading-1::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M12%209v3H9v7H6v-7H3V9h9zM8%204h14v3h-6v12h-3V7H8V4z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.code::before, trix-toolbar .button_group input[type=button].icon.code::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M18.2%2012L15%2015.2l1.4%201.4L21%2012l-4.6-4.6L15%208.8l3.2%203.2zM5.8%2012L9%208.8%207.6%207.4%203%2012l4.6%204.6L9%2015.2%205.8%2012z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.bullets::before, trix-toolbar .button_group input[type=button].icon.bullets::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20version%3D%221%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M4%204a2%202%200%201%200%200%204%202%202%200%200%200%200-4zm0%206a2%202%200%201%200%200%204%202%202%200%200%200%200-4zm0%206a2%202%200%201%200%200%204%202%202%200%200%200%200-4zm4%203h14v-2H8v2zm0-6h14v-2H8v2zm0-8v2h14V5H8z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.numbers::before, trix-toolbar .button_group input[type=button].icon.numbers::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M2%2017h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1%203h1.8L2%2013.1v.9h3v-1H3.2L5%2010.9V10H2v1zm5-6v2h14V5H7zm0%2014h14v-2H7v2zm0-6h14v-2H7v2z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.undo::before, trix-toolbar .button_group input[type=button].icon.undo::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M12.5%208c-2.6%200-5%201-6.9%202.6L2%207v9h9l-3.6-3.6A8%208%200%200%201%2020%2016l2.4-.8a10.5%2010.5%200%200%200-10-7.2z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.redo::before, trix-toolbar .button_group input[type=button].icon.redo::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M18.4%2010.6a10.5%2010.5%200%200%200-16.9%204.6L4%2016a8%208%200%200%201%2012.7-3.6L13%2016h9V7l-3.6%203.6z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.nesting-level.decrease::before, trix-toolbar .button_group input[type=button].icon.nesting-level.decrease::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M3%2019h19v-2H3v2zm7-6h12v-2H10v2zm-8.3-.3l2.8%202.9L6%2014.2%204%2012l2-2-1.4-1.5L1%2012l.7.7zM3%205v2h19V5H3z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.nesting-level.increase::before, trix-toolbar .button_group input[type=button].icon.nesting-level.increase::before {
+        background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M3%2019h19v-2H3v2zm7-6h12v-2H10v2zm-6.9-1L1%2014.2l1.4%201.4L6%2012l-.7-.7-2.8-2.8L1%209.9%203.1%2012zM3%205v2h19V5H3z%22%2F%3E%3C%2Fsvg%3E); }
+      trix-toolbar .button_group button.icon.active::before, trix-toolbar .button_group input[type=button].icon.active::before {
+        opacity: 1; }
+      trix-toolbar .button_group button.icon:disabled::before, trix-toolbar .button_group input[type=button].icon:disabled::before {
+        opacity: 0.125; }
+    trix-toolbar .button_group button:not(.icon), trix-toolbar .button_group input[type=button]:not(.icon) {
+      font-size: 0.75em;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 0 0.5em;
+      color: rgba(0, 0, 0, 0.6); }
+      @media (max-device-width: 768px) {
+        trix-toolbar .button_group button:not(.icon), trix-toolbar .button_group input[type=button]:not(.icon) {
+          letter-spacing: -0.01em;
+          padding: 0 0.3em; } }
+      trix-toolbar .button_group button:not(.icon).active, trix-toolbar .button_group input[type=button]:not(.icon).active {
+        color: black; }
+      trix-toolbar .button_group button:not(.icon):disabled, trix-toolbar .button_group input[type=button]:not(.icon):disabled {
+        color: rgba(0, 0, 0, 0.125); }
+trix-toolbar .dialogs {
+  position: relative; }
+  trix-toolbar .dialogs .dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: 0.75em;
+    padding: 15px 10px;
+    background: #fff;
+    box-shadow: 0 0.3em 1em #ccc;
+    border-top: 2px solid #888;
+    border-radius: 5px;
+    z-index: 5; }
+    trix-toolbar .dialogs .dialog input {
+      font-size: inherit;
+      font-weight: normal; }
+    trix-toolbar .dialogs .dialog input[type=url], trix-toolbar .dialogs .dialog input[type=text] {
+      padding: 0.5em 0.8em;
+      margin: 0 10px 0 0;
+      border-radius: 3px;
+      border: 1px solid #bbb;
+      background-color: #fff;
+      box-shadow: none;
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none; }
+      trix-toolbar .dialogs .dialog input[type=url].validate:invalid, trix-toolbar .dialogs .dialog input[type=text].validate:invalid {
+        box-shadow: #F00 0px 0px 1.5px 1px; }
+    trix-toolbar .dialogs .dialog .button_group input[type=button] {
+      font-size: inherit;
+      padding: 0.5em;
+      border-bottom: none; }
+    trix-toolbar .dialogs .dialog.link_dialog {
+      max-width: 600px; }
+      trix-toolbar .dialogs .dialog.link_dialog .link_url_fields {
+        display: flex;
+        align-items: baseline; }
+        trix-toolbar .dialogs .dialog.link_dialog .link_url_fields input[type=url] {
+          flex: 1; }
+        trix-toolbar .dialogs .dialog.link_dialog .link_url_fields .button_group {
+          flex: 0 0 content;
+          margin: 0; }
+trix-editor [data-trix-mutable=true] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  trix-editor [data-trix-mutable=true] ::-moz-selection {
+    background: none; }
+  trix-editor [data-trix-mutable=true] img {
+    box-shadow: 0 0 0 2px highlight; }
+  trix-editor [data-trix-mutable=true].attachment.attachment-file {
+    box-shadow: 0 0 0 2px highlight;
+    border-color: transparent; }
+trix-editor .attachment:hover {
+  cursor: default; }
+trix-editor .attachment.attachment-preview .caption:hover {
+  cursor: text; }
+trix-editor .attachment button.remove {
+  cursor: pointer; }
+  trix-editor .attachment button.remove.icon {
+    text-indent: -9999px;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    top: -1.1em;
+    left: calc(50% - 0.8em);
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    border-radius: 50%;
+    text-indent: -9999px;
+    background-color: #fff;
+    border: 2px solid highlight;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.25); }
+    trix-editor .attachment button.remove.icon::before {
+      display: inline-block;
+      position: absolute;
+      top: 0.1em;
+      right: 0.1em;
+      bottom: 0.1em;
+      left: 0.1em;
+      opacity: 0.75;
+      content: "";
+      background-image: url(data:image/svg+xml,%3Csvg%20height%3D%2224%22%20width%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M19%206.4L17.6%205%2012%2010.6%206.4%205%205%206.4l5.6%205.6L5%2017.6%206.4%2019l5.6-5.6%205.6%205.6%201.4-1.4-5.6-5.6z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain; }
+  trix-editor .attachment button.remove:hover {
+    border-color: #333; }
+    trix-editor .attachment button.remove:hover::before {
+      opacity: 1; }
+trix-editor .attachment .caption.caption-editing textarea {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+  text-align: center;
+  vertical-align: top;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+trix-editor .attachment progress {
+  position: absolute;
+  z-index: 1;
+  height: 20px;
+  top: calc(50% - 10px);
+  left: 5%;
+  width: 90%;
+  opacity: 0.9; }
+@charset "UTF-8";
+.trix-content {
+  line-height: 1.5; }
+  .trix-content h1 {
+    font-size: 1.2em;
+    line-height: 1.2;
+    margin: 0; }
+  .trix-content blockquote {
+    margin: 0 0 0 0.3em;
+    padding: 0 0 0 0.6em;
+    border-left: 0.3em solid #ccc; }
+  .trix-content pre {
+    font-family: monospace;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.5em;
+    white-space: pre;
+    background-color: #eee;
+    overflow-x: auto; }
+  .trix-content ul, .trix-content ol, .trix-content li {
+    margin: 0;
+    padding: 0; }
+    .trix-content ul li, .trix-content ol li, .trix-content li li {
+      margin-left: 1em; }
+  .trix-content img {
+    max-width: 100%;
+    height: auto; }
+  .trix-content a[data-trix-attachment] {
+    color: inherit;
+    text-decoration: none; }
+    .trix-content a[data-trix-attachment]:hover, .trix-content a[data-trix-attachment]:visited:hover {
+      color: inherit; }
+  .trix-content .attachment {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+    padding: 0; }
+    .trix-content .attachment .caption {
+      padding: 0;
+      text-align: center; }
+      .trix-content .attachment .caption .size:before {
+        content: ' · '; }
+    .trix-content .attachment.attachment-preview {
+      width: 100%;
+      text-align: center; }
+      .trix-content .attachment.attachment-preview .caption {
+        color: #666;
+        font-size: 0.9em;
+        line-height: 1.2; }
+    .trix-content .attachment.attachment-file {
+      color: #333;
+      line-height: 1;
+      margin: 0 2px 2px 0;
+      padding: 0.4em 1em;
+      border: 1px solid #bbb;
+      border-radius: 5px; }
+/*!
+ * jQuery UI CSS Framework 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/
+ */
+
+/*
+
+
+
+
+
+
+ */
+
+
+
+/* Component containers
+----------------------------------*/
+
+.ui-widget {
+	font-family: Arial,Helvetica,sans-serif/*{ffDefault}*/;
+	font-size: 1em/*{fsDefault}*/;
+}
+.ui-widget .ui-widget {
+	font-size: 1em;
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	font-family: Arial,Helvetica,sans-serif/*{ffDefault}*/;
+	font-size: 1em;
+}
+.ui-widget.ui-widget-content {
+	border: 1px solid #c5c5c5/*{borderColorDefault}*/;
+}
+.ui-widget-content {
+	border: 1px solid #dddddd/*{borderColorContent}*/;
+	background: #ffffff/*{bgColorContent}*/ /*{bgImgUrlContent}*/ /*{bgContentXPos}*/ /*{bgContentYPos}*/ /*{bgContentRepeat}*/;
+	color: #333333/*{fcContent}*/;
+}
+.ui-widget-content a {
+	color: #333333/*{fcContent}*/;
+}
+.ui-widget-header {
+	border: 1px solid #dddddd/*{borderColorHeader}*/;
+	background: #e9e9e9/*{bgColorHeader}*/ /*{bgImgUrlHeader}*/ /*{bgHeaderXPos}*/ /*{bgHeaderYPos}*/ /*{bgHeaderRepeat}*/;
+	color: #333333/*{fcHeader}*/;
+	font-weight: bold;
+}
+.ui-widget-header a {
+	color: #333333/*{fcHeader}*/;
+}
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+
+/* We use html here because we need a greater specificity to make sure disabled
+works properly when clicked or hovered */
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+	border: 1px solid #c5c5c5/*{borderColorDefault}*/;
+	background: #f6f6f6/*{bgColorDefault}*/ /*{bgImgUrlDefault}*/ /*{bgDefaultXPos}*/ /*{bgDefaultYPos}*/ /*{bgDefaultRepeat}*/;
+	font-weight: normal/*{fwDefault}*/;
+	color: #454545/*{fcDefault}*/;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-button {
+	color: #454545/*{fcDefault}*/;
+	text-decoration: none;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+	border: 1px solid #cccccc/*{borderColorHover}*/;
+	background: #ededed/*{bgColorHover}*/ /*{bgImgUrlHover}*/ /*{bgHoverXPos}*/ /*{bgHoverYPos}*/ /*{bgHoverRepeat}*/;
+	font-weight: normal/*{fwDefault}*/;
+	color: #2b2b2b/*{fcHover}*/;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {
+	color: #2b2b2b/*{fcHover}*/;
+	text-decoration: none;
+}
+
+.ui-visual-focus {
+	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+	border: 1px solid #003eff/*{borderColorActive}*/;
+	background: #007fff/*{bgColorActive}*/ /*{bgImgUrlActive}*/ /*{bgActiveXPos}*/ /*{bgActiveYPos}*/ /*{bgActiveRepeat}*/;
+	font-weight: normal/*{fwDefault}*/;
+	color: #ffffff/*{fcActive}*/;
+}
+.ui-icon-background,
+.ui-state-active .ui-icon-background {
+	border: #003eff/*{borderColorActive}*/;
+	background-color: #ffffff/*{fcActive}*/;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+	color: #ffffff/*{fcActive}*/;
+	text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+	border: 1px solid #dad55e/*{borderColorHighlight}*/;
+	background: #fffa90/*{bgColorHighlight}*/ /*{bgImgUrlHighlight}*/ /*{bgHighlightXPos}*/ /*{bgHighlightYPos}*/ /*{bgHighlightRepeat}*/;
+	color: #777620/*{fcHighlight}*/;
+}
+.ui-state-checked {
+	border: 1px solid #dad55e/*{borderColorHighlight}*/;
+	background: #fffa90/*{bgColorHighlight}*/;
+}
+.ui-state-highlight a,
+.ui-widget-content .ui-state-highlight a,
+.ui-widget-header .ui-state-highlight a {
+	color: #777620/*{fcHighlight}*/;
+}
+.ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+	border: 1px solid #f1a899/*{borderColorError}*/;
+	background: #fddfdf/*{bgColorError}*/ /*{bgImgUrlError}*/ /*{bgErrorXPos}*/ /*{bgErrorYPos}*/ /*{bgErrorRepeat}*/;
+	color: #5f3f3f/*{fcError}*/;
+}
+.ui-state-error a,
+.ui-widget-content .ui-state-error a,
+.ui-widget-header .ui-state-error a {
+	color: #5f3f3f/*{fcError}*/;
+}
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text {
+	color: #5f3f3f/*{fcError}*/;
+}
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary {
+	font-weight: bold;
+}
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+	opacity: .7;
+	filter:Alpha(Opacity=70); /* support: IE8 */
+	font-weight: normal;
+}
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+	opacity: .35;
+	filter:Alpha(Opacity=35); /* support: IE8 */
+	background-image: none;
+}
+.ui-state-disabled .ui-icon {
+	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+}
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon {
+	width: 16px;
+	height: 16px;
+}
+.ui-icon,
+.ui-widget-content .ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_444444_256x240-31d988765b4e6f56553c29588c500381dc3e6f0aa2980c8212202e5644aefd5d.png)/*{iconsContent}*/;
+}
+.ui-widget-header .ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_444444_256x240-31d988765b4e6f56553c29588c500381dc3e6f0aa2980c8212202e5644aefd5d.png)/*{iconsHeader}*/;
+}
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon,
+.ui-button:hover .ui-icon,
+.ui-button:focus .ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_555555_256x240-32175261daee76c82bb0edf0eea16a56421866fbc31e94f3c1d570aa114502f5.png)/*{iconsHover}*/;
+}
+.ui-state-active .ui-icon,
+.ui-button:active .ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_ffffff_256x240-350df1b7131037de20e83c5c0f3a41a770d2ac48b5762ea772b3f4a8a7b9d47a.png)/*{iconsActive}*/;
+}
+.ui-state-highlight .ui-icon,
+.ui-button .ui-state-highlight.ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_777620_256x240-0b020fc6e696d88d296e7bb1f61f1eb2ad827848e2c7382a4c3e0999e702dd9b.png)/*{iconsHighlight}*/;
+}
+.ui-state-error .ui-icon,
+.ui-state-error-text .ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_cc0000_256x240-40985a64b4d5dd213fba27fcd862a1bd1b337a97674f6ff0b9ec20abcee4bc69.png)/*{iconsError}*/;
+}
+.ui-button .ui-icon {
+	background-image: url(/assets/jquery-ui/ui-icons_777777_256x240-faf32007ae120c302213557626e660dd10e711c5dd4f1113d35f26dc05b78d2f.png)/*{iconsDefault}*/;
+}
+
+/* positioning */
+.ui-icon-blank { background-position: 16px 16px; }
+.ui-icon-caret-1-n { background-position: 0 0; }
+.ui-icon-caret-1-ne { background-position: -16px 0; }
+.ui-icon-caret-1-e { background-position: -32px 0; }
+.ui-icon-caret-1-se { background-position: -48px 0; }
+.ui-icon-caret-1-s { background-position: -65px 0; }
+.ui-icon-caret-1-sw { background-position: -80px 0; }
+.ui-icon-caret-1-w { background-position: -96px 0; }
+.ui-icon-caret-1-nw { background-position: -112px 0; }
+.ui-icon-caret-2-n-s { background-position: -128px 0; }
+.ui-icon-caret-2-e-w { background-position: -144px 0; }
+.ui-icon-triangle-1-n { background-position: 0 -16px; }
+.ui-icon-triangle-1-ne { background-position: -16px -16px; }
+.ui-icon-triangle-1-e { background-position: -32px -16px; }
+.ui-icon-triangle-1-se { background-position: -48px -16px; }
+.ui-icon-triangle-1-s { background-position: -65px -16px; }
+.ui-icon-triangle-1-sw { background-position: -80px -16px; }
+.ui-icon-triangle-1-w { background-position: -96px -16px; }
+.ui-icon-triangle-1-nw { background-position: -112px -16px; }
+.ui-icon-triangle-2-n-s { background-position: -128px -16px; }
+.ui-icon-triangle-2-e-w { background-position: -144px -16px; }
+.ui-icon-arrow-1-n { background-position: 0 -32px; }
+.ui-icon-arrow-1-ne { background-position: -16px -32px; }
+.ui-icon-arrow-1-e { background-position: -32px -32px; }
+.ui-icon-arrow-1-se { background-position: -48px -32px; }
+.ui-icon-arrow-1-s { background-position: -65px -32px; }
+.ui-icon-arrow-1-sw { background-position: -80px -32px; }
+.ui-icon-arrow-1-w { background-position: -96px -32px; }
+.ui-icon-arrow-1-nw { background-position: -112px -32px; }
+.ui-icon-arrow-2-n-s { background-position: -128px -32px; }
+.ui-icon-arrow-2-ne-sw { background-position: -144px -32px; }
+.ui-icon-arrow-2-e-w { background-position: -160px -32px; }
+.ui-icon-arrow-2-se-nw { background-position: -176px -32px; }
+.ui-icon-arrowstop-1-n { background-position: -192px -32px; }
+.ui-icon-arrowstop-1-e { background-position: -208px -32px; }
+.ui-icon-arrowstop-1-s { background-position: -224px -32px; }
+.ui-icon-arrowstop-1-w { background-position: -240px -32px; }
+.ui-icon-arrowthick-1-n { background-position: 1px -48px; }
+.ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
+.ui-icon-arrowthick-1-e { background-position: -32px -48px; }
+.ui-icon-arrowthick-1-se { background-position: -48px -48px; }
+.ui-icon-arrowthick-1-s { background-position: -64px -48px; }
+.ui-icon-arrowthick-1-sw { background-position: -80px -48px; }
+.ui-icon-arrowthick-1-w { background-position: -96px -48px; }
+.ui-icon-arrowthick-1-nw { background-position: -112px -48px; }
+.ui-icon-arrowthick-2-n-s { background-position: -128px -48px; }
+.ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px; }
+.ui-icon-arrowthick-2-e-w { background-position: -160px -48px; }
+.ui-icon-arrowthick-2-se-nw { background-position: -176px -48px; }
+.ui-icon-arrowthickstop-1-n { background-position: -192px -48px; }
+.ui-icon-arrowthickstop-1-e { background-position: -208px -48px; }
+.ui-icon-arrowthickstop-1-s { background-position: -224px -48px; }
+.ui-icon-arrowthickstop-1-w { background-position: -240px -48px; }
+.ui-icon-arrowreturnthick-1-w { background-position: 0 -64px; }
+.ui-icon-arrowreturnthick-1-n { background-position: -16px -64px; }
+.ui-icon-arrowreturnthick-1-e { background-position: -32px -64px; }
+.ui-icon-arrowreturnthick-1-s { background-position: -48px -64px; }
+.ui-icon-arrowreturn-1-w { background-position: -64px -64px; }
+.ui-icon-arrowreturn-1-n { background-position: -80px -64px; }
+.ui-icon-arrowreturn-1-e { background-position: -96px -64px; }
+.ui-icon-arrowreturn-1-s { background-position: -112px -64px; }
+.ui-icon-arrowrefresh-1-w { background-position: -128px -64px; }
+.ui-icon-arrowrefresh-1-n { background-position: -144px -64px; }
+.ui-icon-arrowrefresh-1-e { background-position: -160px -64px; }
+.ui-icon-arrowrefresh-1-s { background-position: -176px -64px; }
+.ui-icon-arrow-4 { background-position: 0 -80px; }
+.ui-icon-arrow-4-diag { background-position: -16px -80px; }
+.ui-icon-extlink { background-position: -32px -80px; }
+.ui-icon-newwin { background-position: -48px -80px; }
+.ui-icon-refresh { background-position: -64px -80px; }
+.ui-icon-shuffle { background-position: -80px -80px; }
+.ui-icon-transfer-e-w { background-position: -96px -80px; }
+.ui-icon-transferthick-e-w { background-position: -112px -80px; }
+.ui-icon-folder-collapsed { background-position: 0 -96px; }
+.ui-icon-folder-open { background-position: -16px -96px; }
+.ui-icon-document { background-position: -32px -96px; }
+.ui-icon-document-b { background-position: -48px -96px; }
+.ui-icon-note { background-position: -64px -96px; }
+.ui-icon-mail-closed { background-position: -80px -96px; }
+.ui-icon-mail-open { background-position: -96px -96px; }
+.ui-icon-suitcase { background-position: -112px -96px; }
+.ui-icon-comment { background-position: -128px -96px; }
+.ui-icon-person { background-position: -144px -96px; }
+.ui-icon-print { background-position: -160px -96px; }
+.ui-icon-trash { background-position: -176px -96px; }
+.ui-icon-locked { background-position: -192px -96px; }
+.ui-icon-unlocked { background-position: -208px -96px; }
+.ui-icon-bookmark { background-position: -224px -96px; }
+.ui-icon-tag { background-position: -240px -96px; }
+.ui-icon-home { background-position: 0 -112px; }
+.ui-icon-flag { background-position: -16px -112px; }
+.ui-icon-calendar { background-position: -32px -112px; }
+.ui-icon-cart { background-position: -48px -112px; }
+.ui-icon-pencil { background-position: -64px -112px; }
+.ui-icon-clock { background-position: -80px -112px; }
+.ui-icon-disk { background-position: -96px -112px; }
+.ui-icon-calculator { background-position: -112px -112px; }
+.ui-icon-zoomin { background-position: -128px -112px; }
+.ui-icon-zoomout { background-position: -144px -112px; }
+.ui-icon-search { background-position: -160px -112px; }
+.ui-icon-wrench { background-position: -176px -112px; }
+.ui-icon-gear { background-position: -192px -112px; }
+.ui-icon-heart { background-position: -208px -112px; }
+.ui-icon-star { background-position: -224px -112px; }
+.ui-icon-link { background-position: -240px -112px; }
+.ui-icon-cancel { background-position: 0 -128px; }
+.ui-icon-plus { background-position: -16px -128px; }
+.ui-icon-plusthick { background-position: -32px -128px; }
+.ui-icon-minus { background-position: -48px -128px; }
+.ui-icon-minusthick { background-position: -64px -128px; }
+.ui-icon-close { background-position: -80px -128px; }
+.ui-icon-closethick { background-position: -96px -128px; }
+.ui-icon-key { background-position: -112px -128px; }
+.ui-icon-lightbulb { background-position: -128px -128px; }
+.ui-icon-scissors { background-position: -144px -128px; }
+.ui-icon-clipboard { background-position: -160px -128px; }
+.ui-icon-copy { background-position: -176px -128px; }
+.ui-icon-contact { background-position: -192px -128px; }
+.ui-icon-image { background-position: -208px -128px; }
+.ui-icon-video { background-position: -224px -128px; }
+.ui-icon-script { background-position: -240px -128px; }
+.ui-icon-alert { background-position: 0 -144px; }
+.ui-icon-info { background-position: -16px -144px; }
+.ui-icon-notice { background-position: -32px -144px; }
+.ui-icon-help { background-position: -48px -144px; }
+.ui-icon-check { background-position: -64px -144px; }
+.ui-icon-bullet { background-position: -80px -144px; }
+.ui-icon-radio-on { background-position: -96px -144px; }
+.ui-icon-radio-off { background-position: -112px -144px; }
+.ui-icon-pin-w { background-position: -128px -144px; }
+.ui-icon-pin-s { background-position: -144px -144px; }
+.ui-icon-play { background-position: 0 -160px; }
+.ui-icon-pause { background-position: -16px -160px; }
+.ui-icon-seek-next { background-position: -32px -160px; }
+.ui-icon-seek-prev { background-position: -48px -160px; }
+.ui-icon-seek-end { background-position: -64px -160px; }
+.ui-icon-seek-start { background-position: -80px -160px; }
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
+.ui-icon-seek-first { background-position: -80px -160px; }
+.ui-icon-stop { background-position: -96px -160px; }
+.ui-icon-eject { background-position: -112px -160px; }
+.ui-icon-volume-off { background-position: -128px -160px; }
+.ui-icon-volume-on { background-position: -144px -160px; }
+.ui-icon-power { background-position: 0 -176px; }
+.ui-icon-signal-diag { background-position: -16px -176px; }
+.ui-icon-signal { background-position: -32px -176px; }
+.ui-icon-battery-0 { background-position: -48px -176px; }
+.ui-icon-battery-1 { background-position: -64px -176px; }
+.ui-icon-battery-2 { background-position: -80px -176px; }
+.ui-icon-battery-3 { background-position: -96px -176px; }
+.ui-icon-circle-plus { background-position: 0 -192px; }
+.ui-icon-circle-minus { background-position: -16px -192px; }
+.ui-icon-circle-close { background-position: -32px -192px; }
+.ui-icon-circle-triangle-e { background-position: -48px -192px; }
+.ui-icon-circle-triangle-s { background-position: -64px -192px; }
+.ui-icon-circle-triangle-w { background-position: -80px -192px; }
+.ui-icon-circle-triangle-n { background-position: -96px -192px; }
+.ui-icon-circle-arrow-e { background-position: -112px -192px; }
+.ui-icon-circle-arrow-s { background-position: -128px -192px; }
+.ui-icon-circle-arrow-w { background-position: -144px -192px; }
+.ui-icon-circle-arrow-n { background-position: -160px -192px; }
+.ui-icon-circle-zoomin { background-position: -176px -192px; }
+.ui-icon-circle-zoomout { background-position: -192px -192px; }
+.ui-icon-circle-check { background-position: -208px -192px; }
+.ui-icon-circlesmall-plus { background-position: 0 -208px; }
+.ui-icon-circlesmall-minus { background-position: -16px -208px; }
+.ui-icon-circlesmall-close { background-position: -32px -208px; }
+.ui-icon-squaresmall-plus { background-position: -48px -208px; }
+.ui-icon-squaresmall-minus { background-position: -64px -208px; }
+.ui-icon-squaresmall-close { background-position: -80px -208px; }
+.ui-icon-grip-dotted-vertical { background-position: 0 -224px; }
+.ui-icon-grip-dotted-horizontal { background-position: -16px -224px; }
+.ui-icon-grip-solid-vertical { background-position: -32px -224px; }
+.ui-icon-grip-solid-horizontal { background-position: -48px -224px; }
+.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
+.ui-icon-grip-diagonal-se { background-position: -80px -224px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+	border-top-left-radius: 3px/*{cornerRadius}*/;
+}
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+	border-top-right-radius: 3px/*{cornerRadius}*/;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+	border-bottom-left-radius: 3px/*{cornerRadius}*/;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+	border-bottom-right-radius: 3px/*{cornerRadius}*/;
+}
+
+/* Overlays */
+.ui-widget-overlay {
+	background: #aaaaaa/*{bgColorOverlay}*/ /*{bgImgUrlOverlay}*/ /*{bgOverlayXPos}*/ /*{bgOverlayYPos}*/ /*{bgOverlayRepeat}*/;
+	opacity: .3/*{opacityOverlay}*/;
+	filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/; /* support: IE8 */
+}
+.ui-widget-shadow {
+	-webkit-box-shadow: 0/*{offsetLeftShadow}*/ 0/*{offsetTopShadow}*/ 5px/*{thicknessShadow}*/ #666666/*{bgColorShadow}*/;
+	box-shadow: 0/*{offsetLeftShadow}*/ 0/*{offsetTopShadow}*/ 5px/*{thicknessShadow}*/ #666666/*{bgColorShadow}*/;
+}
+/*!
+ * jQuery UI Datepicker 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/datepicker/#theming
+ */
+/*
+
+ */
+
+.ui-datepicker {
+	width: 17em;
+	padding: .2em .2em 0;
+	display: none;
+}
+.ui-datepicker .ui-datepicker-header {
+	position: relative;
+	padding: .2em 0;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+	height: 1.8em;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+	top: 1px;
+}
+.ui-datepicker .ui-datepicker-prev {
+	left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+	right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+	left: 1px;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+	right: 1px;
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -8px;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-datepicker .ui-datepicker-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+}
+.ui-datepicker .ui-datepicker-title select {
+	font-size: 1em;
+	margin: 1px 0;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+	width: 45%;
+}
+.ui-datepicker table {
+	width: 100%;
+	font-size: .9em;
+	border-collapse: collapse;
+	margin: 0 0 .4em;
+}
+.ui-datepicker th {
+	padding: .7em .3em;
+	text-align: center;
+	font-weight: bold;
+	border: 0;
+}
+.ui-datepicker td {
+	border: 0;
+	padding: 1px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-buttonpane {
+	background-image: none;
+	margin: .7em 0 0 0;
+	padding: 0 .2em;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button {
+	float: right;
+	margin: .5em .2em .4em;
+	cursor: pointer;
+	padding: .2em .6em .3em .6em;
+	width: auto;
+	overflow: visible;
+}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+	float: left;
+}
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+	width: auto;
+}
+.ui-datepicker-multi .ui-datepicker-group {
+	float: left;
+}
+.ui-datepicker-multi .ui-datepicker-group table {
+	width: 95%;
+	margin: 0 auto .4em;
+}
+.ui-datepicker-multi-2 .ui-datepicker-group {
+	width: 50%;
+}
+.ui-datepicker-multi-3 .ui-datepicker-group {
+	width: 33.3%;
+}
+.ui-datepicker-multi-4 .ui-datepicker-group {
+	width: 25%;
+}
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+	border-left-width: 0;
+}
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+	clear: left;
+}
+.ui-datepicker-row-break {
+	clear: both;
+	width: 100%;
+	font-size: 0;
+}
+
+/* RTL support */
+.ui-datepicker-rtl {
+	direction: rtl;
+}
+.ui-datepicker-rtl .ui-datepicker-prev {
+	right: 2px;
+	left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next {
+	left: 2px;
+	right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+	right: 1px;
+	left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+	left: 1px;
+	right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+	clear: right;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+	float: left;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
+	float: right;
+}
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+	border-right-width: 0;
+	border-left-width: 1px;
+}
+
+/* Icons */
+.ui-datepicker .ui-icon {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	left: .5em;
+	top: .3em;
+}
+/* Tools */
+/* ==|====================
+	Tools/Variables
+	Variables
+	======================= */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+/* line 25, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/tools/variables.scss */
+.womp-red {
+  color: #CC3300;
+}
+
+/* line 28, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/tools/variables.scss */
+.womp-green {
+  color: #18AA53;
+}
+
+/* ==|====================
+	Tools/Mixins
+	Mixins and placeholders
+	======================= */
+/* Base */
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 9, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 19, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+/* line 33, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+/* line 54, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 67, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+/* line 77, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 89, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 97, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+/* line 109, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+/* line 117, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+/* line 126, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+/* line 135, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+/* line 144, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 153, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 161, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 169, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 173, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+/* line 184, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+/* line 192, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+/* line 203, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 211, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+/* line 221, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+/* line 229, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+/* line 252, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+/* line 266, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+/* line 277, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 290, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 302, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 311, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 322, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/* line 334, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+/* line 346, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 357, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+/* line 370, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 379, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 390, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+/* line 399, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+/* line 408, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 419, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 424, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/normalize.scss */
+td,
+th {
+  padding: 0;
+}
+
+/* line 3, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* line 7, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* line 10, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+body {
+  height: 100%;
+  margin: 0;
+  background: #FFFFFF;
+  color: #6c6970;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+/* line 20, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.modal {
+  padding: 0 !important;
+  max-width: 1250px !important;
+  z-index: 999 !important;
+}
+
+/* line 26, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.trix-content {
+  text-transform: lowercase;
+}
+
+@media screen and (max-width: 600px) {
+  /* line 32, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .trix-content {
+    max-width: 70vw;
+  }
+}
+/* line 37, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+#trix-toolbar-1 > .button_row > .button_group {
+  display: block;
+  float: left;
+}
+
+/* line 41, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+#trix-toolbar-1 > .button_row {
+  display: block;
+}
+
+/* line 45, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+#trix-toolbar-1 > .button_row:before, #trix-toolbar-1 > .button_row:after {
+  content: " ";
+  display: table;
+}
+
+/* line 46, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+#trix-toolbar-1 > .button_row:after {
+  clear: both;
+}
+
+/* line 47, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+#trix-toolbar-1 > .button_row {
+  *zoom: 1;
+}
+
+/* line 49, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.zoomImg {
+  background-color: white !important;
+}
+
+/* line 53, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.womp-mw {
+  max-width: 80rem;
+}
+
+/* line 55, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* line 63, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.profile-picture-header {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+/* line 68, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.profile-picture-comment {
+  width: 50px;
+  height: 50px;
+}
+
+/* line 73, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.spin {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* line 88, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.form-promotion {
+  display: flex;
+  padding: 4.375rem 0;
+  border-bottom: 1px solid #D5D4D6;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* line 96, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.form-promotion .promotion-label {
+  line-height: 2.3;
+}
+/* line 100, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.form-promotion .promotion-text {
+  border-radius: 1.25rem 0rem 0rem 1.25rem;
+  margin: 0;
+  line-height: 2.3;
+  width: 14.0625rem !important;
+  border: 1px solid #D5D4D6 !important;
+  height: 2.5rem;
+  margin-left: 29px;
+  padding-left: 10px !important;
+}
+/* line 111, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.form-promotion .promotion-submit {
+  border-radius: 0rem 1.25rem 1.25rem 0rem;
+  background: #6C6970;
+  border: none;
+  outline: none;
+  color: #F7F7F7;
+  font-size: .75rem;
+  width: 4.4375rem;
+  height: 2.47rem;
+  display: inline-block;
+  margin-left: -.3125rem;
+  line-height: 0.6;
+}
+
+/* line 127, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+.flexslider div {
+  border-radius: 1.25rem;
+  width: 46.875rem !important;
+  height: 23.75rem;
+  opacity: 50%;
+}
+
+@media screen and (min-width: 30em) {
+  /* line 136, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .form-promotion {
+    flex-direction: column;
+  }
+
+  /* line 140, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .up-arrow {
+    display: none;
+  }
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  /* line 146, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .form-promotion {
+    flex-direction: column;
+  }
+
+  /* line 150, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .up-arrow {
+    display: none;
+  }
+}
+@media screen and (min-width: 60em) {
+  /* line 156, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .form-promotion {
+    flex-direction: row;
+  }
+
+  /* line 160, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/global.scss */
+  .up-arrow {
+    margin-top: -93px;
+    float: right;
+    display: block;
+  }
+}
+/*
+==|====================
+Base/Typography
+Typographic styles for base elements (h1, h2, p, etc.)
+=======================
+*/
+@font-face {
+  font-family: 'icomoon';
+  src: url(/assets/icomoon-c4eb0503cc000c04a76c7f4245f7bdc7de67c5cee314d97d2279a44218528c4c.eot);
+  src: url(/assets/icomoon-c4eb0503cc000c04a76c7f4245f7bdc7de67c5cee314d97d2279a44218528c4c.eot?#iefix) format("embedded-opentype"), url(/assets/icomoon-548cf8103112e713d4467ab36539b4e4d9d13d9785fe4e11d2bf83a4f8cf835d.ttf) format("truetype"), url(/assets/icomoon-84f508d019cc9e3bb787943cd28731089b233ef50c0c4181aaa75ab467e9a5e5.woff) format("woff"), url(/assets/icomoon-ce992c33e5548bb12c93f74778d793b15f865981139c112e2e9979fb01d74005.svg#icomoon) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 19, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+h1, h2, h3, p, a {
+  margin: 0;
+  text-transform: lowercase;
+}
+
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+dfn, cite, em, i {
+  font-style: italic;
+}
+
+/* line 29, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+a {
+  color: #4348A6;
+  text-decoration: none;
+}
+/* line 32, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+a:hover {
+  opacity: 0.8;
+}
+
+/* line 37, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+h1.impact {
+  font-size: 56px;
+  line-height: 76px;
+}
+
+/* line 41, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+h1 {
+  font-size: 48px;
+  line-height: 65px;
+}
+
+/* line 45, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+h2 {
+  font-size: 24px;
+  line-height: 33px;
+}
+
+/* line 49, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+h3 {
+  font-size: 20px;
+  line-height: 27px;
+}
+
+/* line 53, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+p {
+  font-size: 14px;
+  line-height: 19px;
+}
+
+/* line 57, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.caption {
+  font-size: 12px;
+  line-height: 17px;
+}
+
+/* line 61, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.tiny {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+/* line 65, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.bold {
+  font-weight: 700 !important;
+}
+
+/* line 68, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.styleguide-label {
+  font-size: 16px !important;
+  line-height: 22px !important;
+}
+
+/* line 73, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.tippy-tooltip {
+  font-size: 14px;
+}
+
+/* line 77, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.material-icon-font {
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+}
+
+/* line 82, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* line 97, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-selected .path1:before {
+  content: "\e900";
+  color: #545259;
+}
+
+/* line 101, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-selected .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 106, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-selected .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 111, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-selected .path4:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 116, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-selected .path5:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 121, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-unselected .path1:before {
+  content: "\e905";
+  color: white;
+}
+
+/* line 125, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-unselected .path2:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 130, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-unselected .path3:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 135, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---info-unselected .path4:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 140, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---maximize:before {
+  content: "\e909";
+  color: #545259;
+}
+
+/* line 144, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---minimize:before {
+  content: "\e90a";
+  color: #545259;
+}
+
+/* line 148, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path1:before {
+  content: "\e90b";
+  color: #545259;
+}
+
+/* line 152, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path2:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 157, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path3:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 162, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path4:before {
+  content: "\e90e";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 167, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path5:before {
+  content: "\e90f";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 172, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path6:before {
+  content: "\e910";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 177, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path7:before {
+  content: "\e911";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 182, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-selected .path8:before {
+  content: "\e912";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 187, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path1:before {
+  content: "\e913";
+  color: white;
+}
+
+/* line 191, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path2:before {
+  content: "\e914";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 196, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path3:before {
+  content: "\e915";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 201, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path4:before {
+  content: "\e916";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 206, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path5:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 211, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path6:before {
+  content: "\e918";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 216, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path7:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 221, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---pros-n-cons-unselected .path8:before {
+  content: "\e91a";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 226, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path1:before {
+  content: "\e91b";
+  color: #545259;
+}
+
+/* line 230, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path2:before {
+  content: "\e91c";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 235, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path3:before {
+  content: "\e91d";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 240, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path4:before {
+  content: "\e91e";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 245, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path5:before {
+  content: "\e91f";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 250, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path6:before {
+  content: "\e920";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 255, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path7:before {
+  content: "\e921";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 260, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path8:before {
+  content: "\e922";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 265, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path9:before {
+  content: "\e923";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 270, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path10:before {
+  content: "\e924";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 275, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path11:before {
+  content: "\e925";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 280, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path12:before {
+  content: "\e926";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 285, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path13:before {
+  content: "\e927";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 290, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-selected .path14:before {
+  content: "\e928";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 295, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path1:before {
+  content: "\e929";
+  color: white;
+}
+
+/* line 299, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path2:before {
+  content: "\e92a";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 304, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path3:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 309, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path4:before {
+  content: "\e92c";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 314, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path5:before {
+  content: "\e92d";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 319, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path6:before {
+  content: "\e92e";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 324, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path7:before {
+  content: "\e92f";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 329, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path8:before {
+  content: "\e930";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 334, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path9:before {
+  content: "\e931";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 339, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path10:before {
+  content: "\e932";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 344, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path11:before {
+  content: "\e933";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 349, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path12:before {
+  content: "\e934";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 354, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path13:before {
+  content: "\e935";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 359, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---sample-unselected .path14:before {
+  content: "\e936";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 364, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---technical-selected .path1:before {
+  content: "\e937";
+  color: #545259;
+}
+
+/* line 368, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---technical-selected .path2:before {
+  content: "\e938";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 373, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---technical-selected .path3:before {
+  content: "\e939";
+  margin-left: -1em;
+  color: white;
+}
+
+/* line 378, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---technical-unselected .path1:before {
+  content: "\e93a";
+  color: white;
+}
+
+/* line 382, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---technical-unselected .path2:before {
+  content: "\e93b";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* line 387, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/base/typography.scss */
+.icon-material-icon---technical-unselected .path3:before {
+  content: "\e93c";
+  margin-left: -1em;
+  color: #545259;
+}
+
+/* Modules */
+/* line 5, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.carrot {
+  right: 3px;
+  top: -7px;
+  transform: rotate(45deg);
+}
+
+/* line 11, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-dropdown-content {
+  top: 86px;
+  right: 0px;
+  width: 150px;
+}
+/* line 15, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-dropdown-content a {
+  width: 150px;
+  display: block;
+  text-align: center;
+}
+
+/* line 23, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.header-on-mobile {
+  max-height: 4.5rem;
+  overflow: hidden;
+  transition: max-height 0.2s ease;
+}
+
+/* line 28, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.header-on-mobile.open {
+  max-height: 34rem;
+  transition: max-height 0.2s ease;
+}
+
+/* line 33, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-toggle-hamburger-menu {
+  width: 2rem;
+  height: 2rem;
+  display: block;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* line 42, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-toggle-hamburger-menu .bar {
+  background-color: #545259;
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 100px;
+  position: absolute;
+  top: 23px;
+  right: 7px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+/* line 57, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-toggle-hamburger-menu .bar:first-child {
+  -webkit-transform: translateY(-6px);
+  -moz-transform: translateY(-6px);
+  -ms-transform: translateY(-6px);
+  transform: translateY(-6px);
+}
+
+/* line 64, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-toggle-hamburger-menu.x .bar {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* line 71, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/header-footer.scss */
+.js-toggle-hamburger-menu.x .bar:first-child {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* line 1, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.button {
+  display: inline-block;
+  width: auto;
+  height: 36px;
+  padding: 8px 16px 8px 16px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  transition: opacity 0.2s ease;
+}
+/* line 13, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.button:hover {
+  opacity: 0.5;
+}
+
+/* line 21, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.button.br0 {
+  border-radius: 0;
+}
+
+/* line 22, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.primary-button {
+  border: 1px solid #4348A6;
+  color: #4348A6;
+}
+/* line 28, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.primary-button.active {
+  color: #FFFFFF;
+  background-color: #4348A6;
+}
+
+/* line 34, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.white-button {
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+}
+/* line 40, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.white-button.active {
+  color: #545259;
+  background-color: #FFFFFF;
+}
+
+/* line 46, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.secondary-button {
+  border: 1px solid #6c6970;
+  color: #6c6970;
+}
+/* line 52, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.secondary-button.active {
+  color: #FFFFFF;
+  background-color: #6c6970;
+}
+
+/* line 58, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.destructive-button {
+  border: 1px solid #CC3300;
+  color: #CC3300;
+}
+/* line 64, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.destructive-button.active {
+  color: #FFFFFF;
+  background-color: #CC3300;
+}
+
+/* line 70, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/buttons.scss */
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* line 1, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  line-height: 19px;
+}
+
+/* line 13, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+fieldset p {
+  padding: .4em 0 0 0;
+  max-width: 635px;
+}
+
+/* line 18, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+fieldset.left-icon-fieldset {
+  position: relative;
+}
+
+/* line 21, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+fieldset.left-icon-fieldset .left-icon {
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+
+/* line 26, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+fieldset.left-icon-fieldset input {
+  text-indent: 20px;
+}
+
+/* line 30, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+label {
+  font-size: 14px;
+  line-height: 19px;
+  display: block;
+  max-width: 635px;
+  padding: 0 0 .4em 0;
+}
+
+/* line 38, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+select {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0;
+  background-image: url(/assets/sort-solid-78c154523d938896217ab0d588dc9b86007cf9919183fe4dd82af9f6d03e5306.svg);
+  background-position: 99% 50%;
+  background-repeat: no-repeat;
+  background-size: 8px;
+}
+
+/* line 48, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+option[value=""][disabled] {
+  display: none;
+}
+
+/* line 52, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+textarea,
+select,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  padding: 0;
+  vertical-align: middle;
+  min-width: 50px;
+  max-width: 635px;
+  width: 100%;
+  min-height: 32px;
+  background-color: #FFFFFF;
+  border: none;
+  border-bottom: 1px solid #CBCACD;
+}
+/* line 77, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+textarea:hover,
+select:hover,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="datetime"]:hover,
+input[type="datetime-local"]:hover,
+input[type="date"]:hover,
+input[type="month"]:hover,
+input[type="time"]:hover,
+input[type="week"]:hover,
+input[type="number"]:hover,
+input[type="email"]:hover,
+input[type="url"]:hover,
+input[type="search"]:hover,
+input[type="tel"]:hover,
+input[type="color"]:hover {
+  border-bottom: 1px solid #545259;
+}
+/* line 80, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+textarea:focus,
+select:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus {
+  border-bottom: 2px solid #4348A6;
+  outline: none;
+}
+/* line 84, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+textarea:disabled,
+select:disabled,
+input[type="text"]:disabled,
+input[type="password"]:disabled,
+input[type="datetime"]:disabled,
+input[type="datetime-local"]:disabled,
+input[type="date"]:disabled,
+input[type="month"]:disabled,
+input[type="time"]:disabled,
+input[type="week"]:disabled,
+input[type="number"]:disabled,
+input[type="email"]:disabled,
+input[type="url"]:disabled,
+input[type="search"]:disabled,
+input[type="tel"]:disabled,
+input[type="color"]:disabled {
+  border-bottom: 1px solid #CBCACD;
+  opacity: 0.5;
+}
+/* line 88, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+textarea.valid,
+select.valid,
+input[type="text"].valid,
+input[type="password"].valid,
+input[type="datetime"].valid,
+input[type="datetime-local"].valid,
+input[type="date"].valid,
+input[type="month"].valid,
+input[type="time"].valid,
+input[type="week"].valid,
+input[type="number"].valid,
+input[type="email"].valid,
+input[type="url"].valid,
+input[type="search"].valid,
+input[type="tel"].valid,
+input[type="color"].valid {
+  border-bottom: 2px solid #18AA53;
+}
+/* line 91, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+textarea.invalid,
+select.invalid,
+input[type="text"].invalid,
+input[type="password"].invalid,
+input[type="datetime"].invalid,
+input[type="datetime-local"].invalid,
+input[type="date"].invalid,
+input[type="month"].invalid,
+input[type="time"].invalid,
+input[type="week"].invalid,
+input[type="number"].invalid,
+input[type="email"].invalid,
+input[type="url"].invalid,
+input[type="search"].invalid,
+input[type="tel"].invalid,
+input[type="color"].invalid {
+  border-bottom: 2px solid #CC3300;
+}
+
+/* line 96, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type="text"].valid ~ p,
+input[type="password"].valid ~ p,
+input[type="datetime"].valid ~ p,
+input[type="datetime-local"].valid ~ p,
+input[type="date"].valid ~ p,
+input[type="month"].valid ~ p,
+input[type="time"].valid ~ p,
+input[type="week"].valid ~ p,
+input[type="number"].valid ~ p,
+input[type="email"].valid ~ p,
+input[type="url"].valid ~ p,
+input[type="search"].valid ~ p,
+input[type="tel"].valid ~ p,
+input[type="color"].valid ~ p {
+  color: #18AA53;
+}
+
+/* line 113, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type="text"].invalid ~ p,
+input[type="password"].invalid ~ p,
+input[type="datetime"].invalid ~ p,
+input[type="datetime-local"].invalid ~ p,
+input[type="date"].invalid ~ p,
+input[type="month"].invalid ~ p,
+input[type="time"].invalid ~ p,
+input[type="week"].invalid ~ p,
+input[type="number"].invalid ~ p,
+input[type="email"].invalid ~ p,
+input[type="url"].invalid ~ p,
+input[type="search"].invalid ~ p,
+input[type="tel"].invalid ~ p,
+input[type="color"].invalid ~ p {
+  color: #CC3300;
+}
+
+/* line 139, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+}
+
+/* line 144, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type="checkbox"] ~ label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* line 149, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type="radio"] {
+  margin-top: -2px;
+  width: 1rem;
+}
+
+/* line 153, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type="radio"] ~ label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* line 158, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+.stripe-button-el {
+  display: none !important;
+}
+
+/* line 163, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+.direct-upload {
+  border: 1px solid #545259;
+  color: #545259;
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* line 175, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+.direct-upload--pending {
+  opacity: 0.6;
+}
+
+/* line 178, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+.direct-upload__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0.2;
+  background: #0076ff !important;
+  transition: width 120ms ease-out, opacity 60ms 60ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+
+/* line 188, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+.direct-upload--complete .direct-upload__progress {
+  background: none !important;
+}
+
+/* line 191, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+.direct-upload--error {
+  border-color: red;
+}
+
+/* line 194, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/forms.scss */
+input[type=file][data-direct-upload-url][disabled] {
+  display: none;
+}
+
+/* line 2, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.tabs li {
+  flex-basis: 0;
+  border-bottom: solid 1px #CBCACD;
+}
+/* line 5, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.tabs li.active-border-bottom {
+  border-bottom: solid 2px #4348A6;
+}
+/* line 8, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.tabs li a {
+  font-weight: 700;
+  color: #545259;
+}
+/* line 11, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.tabs li a.active {
+  color: #4348A6;
+}
+
+/* line 18, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.old-tabs {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* line 24, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.old-tabs li {
+  flex-grow: 1;
+  flex-basis: 0;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #CBCACD;
+}
+/* line 30, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.old-tabs li.active-border-bottom {
+  border-bottom: solid 2px #4348A6;
+}
+/* line 33, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.old-tabs li a {
+  font-weight: 600;
+  color: #545259;
+}
+/* line 36, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.old-tabs li a.active {
+  color: #4348A6;
+}
+
+/* line 43, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.button-tabs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* line 47, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.button-tabs li {
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #545259;
+  color: #545259;
+}
+/* line 58, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.button-tabs li:hover {
+  opacity: 0.5;
+}
+/* line 61, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.button-tabs li.active {
+  background-color: #545259;
+}
+/* line 64, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.button-tabs li a {
+  color: #545259;
+}
+/* line 66, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+ul.button-tabs li a.active {
+  color: #FFFFFF;
+}
+
+/* line 73, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+.selected {
+  display: none;
+}
+
+/* line 74, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+.active .selected {
+  display: inline;
+}
+
+/* line 75, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/navigation.scss */
+.active .unselected {
+  display: none;
+}
+
+/* line 1, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.border-container {
+  border: 1px solid #545259;
+  border-radius: 25px;
+  padding: 25px;
+  background-color: #FFFFFF;
+}
+
+/* line 8, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.scroll-box {
+  max-height: 750px;
+  overflow: scroll;
+}
+
+/* line 13, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.reference-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+}
+
+/* line 20, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.reference-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.reference-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #545259;
+}
+
+/* line 37, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.reference-image-wrapper:hover .reference-overlay {
+  opacity: 0.99;
+}
+
+/* line 41, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.comment-carrot {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  position: absolute;
+  transform: rotate(45deg);
+  border: 1px solid #545259;
+  z-index: -1;
+  top: 40%;
+}
+
+/* line 51, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.comment-carrot-left {
+  left: -8px;
+}
+
+/* line 52, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.comment-carrot-right {
+  right: -8px;
+}
+
+/* line 54, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.circle-check {
+  position: absolute;
+  color: white;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* line 63, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.existing-attachments-check-box:checked + .existing-attachments-label .reference-overlay {
+  opacity: 0.9;
+  background-color: #18AA53;
+}
+
+/* line 67, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.existing-attachments-check-box:checked + .existing-attachments-label .circle-check {
+  opacity: 1;
+}
+
+/* line 70, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.existing-attachments-label:hover .reference-overlay {
+  opacity: 0.9;
+  background-color: #545259;
+}
+
+/* line 74, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.existing-attachments-label:hover .reference-overlay {
+  opacity: 0.9;
+  background-color: #545259;
+}
+
+/* line 79, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/projects.scss */
+.annotate-container {
+  z-index: 9999;
+}
+
+/* line 2, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.overflow-y-scroll {
+  -ms-overflow-style: none;
+}
+
+/* line 5, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* line 10, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-container {
+  width: 100%;
+  position: relative;
+}
+
+/* line 14, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-container:-webkit-full-screen, .viewer-container:fullscreen, .viewer-container:-moz-full-screen {
+  width: 100vh !important;
+  height: 100vh !important;
+}
+
+/* line 18, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-container:hover {
+  cursor: grab;
+}
+
+/* line 19, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-container:active {
+  cursor: grabbing;
+}
+
+/* line 20, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-fullscreen {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+}
+
+/* line 26, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-smoothing {
+  position: absolute;
+  bottom: 10px;
+  right: 38px;
+  color: white;
+}
+
+/* line 32, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.viewer-snapshot {
+  position: absolute;
+  bottom: 10px;
+  right: 72px;
+  color: white;
+}
+
+/* line 38, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.datafield {
+  background: #545259;
+  padding: 0 5px;
+  color: #FFFFFF;
+}
+
+/* line 43, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+.datafield p {
+  color: #FFFFFF;
+}
+
+/* line 46, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#viewer-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 51, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#mats-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-height: 70%;
+  overflow-y: scroll;
+}
+/* line 59, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#mats-info .datafield .subItem {
+  display: none;
+}
+/* line 64, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#mats-info .datafield.active {
+  background: gray;
+}
+/* line 66, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#mats-info .datafield.active .subItem {
+  display: block;
+}
+
+/* line 72, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#print-data {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* line 79, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/viewer.scss */
+#cur-mats-info ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 1, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/toasts.scss */
+.toast {
+  z-index: 9999;
+  max-width: 689px;
+  border-radius: 20px;
+  padding: 20px;
+  position: fixed;
+  bottom: -500px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* line 12, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/toasts.scss */
+.positive-toast {
+  background-color: #E1F2EA;
+}
+
+/* line 16, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/toasts.scss */
+.negative-toast {
+  background-color: #F9E6E7;
+}
+
+/* line 20, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/toasts.scss */
+.info-toast {
+  background-color: #E6E8F3;
+}
+
+/* line 24, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/toasts.scss */
+.other-toast {
+  background-color: #F9E8E0;
+}
+
+/* line 1, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+/* line 5, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table th, .womp-simple-table td {
+  padding: .5rem;
+  text-align: center;
+}
+/* line 9, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table td, .womp-simple-table th {
+  font-size: 13px;
+  line-height: 1.3;
+}
+/* line 13, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table tr {
+  border-bottom: 1px solid #CBCACD;
+}
+/* line 16, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table td {
+  overflow: hidden;
+  text-overflow: clip;
+}
+/* line 20, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table td.relative {
+  overflow: visible;
+  text-overflow: inherit;
+}
+/* line 24, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table img.table-upload {
+  height: 75px;
+  width: 50%;
+  object-fit: cover;
+}
+
+/* line 31, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+.womp-simple-table tbody tr:hover,
+.womp-simple-table tbody tr:focus {
+  background-color: #ecf0f1;
+}
+
+@media screen and (max-width: 600px) {
+  /* line 38, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+  .womp-simple-table {
+    font-size: 12px;
+  }
+
+  /* line 41, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/shared/modules/tables.scss */
+  .womp-simple-table td,
+  .womp-simple-table th,
+  .womp-simple-table tr {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+/* Vendor */
+/* Copyright 2013-2015 etc Chris Tabor. See https://github.com/christabor/css-progress-wizard/blob/master/LICENSE for details. */
+/* line 33, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.flexer, .progress-indicator {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* line 40, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.no-flexer, .progress-indicator.stacked {
+  display: block;
+}
+
+/* line 43, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.no-flexer-element {
+  -ms-flex: 0;
+  -webkit-flex: 0;
+  -moz-flex: 0;
+  flex: 0;
+}
+
+/* line 49, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.flexer-element, .progress-indicator > li {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  flex: 1;
+}
+
+/* line 55, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator {
+  margin: 0;
+  padding: 0;
+  font-size: 80%;
+}
+/* line 60, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li {
+  list-style: none;
+  text-align: center;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  text-overflow: ellipsis;
+  color: #D0D0D0;
+  display: block;
+}
+/* line 71, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li:hover {
+  color: #848484;
+}
+/* line 75, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li .bubble {
+  border-radius: 1000px;
+  width: 20px;
+  height: 20px;
+  background-color: #D0D0D0;
+  display: block;
+  margin: 0 auto 0.5em auto;
+}
+/* line 85, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li .bubble:before,
+.progress-indicator > li .bubble:after {
+  display: block;
+  position: absolute;
+  top: 9px;
+  width: 100%;
+  height: 3px;
+  content: '';
+  background-color: #D0D0D0;
+}
+/* line 95, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li .bubble:before {
+  left: 0;
+}
+/* line 98, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li .bubble:after {
+  right: 0;
+}
+/* line 102, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li:first-child .bubble:before,
+.progress-indicator > li:first-child .bubble:after {
+  width: 50%;
+  margin-left: 50%;
+}
+/* line 108, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li:last-child .bubble:before,
+.progress-indicator > li:last-child .bubble:after {
+  width: 50%;
+  margin-right: 50%;
+}
+/* line 115, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.completed {
+  color: #ABABAB;
+}
+/* line 117, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.completed .bubble {
+  background-color: #ABABAB;
+  color: #ABABAB;
+  border-color: #5f5f5f;
+}
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.completed .bubble:before, .progress-indicator > li.completed .bubble:after {
+  background-color: #ABABAB;
+  border-color: #5f5f5f;
+}
+/* line 123, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.active {
+  color: #337AB7;
+}
+/* line 125, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.active .bubble {
+  background-color: #337AB7;
+  color: #337AB7;
+  border-color: #122a3f;
+}
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.active .bubble:before, .progress-indicator > li.active .bubble:after {
+  background-color: #337AB7;
+  border-color: #122a3f;
+}
+/* line 131, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li a:hover .bubble {
+  background-color: #5671d0;
+  color: #5671d0;
+  border-color: #1f306e;
+}
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li a:hover .bubble:before, .progress-indicator > li a:hover .bubble:after {
+  background-color: #5671d0;
+  border-color: #1f306e;
+}
+/* line 136, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.danger .bubble {
+  background-color: #d3140f;
+  color: #d3140f;
+  border-color: #440605;
+}
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.danger .bubble:before, .progress-indicator > li.danger .bubble:after {
+  background-color: #d3140f;
+  border-color: #440605;
+}
+/* line 139, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.warning .bubble {
+  background-color: #edb10a;
+  color: #edb10a;
+  border-color: #5a4304;
+}
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.warning .bubble:before, .progress-indicator > li.warning .bubble:after {
+  background-color: #edb10a;
+  border-color: #5a4304;
+}
+/* line 142, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.info .bubble {
+  background-color: #5b32d6;
+  color: #5b32d6;
+  border-color: #25135d;
+}
+/* line 27, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator > li.info .bubble:before, .progress-indicator > li.info .bubble:after {
+  background-color: #5b32d6;
+  border-color: #25135d;
+}
+/* line 149, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked > li {
+  text-indent: -10px;
+  text-align: center;
+  display: block;
+}
+/* line 154, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked > li .bubble:before,
+.progress-indicator.stacked > li .bubble:after {
+  left: 50%;
+  margin-left: -1.5px;
+  width: 3px;
+  height: 100%;
+}
+/* line 161, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked .stacked-text {
+  position: relative;
+  z-index: 10;
+  top: 0;
+  margin-left: 60% !important;
+  width: 45% !important;
+  display: inline-block;
+  text-align: left;
+  line-height: 1.2em;
+}
+/* line 171, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked > li a {
+  border: none;
+}
+/* line 176, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked.nocenter > li .bubble {
+  margin-left: 0;
+  margin-right: 0;
+}
+/* line 180, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked.nocenter > li .bubble:before,
+.progress-indicator.stacked.nocenter > li .bubble:after {
+  left: 10px;
+}
+/* line 184, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+.progress-indicator.stacked.nocenter .stacked-text {
+  width: auto !important;
+  display: block;
+  margin-left: 40px !important;
+}
+
+@media handheld, screen and (max-width: 400px) {
+  /* line 193, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/application/vendor/progress-wizard.scss */
+  .progress-indicator {
+    font-size: 60%;
+  }
+}
+/* line 28, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/admin.scss */
+body:before, body:after {
+  content: "";
+  position: fixed;
+  background: #4348A6;
+  left: 0;
+  right: 0;
+  height: 15px;
+}
+
+/* line 36, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/admin.scss */
+body:before {
+  top: 0;
+  z-index: 99999;
+}
+
+/* line 40, /home/skyblue/Workspaces/robert_work/Womp/app/assets/stylesheets/admin.scss */
+body:after {
+  bottom: 0;
+  z-index: 99999;
+}

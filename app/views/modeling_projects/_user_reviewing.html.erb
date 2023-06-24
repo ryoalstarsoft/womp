@@ -1,0 +1,12 @@
+<%= form_for @modeling_project, html: { class: 'mw8 center pv5 ph2' } do |f| %>
+	<%= f.hidden_field :user_reviewed, value: true %>
+
+	<div class="ba bg-white bw1 b--black br4 cf">
+		<%= render 'modeling_projects/review_container', able_to_delete: true %>
+	</div>
+
+	<div class="cf mv4">
+		<%= link_to '< back', modeling_project_path(@modeling_project, modeling_project: { user_captioned: false }), method: :put, class: 'button secondary-button fl' %>
+		<%= f.submit 'looks good', class: 'button primary-button fr' %>
+	</div>
+<% end %>

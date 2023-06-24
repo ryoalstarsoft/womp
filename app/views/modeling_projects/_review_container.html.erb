@@ -1,0 +1,17 @@
+<div class="cf">
+	<div class="fl w-100 w-50-l overflow-y-scroll bw1 bb bb-0-l br-l b--black ph6 pv5" style="height:450px;min-height:450px;">
+		<p class="f4 lh-copy fw7 mv2">description</p>
+		<p><%= sanitize @modeling_project.description.present? ? @modeling_project.description : "you didn't provide a description" %></p>
+	</div>
+
+	<div class="fl w-100 w-50-l overflow-y-scroll ph6 pv5" style="height:450px;min-height:450px;">
+		<p class="f4 lh-copy fw7 mv2">visual references</b>
+		<div id="js-upload-grid">
+			<% if @modeling_project.uploads.present? %>
+				<%= render 'uploads/upload_grid', uploads: @modeling_project.uploads.order('created_at desc'), able_to_delete: able_to_delete %>
+			<% else %>
+				<p>you didn't upload any visual references to this project</p>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<%= render 'scanning_projects/header' %>
+
+<% if !@scanning_project.create_project_complete? %>
+  <%= render 'scanning_projects/create_project' %>
+<% elsif @scanning_project.create_project_complete? && @scanning_project.object_size == "other" && !@scanning_project.exact_size_present? %>
+  <%= render 'scanning_projects/exact_size' %>
+<% elsif !@scanning_project.resolution.present? %>
+  <%= render 'scanning_projects/resolution' %>
+<% elsif !@scanning_project.color.present? %>
+  <%= render 'scanning_projects/color' %>
+<% elsif !@scanning_project.all_images_attached? %>
+  <%= render 'scanning_projects/images' %>
+<% elsif !@scanning_project.enter_address_complete? %>
+  <%= render 'scanning_projects/enter_address' %>
+<% elsif !@scanning_project.user_reviewed? && @scanning_project.object_size == "other" %>
+  <%= render 'scanning_projects/user_reviewing' %>
+<% elsif !@scanning_project.price_override.present? && @scanning_project.object_size == "other" %>
+  <%= render 'scanning_projects/womp_reviewing' %>
+<% elsif !@scanning_project.paid? %>
+  <%= render 'scanning_projects/checkout' %>
+<% elsif !@scanning_project.upload.present? || !@scanning_project.upload.released_to_user? %>
+  <%= render 'scanning_projects/womp_scanning' %>
+<% else %>
+  <%= render 'scanning_projects/complete' %>
+<% end %>

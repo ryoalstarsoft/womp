@@ -1,0 +1,51 @@
+.womp-simple-table {
+  // table-layout: fixed;
+  border-collapse: collapse;
+  border-style: hidden;
+  th, td {
+    padding: .5rem; // pa3
+    text-align: center;
+  }
+  td, th {
+    font-size: 13px;
+  	line-height: 1.3;
+  }
+  tr {
+    border-bottom: 1px solid #CBCACD;
+  }
+  td {
+    overflow: hidden;
+    text-overflow: clip;
+  }
+  td.relative {
+    overflow: visible;
+    text-overflow: inherit;
+  }
+  img.table-upload {
+    height: 75px;
+    width: 50%;
+    object-fit: cover;
+  }
+}
+
+.womp-simple-table tbody tr:hover,
+.womp-simple-table tbody tr:focus {
+  background-color: #ecf0f1;
+}
+
+
+@media screen and (max-width:600px) {
+  .womp-simple-table {
+    font-size: 12px;
+  }
+  .womp-simple-table td,
+  .womp-simple-table th,
+  .womp-simple-table tr {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+
+.js-dropdown-content {
+  // right: 60px;
+}

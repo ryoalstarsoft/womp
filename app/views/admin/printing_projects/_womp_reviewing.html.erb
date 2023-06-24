@@ -1,0 +1,65 @@
+<div class="cf mb4 ">
+  <%= render 'shared/viewer', upload: @printing_project.uploads.last, project: @printing_project %>
+</div>
+
+<div class="cf mv4">
+  <div class="w-100 tc center">
+    <p class="f5 lh-copy">the project is to print an object with <b><%= @printing_project.material.display_name.downcase %></b></p>
+    <p class="f5 lh-copy">it will ship to <b><%= @printing_project.user.address.downcase %></b></p>
+    <p class="f5 lh-copy">the approximate cost to print is <b><%= number_to_currency(@printing_project.printing_price) %></b> per unit</p>
+  </div>
+</div>
+
+<div class="fl w-50 pr2">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>you may approve this model to be printed with the material that has been chosen</p>
+
+    <%= form_for @printing_project, url: admin_printing_project_path(@printing_project), method: :put do |f| %>
+      <%= f.hidden_field :womp_approved, value: true %>
+
+      <fieldset class="mt2">
+        <%= f.submit 'approve project', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="fl w-50 pr2">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>you may approve this model to be printed with the material that has been chosen, but assign a manual price per unit the user decides to choose</p>
+
+    <%= form_for @printing_project, url: admin_printing_project_path(@printing_project), method: :put do |f| %>
+      <%= f.hidden_field :womp_approved, value: true %>
+
+      <fieldset class="mt2">
+        <%= f.label :price_override, 'price override: ' %>
+        <%= f.number_field :price_override, step: :any, placeholder: '--', class: 'mw-100 w-100' %>
+      </fieldset>
+
+      <fieldset class="mt2">
+        <%= f.submit 'approve project', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="fl w-100">
+  <div class="border-container mb4">
+    <h3>potential action</h3>
+    <p>you may deny this project, which will send the customer back to the "choose material" step</p>
+
+    <%= form_for @printing_project, url: admin_printing_project_path(@printing_project), method: :put do |f| %>
+      <%= f.hidden_field :material_id, value: nil %>
+
+      <fieldset class="mt2">
+        <%= f.submit 'deny project', class: 'button primary-button fr' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="mv4 cf">
+  <%= render 'admin/comments/comment_module', project_type: 'PrintingProject', project_id: @printing_project.id, project: @printing_project %>
+</div>

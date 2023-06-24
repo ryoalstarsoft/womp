@@ -1,0 +1,7 @@
+<% breadcrumb :new_workspace %>
+
+<div class="fl w-100 mb4">
+  <h1 class="f3 lh-title">new workspace</h1>
+</div>
+
+<%= render 'admin/workspaces/form', workspace: Workspace.new, url: admin_workspaces_path %>

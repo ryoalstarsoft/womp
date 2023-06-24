@@ -1,0 +1,30 @@
+<div class="mw8 center ph2 pv6 tl w-100">
+	<h1 class="f3 fw7 lh-title">welcome to your dashboard</h1>
+</div>
+
+<div class="cf ph2 ph6-ns pv6 w-100 mw8 center">
+	<div class="fl w-100 mv4 tl-ns tc">
+		<%= link_to 'start a project', new_project_path, class: 'button primary-button' %>
+	</div>
+
+	<div class="fl w-20-ns dn db-ns w-100 pr3-ns">
+		<div class="projects" id="js-projects-filters-wrapper">
+			<%= render 'projects_filters_wrapper' %>
+		</div>
+	</div>
+
+	<div class="fl w-80-ns w-100 ph2">
+		<ul class="flex flex-row js-tabs list pa0 mb4 mt0 tc w-100">
+			<li class="b--gray bb black bw1 db flex-grow-1">
+				<a class="db color-inherit dim f7 f5-ns fw4 lh-title pv2 ph0" href="#projects">projects</a>
+			</li>
+			<li class="b--gray bb black bw1 db flex-grow-1">
+				<a class="db color-inherit dim f7 f5-ns fw4 lh-title pv2 ph0" href="#files">files</a>
+			</li>
+		</ul>
+
+		<div id="js-tabs-wrapper" class="mt2">
+			<%= render 'dashboard/tabs_wrapper' %>
+		</div>
+	</div>
+</div>

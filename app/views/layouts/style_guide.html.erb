@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Womp Style Guide</title>
+		<%= csrf_meta_tags %>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.0/css/tachyons.min.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+		<link href="https://use.fontawesome.com/releases/v5.0.3/css/all.css" rel="stylesheet">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
+
+		<%= favicon_link_tag asset_path('womp-favicon.png') %>
+	</head>
+
+	<body>
+		<div class="womp-mw center">
+			<div class="pa3 ph5-l">
+				<%= render 'shared/styleguide_alerts' %>
+				<%= yield %>
+			</div>
+		</div>
+	</body>
+</html>

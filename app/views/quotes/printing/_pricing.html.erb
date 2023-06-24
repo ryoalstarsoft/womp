@@ -1,0 +1,19 @@
+<div class="tc mv5">
+	<p>you chose: <b><%= @quote.material.name.downcase %></b></p>
+	<p>measuring approximately: <b><%= @quote.object_height %>mm x <%= @quote.object_width %>mm x <%= @quote.object_depth %>mm</b></p>
+	<% if @quote.total_price.is_a? Numeric %>
+		<p>result: <b><%= number_to_currency(@quote.total_price) %></b></p><br/>
+	<% else %>
+		<p>there was an error pricing your model: <b><%= @quote.total_price.downcase %></b></p><br/>
+	<% end %>
+
+	<div class="cf mt4">
+		<div class="fl w-50 tc">
+			<p><%= link_to 'go back', quote_path(@quote, quote: { material_id: nil }), method: :put, class: 'button secondary-button' %></p>
+		</div>
+
+		<div class="fl w-50 tc">
+			<p><%= link_to 'start a project', new_project_path, class: 'button primary-button' %></p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+<div class="fl w-100 js-secondary-workspace dn cf">
+</div>
+
+<div class="mv4">
+  <p><b>pricing group:</b> <%= @modeling_project.pricing_group %></p>
+  <p><b>total price:</b> <%= number_to_currency(@modeling_project.total_price) %></p>
+</div>
+
+<div class="border-container mb4">
+  <h3>potential action</h3>
+  <p>if you accidently assigned an incorrect pricing group you can undo the action here</p>
+
+  <%= link_to "remove pricing group", remove_pricing_group_admin_modeling_project_path(@modeling_project), method: :put, class: 'button destructive-button mt2', data: { confirm: 'are you sure? this will remove the pricing group for this project' } %>
+</div>
+
+<div class="border-container scroll-box">
+  <%= render 'admin/modeling_projects/review_container', able_to_delete: false %>
+</div>
+
+<div class="mv4">
+  <%= render 'admin/comments/comment_module', project_type: 'ModelingProject', project_id: @modeling_project.id, project: @modeling_project %>
+</div>

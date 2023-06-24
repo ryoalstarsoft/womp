@@ -1,0 +1,13 @@
+<div class="womp-mw center">
+	<div class="fl w-100 ph3 ph5-l mt4">
+		<h1 class="f3 lh-title">annotate <%= @upload.file.blob.filename.to_s %></h1>
+	</div>
+
+	<div class="fl w-100 ph3 ph5-l mb4">
+		<% if @upload.file.previewable? || @upload.file.variable? %>
+			<%= react_component("Annotator", { imageUrl: @upload.file_image_url, imageAltText: 'Womp Image', projectId: @upload.project.id, uploadId: @upload.id, existingAnnotations: @upload.formatted_annotations, readOnly: @upload.annotate_read_only(current_user) }) %>
+		<% else %>
+			<p>only image files can be annotated</p>
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,179 @@
+<% content_for :head do %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+<section class="js-slider slider">
+	<div class="slide dt js-hero-womp js-scheme-2 hero-womp relative ph6 tc tl-ns w-100 js-scheme-image" style="padding-top: 10rem; padding-bottom: 12rem;">
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+		<div class="db dtc center v-mid black w-100 w-60-m w-45-l relative z-2 js-scheme-text">
+			<h1 class="f3 fw7 lh-title mv0" style="font-size: 26px; text-transform: none;">diy 3D Modeling</h1>
+			<p class="f6 fw4 lh-copy mt2 mb5 center ml0-ns" style="max-width: 17em; font-size: 14px;">watch your ideas come to life<br class="dn db-l"> with easy and affordable 3d services</p>
+			<div class="mv0">
+				<%= link_to "START A PROJECT", new_project_path, class: 'button secondary-button mr2 f6', style: 'text-transform: none' %>
+			</div>
+		</div>
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+	</div>
+	<div class="slide active dt js-hero-womp js-scheme-1 hero-womp relative ph6 tc tl-ns w-100 js-scheme-image" style="padding-top: 10rem; padding-bottom: 12rem;">
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+		<div class="db dtc center v-mid white w-100 w-60-m w-45-l relative z-2 js-scheme-text">
+			<h1 class="f3 fw7 lh-title mv0" style="font-size: 26px; text-transform: none;">3D scan your world</h1>
+			<p class="f6 fw4 lh-copy mt2 mb5 center ml0-ns" style="max-width: 17em; font-size: 14px;">watch your ideas come to life<br class="dn db-l"> with easy and affordable 3d services</p>
+			<div class="mv0">
+				<%= link_to "START A PROJECT", new_project_path, class: 'button white-button mr2 f6', style: 'text-transform: none' %>
+			</div>
+		</div>
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+	</div>
+	<div class="slide dt js-hero-womp js-scheme-2 hero-womp relative ph6 tc tl-ns w-100 js-scheme-image" style="padding-top: 10rem; padding-bottom: 12rem;">
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+		<div class="db dtc center v-mid black w-100 w-60-m w-45-l relative z-2 js-scheme-text">
+			<h1 class="f3 fw7 lh-title mv0" style="font-size: 26px; text-transform: none;">diy 3D Modeling</h1>
+			<p class="f6 fw4 lh-copy mt2 mb5 center ml0-ns" style="max-width: 17em; font-size: 14px;">watch your ideas come to life<br class="dn db-l"> with easy and affordable 3d services</p>
+			<div class="mv0">
+				<%= link_to "START A PROJECT", new_project_path, class: 'button secondary-button mr2 f6', style: 'text-transform: none' %>
+			</div>
+		</div>
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+	</div>
+	<div class="slide dt js-hero-womp js-scheme-1 hero-womp relative ph6 tc tl-ns w-100 js-scheme-image" style="padding-top: 10rem; padding-bottom: 12rem;">
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+		<div class="db dtc center v-mid white w-100 w-60-m w-45-l relative z-2 js-scheme-text">
+			<h1 class="f3 fw7 lh-title mv0" style="font-size: 26px; text-transform: none;">3D scan your world</h1>
+			<p class="f6 fw4 lh-copy mt2 mb5 center ml0-ns" style="max-width: 17em; font-size: 14px;">watch your ideas come to life<br class="dn db-l"> with easy and affordable 3d services</p>
+			<div class="mv0">
+				<%= link_to "START A PROJECT", new_project_path, class: 'button white-button mr2 f6', style: 'text-transform: none' %>
+			</div>
+		</div>
+		<div class="dtc">
+			<!-- spacer -->
+		</div>
+	</div>
+</section>
+
+<%= render 'shared/trio_scanning_modeling_printing' %>
+
+<section class="bg-near-white br4 center-l dt-l ma2 mw8 ph6 pv6 w-100-l">
+	<div class="dtc-l tc v-mid w-100 w-50-l">
+		<div class="aspect-ratio aspect-ratio--1x1">
+			<%= image_tag 'home_page/front-page-quiz-scheme-1.png', class: "dib mw6 w-100 aspect-ratio--object show-on-scheme-1", alt: 'a collection of 3d models' %>
+			<%= image_tag 'home_page/front-page-quiz-scheme-2.png', class: "dib mw6 w-100 aspect-ratio--object show-on-scheme-2", alt: 'an abstract 3d print' %>
+		</div>
+	</div>
+
+	<div class="dtc-l tc tl-l v-mid w-100 w-50-l">
+		<h2 class="f3 fw7 lh-title mv0">need a quick estimate?</h2>
+		<p class="f7 fw4 lh-copy measure-narrow-l mt2 mb0">take our quick quiz to find out your projects costs from beginning to end ;)</p>
+		<p class="f7 fw4 lh-copy measure-narrow-l mt2 mb7">zero files or experience required!</p>
+		<%= link_to "take quiz", new_quote_path, class: "button secondary-button" %>
+	</div>
+</section>
+
+
+<section class="center mw7 mv7 ph6 pv7 w-100 tc">
+	<h2 class="f3 fw7 lh-title mv6">choose from a wide selection of materials</h2>
+	<div class="cf">
+		<a href="javascript:void(0)" class="dim fl mb4 tc w-50 w-25-l ph2">
+			<div class="aspect-ratio aspect-ratio--3x4 w-100 mb3">
+				<%= image_tag 'materials/009.3.png', class: 'aspect-ratio--object show-on-scheme-1 mw-100 w-100 h-auto', alt: 'blush pla material' %>
+				<%= image_tag 'materials/014.png', class: 'aspect-ratio--object show-on-scheme-2 mw-100 w-100 h-auto', alt: 'blue pla material' %>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-1">blush pla</span>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-2">blue pla</span>
+			</div>
+
+		</a>
+		<a href="javascript:void(0)" class="dim fl mb4 tc w-50 w-25-l ph2">
+			<div class="aspect-ratio aspect-ratio--3x4 w-100 mb3">
+				<%= image_tag 'materials/143.png', class: 'aspect-ratio--object show-on-scheme-1 mw-100 w-100 h-auto', alt: 'grey sandstone material' %>
+				<%= image_tag 'materials/040.png', class: 'aspect-ratio--object show-on-scheme-2 mw-100 w-100 h-auto', alt: 'frosted resin material' %>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-1">grey sandstone</span>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-2">frosted resin</span>
+			</div>
+		</a>
+		<a href="javascript:void(0)" class="dim fl mb4 tc w-50 w-25-l ph2">
+			<div class="aspect-ratio aspect-ratio--3x4 w-100 mb3">
+				<%= image_tag 'materials/063.png', class: 'aspect-ratio--object show-on-scheme-1 mw-100 w-100 h-auto', alt: 'blue nylon material' %>
+				<%= image_tag 'materials/088.png', class: 'aspect-ratio--object show-on-scheme-2 mw-100 w-100 h-auto', alt: 'bronze steel material' %>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-1">blue nylon</span>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-2">bronze steel</span>
+			</div>
+		</a>
+		<a href="javascript:void(0)" class="dim fl mb4 tc w-50 w-25-l ph2">
+			<div class="aspect-ratio aspect-ratio--3x4 w-100 mb3">
+				<%= image_tag 'materials/107.png', class: 'aspect-ratio--object show-on-scheme-1 mw-100 w-100 h-auto', alt: 'polished brass material' %>
+				<%= image_tag 'materials/060.png', class: 'aspect-ratio--object show-on-scheme-2 mw-100 w-100 h-auto', alt: 'yellow nylon material' %>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-1">polished brass</span>
+				<span class="absolute bottom-0 db w-100 black b--black bt bw1 pt4 show-on-scheme-2">yellow nylon</span>
+			</div>
+		</a>
+	</div>
+	<%#= link_to "see more materials", materials_path, class: 'button mt6 secondary-button' %>
+	<%= link_to "SEE MATERIALS", asset_path('materials.pdf'), class: 'button mt6 secondary-button', style: 'text-transform: none', target: "_blank" %>
+</section>
+
+
+<section class="bg-near-white br4 center-l dt-l ma2 mw8 ph6 pv6 w-100-l mv7">
+	<div class="dtc-l tc v-mid w-100 w-50-l">
+		<div class="dib tc tl-l">
+			<h2 class="f3 fw7 lh-title mv0">wondering where to start?</h2>
+			<p class="f7 fw4 lh-copy measure-narrow-l mt2 mb0">every project is different</p>
+			<p class="f7 fw4 lh-copy measure-narrow-l mt2 mb7">find out more about how to get exactly what you want</p>
+			<%= link_to "LEARN MORE", how_it_works_path, class: "button secondary-button", style: 'text-transform: none; float: right' %>
+		</div>
+	</div>
+	<div class="dtc-l tc v-mid w-100 w-50-l">
+		<div class="aspect-ratio aspect-ratio--1x1">
+			<%= image_tag 'home_page/front-page-how-it-works-scheme-1.png', class: "dib w-100 h-auto aspect-ratio--object show-on-scheme-1", alt: 'a blue 3d printed object' %>
+			<%= image_tag 'home_page/front-page-how-it-works-scheme-2.png', class: "dib w-100 h-auto aspect-ratio--object show-on-scheme-2", alt: 'a 3d printed planter' %>
+		</div>
+	</div>
+</section>
+
+<section>
+	<h2 class="f3 fw7 lh-title mv6 tc">explore the womp.xyz blog ;)</h2>
+	<div class="flexslider">
+		<div><div class="item" style="background: blue"></div></div>
+		<div><div class="item" style="background: red"></div></div>
+		<div><div class="item" style="background: blue"></div></div>
+		<div><div class="item" style="background: red"></div></div>
+		<div><div class="item" style="background: yellow"></div></div>
+		<div><div class="item" style="background: green"></div></div>
+	</div>
+</section>
+
+<section class="center dt-l mw7 mv7 ph6 pv7 w-100 tc">
+	<div class="dtc-l tc v-mid w-100 w-50-l">
+		<div class="aspect-ratio aspect-ratio--1x1">
+			<%= image_tag 'home_page/front-page-examples-scheme-1.png', class: 'db center mw6 w-100 aspect-ratio--object show-on-scheme-1', alt: 'interlocking 3d printed sandstone rings' %>
+			<%= image_tag 'home_page/front-page-examples-scheme-2.png', class: 'db center mw6 w-100 aspect-ratio--object show-on-scheme-2', alt: '3d printed sandstone bowls' %>
+		</div>
+	</div>
+	<div class="dtc-l tc v-mid w-100 w-50-l">
+		<div class="dib tc tl-l">
+			<h2 class="f3 fw7 lh-title mv0">check out examples</h2>
+			<p class="f7 fw4 lh-copy measure-narrow-l mt2 mb7">click below to see our examples pdf</p>
+			<%= link_to "TAKE QUIZ", asset_path('examples.pdf'), class: 'button mt6 secondary-button', style: 'text-transform: none', target: "_blank" %>
+		</div>
+	</div>
+</section>
+
+<form class="flex form-promotion">
+	<p class="f5 fw4 mb0 promotion-label">stay up to date on our latest product releases + promotions</p>
+	<div>
+		<input type="text" class="promotion-text" />
+		<button type="submit" class="promotion-submit b-ns">SUBMIT</button>
+	</div>
+</form>

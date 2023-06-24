@@ -1,0 +1,13 @@
+<div class="cf mb4 ">
+  <%= render 'shared/viewer', upload: @printing_project.uploads.last, project: @printing_project %>
+</div>
+
+<div class="cf mv4">
+  <div class="w-100 tc center">
+    <p class="f5 lh-copy">the user is currently selecting their material</p>
+  </div>
+</div>
+
+<div class="mv4 cf">
+  <%= render 'admin/comments/comment_module', project_type: 'PrintingProject', project_id: @printing_project.id, project: @printing_project %>
+</div>

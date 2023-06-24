@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<title><%= @title.present? ? @title : 'Womp 3D Services' %></title>
+
+
+
+		<%= csrf_meta_tags %>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Womp is a 3D service provider located in Brooklyn, NY. They provide services including 3D scanning, 3D modeling, and 3D printing."/>
+		<meta name="og:title" content="<%= @title.present? ? @title : 'Womp 3D Services' %>"/>
+		<meta name="og:description" content="Womp is a 3D service provider located in Brooklyn, NY. They provide services including 3D scanning, 3D modeling, and 3D printing."/>
+		<meta name="og:image" content="<%= asset_url('home_page/og-image.jpg') %>"/>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+		<script src="https://unpkg.com/tippy.js@2/dist/tippy.all.min.js"></script>
+
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_pack_tag 'application' %>
+
+		<link href="https://use.fontawesome.com/releases/v5.0.3/css/all.css" rel="stylesheet">
+
+		<% if Rails.env.production? %>
+			<!-- Global site tag (gtag.js) - Google Analytics -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128049143-1"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+
+			  gtag('config', 'UA-128049143-1');
+			</script>
+
+			<!-- Google Tag Manager -->
+			<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-NM5XDKF');</script>
+			<!-- End Google Tag Manager -->
+		<% end %>
+
+		<%= favicon_link_tag asset_path('womp-favicon.png') %>
+
+		<!-- jQuery Modal -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+		<% if content_for?(:head) %>
+			<%= yield(:head) %>
+		<% end %>
+	</head>
+
+	<body>
+		<% if Rails.env.production? %>
+			<!-- Google Tag Manager (noscript) -->
+			<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NM5XDKF"
+			height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+			<!-- End Google Tag Manager (noscript) -->
+		<% end %>
+
+		<div class="content">
+			<%= render 'shared/header' %>
+			<%= render 'shared/alerts' %>
+
+			<%= yield %>
+		</div>
+
+		<%= render 'shared/footer' %>
+
+		<% if params[:controller] == "home" %>
+			<script type="text/javascript"> (function(c, h, a, t) { c[t]=c[t]||function(){(c[t].q=c[t].q||[]).push(arguments)}; c[t].license = 10264917; c[t].d=+new Date; var j = h.createElement(a); j.type = 'text/javascript'; j.async = true; j.src = 'https://cdn.chatio-static.com/widget/init/script.' + c[t].license + '.js'; var s = h.getElementsByTagName(a)[0]; s.parentNode.insertBefore(j, s); })(window, document, 'script', '__chatio'); </script>
+		<% end %>
+	</body>
+</html>

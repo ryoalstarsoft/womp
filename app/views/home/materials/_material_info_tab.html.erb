@@ -1,0 +1,52 @@
+<div id="<%= group.first %>-<%= material_type_group.first.gsub(" ", "-") %>-info" class="mv4">
+	<% @materials.where(material_category: group.first, material_type: material_type_group.first).custom_group_by_finish(group.first).each do |finish_group| %>
+		<div class="<%= finish_group_class(group, material_type_group, finish_group) %>">
+
+			<% if group.first == "resin" %>
+				<p class="tc mv4">all <%= material_type_group.first %> resins have a <%= finish_group.second.first.finish %> finish</p>
+			<% end %>
+
+			<table class="w-80 center womp-simple-table">
+				<thead>
+					<th>prints in</th>
+					<th>price</th>
+					<th>resolution</th>
+					<th>texture</th>
+					<th>technology</th>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td><%= finish_group.second.first.days_to_print %></td>
+						<td><%= dollar_signs(finish_group.second.first.cost_level) %></td>
+						<td><%= finish_group.second.first.resolution %></td>
+						<td><%= finish_group.second.first.texture %></td>
+						<td><%= finish_group.second.first.technology %></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="tc">
+				<div class="mv4">
+					<p class="bold">common print types</p>
+					<p class="measure-narrow center"><%= finish_group.second.first.uses.join(", ") %></p>
+				</div>
+
+				<div class="mv4">
+					<p class="bold">material composition</p>
+					<p class="measure center">
+						<% if finish_group.second.group_by(&:material_spec).count > 1 %>
+							<% finish_group.second.group_by(&:material_spec).each do |material_spec_group| %>
+								<i><%= material_spec_group.second.map{|material| material.name}.join(", ") %></i>: <%= material_spec_group.first %><br/>
+							<% end %>
+						<% else %>
+							<%= finish_group.second.first.material_spec %>
+						<% end %>
+					</p>
+				</div>
+			</div>
+
+			<%= render 'home/materials/material_info_images', finish_group: finish_group %>
+		</div>
+	<% end %>
+</div>

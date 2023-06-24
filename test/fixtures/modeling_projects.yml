@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  paid: false
+  paid_at: 2018-12-05 15:42:43
+  cart_id: 1
+  order_id: 1
+  workspace_id: 1
+  description: MyText
+  womp_reviewed: false
+  pricing_group: MyString
+  price_override: 9.99
+  final_price: 9.99
+  slig: MyString
+  user_captioned: false
+  user_reviewed: false
+  previous_version_modeling_project_id: 1
+  modeler_password: MyString
+  modeler_deadline: 2018-12-05 15:42:43
+  status: MyString
+
+two:
+  user_id: 1
+  name: MyString
+  paid: false
+  paid_at: 2018-12-05 15:42:43
+  cart_id: 1
+  order_id: 1
+  workspace_id: 1
+  description: MyText
+  womp_reviewed: false
+  pricing_group: MyString
+  price_override: 9.99
+  final_price: 9.99
+  slig: MyString
+  user_captioned: false
+  user_reviewed: false
+  previous_version_modeling_project_id: 1
+  modeler_password: MyString
+  modeler_deadline: 2018-12-05 15:42:43
+  status: MyString

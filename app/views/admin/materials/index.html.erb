@@ -1,0 +1,32 @@
+<% breadcrumb :materials %>
+
+<div class="fl w-100 mb4">
+	<h1 class="f3 lh-title">materials</h1>
+	<%= link_to 'upload new materials', new_admin_material_path %>
+</div>
+
+<table class="fl w-100 womp-simple-table mb4">
+	<thead>
+		<tr>
+			<th>name</th>
+      <th>provider</th>
+      <th>archived</th>
+      <th>preview</th>
+      <th>actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @materials.each_with_index do |material, index| %>
+			<tr>
+				<td><%= material.display_name %></td>
+        <td><%= material.provider %></td>
+        <td><%= material.archived? ? 'yes' : 'no' %></td>
+        <td><%= material.preview_image_url.present? ? image_tag(material.preview_image_url, width: 50) : '' %></td>
+        <td>
+          <%= link_to "view", admin_material_path(material) %> - <%= link_to "edit", edit_admin_material_path(material) %>
+        </td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -1,0 +1,33 @@
+<% breadcrumb :edit_project, @modeling_project %>
+
+<div class="fl w-100 mb4">
+  <h1 class="f3 lh-title">edit modeling project - <%= @modeling_project.name.present? ? @modeling_project.name : 'not named yet' %></h1>
+</div>
+
+<%= form_for @modeling_project, url: admin_modeling_project_path(@modeling_project) do |f| %>
+  <fieldset class="pb2">
+    <%= f.label :workspace, 'workspace: ' %>
+    <%= f.select :workspace_id, options_from_collection_for_select(Workspace.order(:name), 'id', 'name', f.object.workspace_id), include_blank: true %>
+  </fieldset>
+
+  <fieldset class="pb2">
+    <%= f.label :modeler_deadline, 'modeler deadlne: ' %>
+    <%= f.text_field :modeler_deadline, class: 'datepicker' %>
+  </fieldset>
+
+  <fieldset class="pb2">
+    <%= f.label :modeler_password, 'modeler password: ' %>
+    <%= f.text_field :modeler_password %>
+  </fieldset>
+
+  <% if @modeling_project.uploads.present? %>
+    <div class="fl w-100 scroll-box mb4">
+      <h3 class="fl w-100">mark which assets the modeler can see</h3>
+      <%= render 'admin/modeling_projects/modelers_upload_grid', f: f, uploads: @modeling_project.uploads %>
+    </div>
+  <% end %>
+
+  <fieldset class="pb2">
+    <%= f.submit 'update project', class: 'button primary-button' %>
+  </fieldset>
+<% end %>

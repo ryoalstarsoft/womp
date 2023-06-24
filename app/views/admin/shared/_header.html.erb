@@ -1,0 +1,18 @@
+<header class="fl w-100">
+	<nav>
+		<div class="fr">
+			<% if admin_user_signed_in? %>
+				<%= link_to "home", admin_root_path, class: 'no-underline dib f6 pa3' %>
+				<%= link_to "printing calculator", admin_uploads_path, class: 'no-underline dib f6 pa3' %>
+				<%= link_to "projects", admin_projects_path, class: 'no-underline dib f6 pa3' %>
+				<%= link_to "workspaces", admin_workspaces_path, class: 'no-underline dib f6 pa3' %>
+				<%= link_to "materials", admin_materials_path, class: 'no-underline dib f6 pa3' %>
+				<%= link_to "users", admin_users_path, class: "no-underline dib f6 pa3" %>
+				<%= link_to "admin users", admin_admin_users_path, class: 'no-underline dib f6 pa3' %>
+				<%= link_to "logout", destroy_admin_user_session_path, method: :delete, class: 'no-underline dib f6 pa3' %>
+			<% else %>
+				<%= link_to "login/signup", new_admin_user_session_path, class: 'no-underline dib f6 pa3' %>
+			<% end %>
+		</div>
+	</nav>
+</header>

@@ -1,0 +1,13 @@
+<p>
+	Hi,<br/><br/>
+
+	Womp has completed the print that you uploaded and shipped it to you.<br/><br/>
+
+	The carrier is <b><%= @printing_project.carrier %></b>.<br/>
+	The tracking number is <b><%= @printing_project.tracking_number %></b>.<br/><br/>
+
+	No further action is needed by you, this is just a notification. To view your project, <b><%= link_to 'click here', printing_project_url(@printing_project) %>.</b><br/><br/>
+
+	Thanks!<br/>
+	The Womp Team
+</p>

@@ -1,0 +1,32 @@
+<%= form_for current_user, html: { class: 'mw8 measure center pv5 ph2' } do |f| %>
+	<h2 class="f4 lh-copy tc fw7 mv4">choose the address we'll ship your print to</h2>
+
+	<fieldset class="mv4">
+		<%= f.label :address_line_one, 'address line one' %>
+		<%= f.text_field :address_line_one, autofocus: true, placeholder: '515 johnson avenue' %>
+	</fieldset>
+	<fieldset class="mv4">
+		<%= f.label :address_line_two, 'address line two' %>
+		<%= f.text_field :address_line_two, placeholder: 'ste 1' %>
+	</fieldset>
+	<fieldset class="mv4">
+		<%= f.label :city, 'city' %>
+		<%= f.text_field :city, placeholder: 'brooklyn' %>
+	</fieldset>
+	<fieldset class="mv4">
+		<%= f.label :state, 'state' %>
+		<%= f.text_field :state, placeholder: 'new york' %>
+	</fieldset>
+	<fieldset class="mv4">
+		<%= f.label :zip_code, 'zip code' %>
+		<%= f.text_field :zip_code, placeholder: '11237' %>
+	</fieldset>
+	<fieldset class="mv4">
+		<%= f.label :country, 'country' %>
+		<%= f.text_field :country, placeholder: 'usa' %>
+	</fieldset>
+
+	<fieldset class="cf mv4">
+		<%= f.submit 'submit', class: 'button primary-button fr' %>
+	</fieldset>
+<% end %>

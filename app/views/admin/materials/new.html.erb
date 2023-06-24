@@ -1,0 +1,12 @@
+<% breadcrumb :new_material, @material %>
+
+<div class="fl w-100 mb4">
+  <h1 class="f3 lh-title">upload new materials / update existing materials</h1>
+</div>
+
+<!-- <%= render 'admin/materials/form', material: Material.new, url: admin_materials_path %> -->
+
+<%= form_tag admin_materials_path, multipart: true do %>
+	<%= file_field_tag 'materials_report' %><br/><br/>
+	<%= submit_tag "submit" %>
+<% end %>

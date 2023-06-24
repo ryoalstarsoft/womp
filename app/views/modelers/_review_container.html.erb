@@ -1,0 +1,20 @@
+<div class="mb4">
+	<p class="bold">deadline</p>
+	<p><%= @modeling_project.modeler_deadline.present? ? @modeling_project.modeler_deadline.strftime('%D') : 'n/a' %></p>
+</div>
+
+<div class="mb4">
+	<p class="bold">description</p>
+	<p><%= sanitize @modeling_project.description.present? ? @modeling_project.description : "there isn't a description" %></p>
+</div>
+
+<div class="mb4">
+	<p class="bold">visual references</b>
+	<div id="js-upload-grid">
+		<% if @modeling_project.uploads.present? %>
+			<%= render 'modelers/upload_grid', uploads: @modeling_project.uploads.order('created_at desc'), able_to_delete: able_to_delete %>
+		<% else %>
+			<p>there aren't any visual references for this project</p>
+		<% end %>
+	</div>
+</div>

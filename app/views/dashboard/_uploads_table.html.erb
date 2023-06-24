@@ -1,0 +1,25 @@
+<table class="fl w-100 womp-simple-table">
+	<thead>
+		<tr>
+			<th>preview</th>
+			<th>filename</th>
+			<th>date</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% target.sort_by(&:created_at).reverse.each do |upload| %>
+			<tr>
+				<td>
+					<% if upload.file.previewable? || upload.file.variable? %>
+						<%= link_to image_tag(upload.file_image_url, class: 'table-upload'), upload.file.service_url, class: 'js-image-modal-link pl4' %>
+					<% else %>
+						<%= link_to image_tag("file-empty-icon.png", class: 'table-upload'), upload.file.service_url, download: upload.file.blob.filename.to_s, class: 'pl4' %>
+					<% end %>
+				</td>
+				<td><%= link_to upload.file.blob.filename.to_s, upload.file.service_url, download: upload.file.blob.filename.to_s %></td>
+				<td><%= upload.created_at.strftime('%m.%d.%y') %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

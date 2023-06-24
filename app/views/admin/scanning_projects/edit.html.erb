@@ -1,0 +1,16 @@
+<% breadcrumb :edit_project, @scanning_project %>
+
+<div class="fl w-100 mb4">
+  <h1 class="f3 lh-title">edit project - <%= @scanning_project.name.present? ? @scanning_project.name : 'not named yet' %></h1>
+</div>
+
+<%= form_for @scanning_project, url: admin_scanning_project_path(@scanning_project) do |f| %>
+  <fieldset class="pb2">
+    <%= f.label :workspace, 'workspace: ' %>
+    <%= f.select :workspace_id, options_from_collection_for_select(Workspace.order(:name), 'id', 'name', f.object.workspace_id), include_blank: true %>
+  </fieldset>
+
+  <fieldset class="pb2">
+    <%= f.submit 'update project', class: 'button primary-button' %>
+  </fieldset>
+<% end %>

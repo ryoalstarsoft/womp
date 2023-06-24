@@ -1,0 +1,23 @@
+<div class="cf mw8 center pv5 ph2">
+	<div class="cf mv4">
+		<%= render 'shared/viewer', upload: @scanning_project.upload, project: @scanning_project %>
+	</div>
+
+	<div class="cf mv4">
+		<%= link_to "download", @scanning_project.upload.file.service_url(expires_in: 1.week), class: 'button primary-button fr' %>
+	</div>
+
+	<% if !@scanning_project.picked_up? %>
+		<div class="cf mv4">
+			<% if @scanning_project.tracking_number.present? && @scanning_project.carrier.present? %>
+				<p class="tc">your object has been shipped back to you. your tracking number is <b><%= @scanning_project.tracking_number %></b> with <b><%= @scanning_project.carrier %></b>.</p>
+			<% else %>
+				<p class="tc">your object has not been shipped back to you. when it does ship, you'll find your tracking information here.</p>
+			<% end %>
+		</div>
+	<% end %>
+
+	<div class="fl w-100 mv4">
+		<%= render 'comments/comment_module', project_type: 'ScanningProject', project_id: @scanning_project.id, project: @scanning_project %>
+	</div>
+</div>

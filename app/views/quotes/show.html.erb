@@ -1,0 +1,27 @@
+<% if @quote.quote_type == "scanning" %>
+	<% if !@quote.object_size.present? %>
+		<%= render 'quotes/scanning/create_quote' %>
+	<% else %>
+		<%= render 'quotes/scanning/pricing' %>
+	<% end %>
+<% elsif @quote.quote_type == "modeling" %>
+	<% if !@quote.model_type? %>
+		<%= render 'quotes/modeling/create_quote' %>
+	<% else %>
+		<%= render 'quotes/modeling/pricing' %>
+	<% end %>
+<% elsif @quote.quote_type == "printing" %>
+	<% if !@quote.object_most_like.present? %>
+		<%= render 'quotes/printing/object_most_like' %>
+	<% elsif !@quote.printing_size_complete? %>
+		<%= render 'quotes/printing/printing_size' %>
+	<% elsif !@quote.hollow_or_solid.present? %>
+		<%= render 'quotes/printing/hollow_or_solid' %>
+	<% elsif @quote.hollow_or_solid == "hollow" && !@quote.wall_thickness.present? %>
+		<%= render 'quotes/printing/wall_thickness' %>
+	<% elsif !@quote.material.present? %>
+		<%= render 'quotes/printing/choose_materials' %>
+	<% elsif @quote.material.present? %>
+		<%= render 'quotes/printing/pricing' %>
+	<% end %>
+<% end %>

@@ -1,0 +1,52 @@
+// Made this a .js.erb file so I can use image paths in the code
+function initializeSchemeSwitching() {
+    
+  // START IMAGE PRELOADING
+  function preload(arrayOfImages) {
+    $(arrayOfImages).each(function(){
+        $('<img/>')[0].src = this;
+    });
+  }
+
+  preload([
+    '<%= asset_path("home_page/home-page-banner-image-1.png") %>',
+    '<%= asset_path("home_page/home-page-banner-background-image-1.jpg") %>',
+    '<%= asset_path("home_page/home-page-banner-image-2.png") %>',
+    '<%= asset_path("home_page/home-page-banner-background-image-2.jpg") %>'
+  ]);
+  // END IMAGE PRELOADING
+
+  // START TIMING COUNTER
+  // run a new step every 10 seconds
+  var counter = 1;
+  var int = setInterval(function(){
+    if (counter === 2) {
+      advanceSliderByOneSlide();
+      switchScheme(counter);
+      counter = 1; // If counter = 2, set it back to 1 for next loop
+    } else {
+      advanceSliderByOneSlide();
+      switchScheme(counter);
+      counter++; // Else, add 1 to the counter
+    }
+  }, 10000);
+  // END TIMING COUNTER
+
+  function advanceSliderByOneSlide() {
+    var slides = $('.slide');
+    var activeSlide = $('.active');
+    slides.last().after(slides.first());
+    // Move active class to the right
+    activeSlide.removeClass('active').next('.slide').addClass('active');
+  }
+
+  function switchScheme(counter) {
+    var scheme_number = counter;
+    // remove any class from body that starts with "scheme-"
+    $('body').removeClass(function(index,classes){
+        var matches = classes.match(/\bscheme-\S+/ig);
+        return (matches) ? matches.join(' ') : '';
+    });
+    $('body').addClass('scheme-' + scheme_number);
+  }
+}

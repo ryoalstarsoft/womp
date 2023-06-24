@@ -1,0 +1,81 @@
+.border-container {
+	border: 1px solid $primary-brand-color;
+	border-radius: 25px;
+	padding: 25px;
+	background-color: $white;
+}
+
+.scroll-box {
+	max-height: 750px;
+	overflow: scroll;
+}
+
+.reference-image {
+	height: 200px;
+	width: 100%;
+	object-fit: cover;
+	object-position: 50% 0%;
+}
+
+.reference-actions {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.reference-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 200px;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: $primary-brand-color;
+}
+.reference-image-wrapper:hover .reference-overlay {
+	opacity: 0.99;
+}
+
+.comment-carrot {
+	width: 25px;
+	height: 25px;
+	background-color: white;
+	position: absolute;
+	transform: rotate(45deg);
+	border: 1px solid $primary-brand-color;
+	z-index: -1;
+	top: 40%;
+}
+.comment-carrot-left { left: -8px; }
+.comment-carrot-right { right: -8px; }
+
+.circle-check {
+	position: absolute;
+	color: white;
+	top: 50%;
+	left: 50%;
+	opacity: 0;
+
+	transform: translate(-50%, -50%);
+}
+.existing-attachments-check-box:checked + .existing-attachments-label .reference-overlay {
+	opacity: 0.9;
+	background-color: $green;
+}
+.existing-attachments-check-box:checked + .existing-attachments-label .circle-check {
+	opacity: 1;
+}
+.existing-attachments-label:hover .reference-overlay {
+	opacity: 0.9;
+	background-color: $primary-brand-color;
+}
+.existing-attachments-label:hover .reference-overlay {
+	opacity: 0.9;
+	background-color: $primary-brand-color;
+}
+
+.annotate-container {
+	z-index: 9999;
+}

@@ -1,0 +1,60 @@
+<table class="fl w-100 womp-simple-table mt2">
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>type</th>
+			<th>status</th>
+			<th>cost</th>
+			<th>date</th>
+			<th><i class="tc fa fa-ellipsis-v" aria-hidden="true"></i></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% target.each do |project| %>
+			<tr>
+				<td><%= link_to (project.name.present? ? project.name : 'not named yet'), project %></td>
+				<td><%= project.model_name.human.downcase %></td>
+				<td><%= project.status %></td>
+				<td><%= (project.total_price.present? ? number_to_currency(project.total_price) : number_to_currency(0)) %></td>
+				<td><%= project.created_at.strftime('%D') %></td>
+				<td class="relative">
+					<a href="javascript:void(0)" class="js-toggle-actions"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+					<div class="js-dropdown-content absolute right-0 top-5 bg-white w5 z-999 shadow-4 br2 dn">
+						<%= link_to "view project", project, class: "db pv3" %>
+
+						<% unless project.status == "checkout" && project.total_price.to_i == 0 %>
+							<% if project.status == "checkout" && project.cart_id != current_cart.id %>
+								<% if project.class.name == "ScanningProject" %>
+									<%= link_to '<i class="fas fa-plus pr1"></i> add to cart'.html_safe, scanning_project_path(project, scanning_project: { cart_id: current_cart.id }), method: :put, class: "db pv3 womp-green" %>
+								<% elsif project.class.name == "ModelingProject" %>
+									<%= link_to '<i class="fas fa-plus pr1"></i> add to cart'.html_safe, modeling_project_path(project, modeling_project: { cart_id: current_cart.id }), method: :put, class: "db pv3 womp-green" %>
+								<% elsif project.class.name == "PrintingProject" %>
+									<%= link_to '<i class="fas fa-plus pr1"></i> add to cart'.html_safe, printing_project_path(project, printing_project: { cart_id: current_cart.id }), method: :put, class: "db pv3 womp-green" %>
+								<% end %>
+							<% elsif project.status == "checkout" && project.cart_id == current_cart.id %>
+								<% if project.class.name == "ScanningProject" %>
+									<%= link_to '- remove from cart', scanning_project_path(project, scanning_project: { cart_id: nil }), method: :put, class: "db pv3 womp-red" %>
+								<% elsif project.class.name == "ModelingProject" %>
+									<%= link_to '- remove from cart', modeling_project_path(project, modeling_project: { cart_id: nil }), method: :put, class: "db pv3 womp-red" %>
+								<% elsif project.class.name == "PrintingProject" %>
+									<%= link_to '- remove from cart', printing_project_path(project, printing_project: { cart_id: nil }), method: :put, class: "db pv3 womp-red" %>
+								<% end %>
+							<% end %>
+						<% end %>
+
+						<% if !project.paid %>
+							<% if project.class.name == "ScanningProject" %>
+								<%= link_to '<i class="fas fa-trash pr1"></i> delete project'.html_safe, scanning_project_path(project), method: :delete, class: 'db pv3 womp-red' %>
+							<% elsif project.class.name == "ModelingProject" %>
+								<%= link_to '<i class="fas fa-trash pr1"></i> delete project'.html_safe, modeling_project_path(project), method: :delete, class: 'db pv3 womp-red' %>
+							<% elsif project.class.name == "PrintingProject" %>
+								<%= link_to '<i class="fas fa-trash pr1"></i> delete project'.html_safe, printing_project_path(project), method: :delete, class: 'db pv3 womp-red' %>
+							<% end %>
+						<% end %>
+					</div>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

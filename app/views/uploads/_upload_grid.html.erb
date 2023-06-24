@@ -1,0 +1,36 @@
+<% uploads.includes(:annotations, file_attachment: :blob).each do |upload| %>
+	<% next if upload.admin_user_id.present? && upload.file_type == "3d_model" && !upload.released_to_user? %>
+	<!-- this is the same as projects/modeling/create_project but it doesn't use form objects -->
+	<div class="fl w-50-l w-100 pa2">
+		<div class="relative reference-image-wrapper">
+			<% if upload.file.previewable? || upload.file.variable? %>
+				<%= image_tag upload.file_image_url, class: 'reference-image' %>
+			<% else %>
+				<%= image_tag "file-empty-icon.png", class: 'reference-image' %>
+			<% end %>
+
+			<div class="reference-overlay">
+				<p class="absolute top-1 left-1 white"><%= upload.filename_with_annotations %></p>
+
+				<div class="reference-actions w-100 tc">
+					<% if able_to_delete %>
+						<%= link_to '<i class="fa fa-trash tooltip" title="delete"></i>'.html_safe, upload_path(upload), method: :delete, data: { confirm: 'are you sure? this will delete this upload' }, class: 'dib womp-red pa1' %>
+						<% if upload.file.variable? || upload.file.previewable? %>
+							<%= link_to '<i class="fas fa-eye tooltip" title="view"></i>'.html_safe, upload.file_image_url, class: 'dib white pa1 js-image-modal-link' %>
+						<% elsif upload.file_type == "3d_model" %>
+							<%= link_to '<i class="fas fa-eye tooltip" title="view"></i>'.html_safe, upload_path(upload), class: 'dib white pa1', target: "_blank" %>
+						<% end %>
+					<% elsif upload.file.variable? || upload.file.previewable? %>
+						<%= link_to '<i class="fas fa-eye tooltip" title="view"></i>'.html_safe, upload.file_image_url, class: 'dib white pa1 js-image-modal-link' %>
+					<% elsif upload.file_type == "3d_model" %>
+						<%= link_to '<i class="fas fa-eye tooltip" title="view"></i>'.html_safe, upload_path(upload), class: 'dib white pa1', target: "_blank" %>
+					<% end %>
+
+					<%= link_to '<i class="fas fa-download tooltip" title="download"></i>'.html_safe, download_upload_path(upload), class: 'dib white pa1', data: { turbolinks: false } %>
+				</div>
+			</div>
+		</div>
+
+		<p><%= upload.description %></p>
+	</div>
+<% end %>

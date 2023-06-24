@@ -1,0 +1,15 @@
+<% breadcrumb :admin_user, @admin_user %>
+
+<div class="fl w-100 mb4">
+  <h3>admin user - <%= @admin_user.email %></h3>
+  <%= link_to 'edit', edit_admin_admin_user_path(@admin_user) %> - <%= link_to 'delete', admin_admin_user_path(@admin_user), method: :delete, data: { confirm: 'are you sure?' } %>
+</div>
+
+<div class="fl w-100">
+  <p><b>email:</b> <%= @admin_user.email %></p>
+  <p><b>last sign in at:</b> <%= womp_strftime(@admin_user.current_sign_in_at).downcase %></p>
+  <p><b>sign in count:</b> <%= @admin_user.sign_in_count %></p>
+  <p><b>created at:</b> <%= womp_strftime(@admin_user.created_at).downcase %></p>
+  <p><b>updated at:</b> <%= womp_strftime(@admin_user.updated_at).downcase %></p>
+  <p><b>receive emails:</b> <%= @admin_user.receive_emails? ? 'yes' : 'no' %></p>
+</div>

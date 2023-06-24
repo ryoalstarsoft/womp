@@ -1,0 +1,31 @@
+<div class="fl w-100 mb4">
+	<div class="fl w-10">
+		<%= image_tag 'womp-avatar.png', class: 'profile-picture profile-picture-comment' %>
+	</div>
+
+	<div class="fl w-80">
+		<%= form_for project.comments.new, url: admin_comments_path, html: { class: 'relative' } do |f| %>
+			<%= f.hidden_field :admin_user_id, value: current_admin_user.id %>
+			<%= f.hidden_field :projectable_type, value: project_type %>
+			<%= f.hidden_field :projectable_id, value: project_id %>
+
+			<fieldset class="pb2">
+				<%= f.hidden_field :body %>
+				<trix-editor class="trix-content mw-100 br4" input="comment_body"></trix-editor>
+			</fieldset>
+
+			<fieldset>
+				<%= f.submit 'submit', class: "button primary-button fr" %>
+				<% if project_type == "ModelingProject" %>
+					<%= f.file_field :temp_uploads, direct_upload: true, multiple: true, data: { 'multiple-caption': '{count} files selected' }, class: 'dn' %>
+					<%= f.label :temp_uploads, class: 'fl' do %>
+						<span class="button secondary-button mr1">choose file</span> <span class="update-text">no file chosen</span>
+					<% end %>
+				<% end %>
+			</fieldset>
+		<% end %>
+	</div>
+
+	<div class="fl w-10">
+	</div>
+</div>

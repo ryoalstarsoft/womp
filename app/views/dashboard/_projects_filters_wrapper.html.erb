@@ -1,0 +1,60 @@
+<% if params[:q].present? %>
+	<p class="caption mb4">
+		<%= raw filters_text(params[:q]) %><br/>
+		<%= link_to 'reset filters', dashboard_path, remote: true %>
+	</p>
+<% end %>
+
+<%= form_tag search_projects_path, remote: true, class: 'js-auto-submit' do %>
+	<div class='fl w-100'>
+		<fieldset class="left-icon-fieldset">
+			<p class="left-icon"><span class="fas fa-search"></span></p>
+			<% value = params[:q].present? && params[:q][:name_cont].present? ? params[:q][:name_cont] : nil %>
+			<%= text_field_tag 'q[name_cont]', value, class: "w-100", placeholder: "project name" %>
+		</fieldset>
+	</div>
+
+	<h3 class="fl w-100 mb2 mt4">required actions</h3>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:comments_viewed_eq].present? && params[:q][:comments_viewed_eq] == "false" %>
+			<%= check_box_tag 'q[comments_viewed_eq]', false, checked %>
+			new comment
+		</label>
+	</div>
+
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:pending_payment].present? && params[:q][:pending_payment] == "true" %>
+			<%= check_box_tag 'q[pending_payment]', true, checked %>
+			pending payment
+		</label>
+	</div>
+
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:pending_approval].present? && params[:q][:pending_approval] == "true" %>
+			<%= check_box_tag 'q[pending_approval]', true, checked %>
+			pending approval
+		</label>
+	</div>
+
+	<h3 class="fl w-100 mb2 mt4">status</h3>
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:status].present? && params[:q][:status] == "draft" %>
+			<%= check_box_tag 'q[status]', 'draft', checked, class: 'js-status-checkbox' %>
+			draft
+		</label>
+	</div>
+
+	<div class="fl w-100">
+		<label>
+			<% checked = params[:q].present? && params[:q][:status].present? && params[:q][:status] == "open" %>
+			<%= check_box_tag 'q[status]', 'open', checked, class: 'js-status-checkbox' %>
+			open
+		</label>
+	</div>
+
+	<%= submit_tag 'submit', class: 'dn' %>
+<% end %>

@@ -1,0 +1,42 @@
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.content {
+	flex: 1 0 auto;
+}
+.footer {
+	flex-shrink: 0;
+}
+.list-style-inside {
+	list-style-position: inside;
+}
+
+// .gray { background-color: $secondary-brand-color !important; }
+// .banner-gray { background-color: $banner-brand-color !important; }
+//
+// .notice-exit {
+// 	cursor: pointer;
+// }
+//
+// .jquery-modal img {
+// 	padding: 0;
+// }
+//
+// .gray-pill {
+// 	border-radius: 20px;
+// 	padding: 10px 30px;
+// }
+//
+// .gray-pill.active {
+// 	background: $banner-brand-color;
+// 	&:hover {
+// 		color: $primary-brand-color;
+// 	}
+// }
+//
+// .mt-30 {
+// 	margin-top: 30px;
+// }
+//

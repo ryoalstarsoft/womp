@@ -1,0 +1,191 @@
+<%= render 'shared/page_hero', title: 'frequently asked questions', sub_title: nil %>
+
+<div class="fl w-100 pa2">
+	<div class="measure-wide center">
+		<h2 class="mb2 pt4 bold">general</h2>
+		<h3>what is womp?</h3>
+		<p class="mb2">womp is a women run digital manufacturing studio based in brooklyn, ny. by opening up the barrier between 3d services and the everyday user, womp’s expert staff provides the necessary tools and guidance for any individual wanting to create their own 3d content. womp’s customer friendly all-in-one web platform helps configure instant quotes for 3d scanning, 3d modeling, and 3d printing with affordable flat rate pricing.</p>
+		<p class="mb2">understanding the impact that the 3d file will have on the future of manufacturing and consumerism, womp takes initiative in providing sustainable options that are beneficial to its users and their environments without jeopardizing the importance of design.</p>
+
+		<h3>what is the dashboard?</h3>
+		<p class="mb2">as a logged-in member, the dashboard serves as a home to view and manage all your uploaded projects. from the dashboard, you can explore different possibilites in terms of material selection, size, and more. once you’ve checked out, the dashboard informs you of the projects timeline.</p>
+
+		<h3>how much will my project cost?</h3>
+		<p class="mb2">take <%= link_to 'this preliminary quiz', new_quote_path %> to get a rough estimate for your project’s cost. once you’ve started a project, depending on the process, you will receive an automatic quote or womp will get back to you within 24hrs with a quote, which you can pay to start your project, or not. no pressure!</p>
+
+		<ul>
+			<li>3d scanning - immediate quote</li>
+			<li>3d modeling - a womp representative will get back to you within 24hrs with an accurate quote</li>
+			<li>3d printing -  a womp representative will get back to you within 24hrs with an accurate quote</li>
+		</ul>
+
+		<h3>can womp design products for me?</h3>
+		<p class="mb2">womp participates in prototyping, but does <span class="i">not</span> provide design services.</p>
+
+		<h3>can i come pick up my order at womp?</h3>
+		<p class="mb2">yes, by appointment only.</p>
+
+		<h3>how can i contact womp?</h3>
+		<p class="mb2">if you’d like to contact womp regarding a specific project you’ve uploaded, please message your project representative on the dashboard through the project’s messaging system.</p>
+		<p class="mb2">if you’d like to contact womp regarding questions unrelated to a specific project, you can email <a href="mailto:info@womp.xyz">info@womp.xyz</a> and a representative will get back to you within 24hrs.</p>
+
+		<h3>where are your production facilities located?</h3>
+		<p class="mb2">womp is located in brooklyn, ny. most production is done in-house, although some projects may be out- sourced depending on the project’s properties.</p>
+
+		<h2 class="mv2 pt4 bold">scanning</h2>
+		<h3>what is 3d scanning?</h3>
+		<p class="mb2">3d scanning creates a 3d representation of a physical object. unlike scanners and cameras that only capture 2d views, a 3d scanner captures width, depth, and height (x,y,z) and turns it into a 3d mesh file. a 3d scanner also has the capability of recording a physical object’s texture and color.</p>
+		<p class="mb2">**when a scan needs to be edited, it enters into the modeling phase**</p>
+
+		<h3>how big can i scan?</h3>
+		<p class="mb2">56" x 56" x 56"</p>
+		<p class="mb2">**if your object is larger in any direction it can be submitted as “other”. womp’s experts review projects like this on a case by case basis.**</p>
+
+		<h3>how small can i scan?</h3>
+		<p class="mb2">1" x 1" x 1"</p>
+		<p class="mb2">**if your object is smaller in any direction it can be submitted as “other”. womp’s experts review projects like this on a case by case basis.**</p>
+
+		<h3>can i get my face/body scanned?</h3>
+		<p class="mb2">womp currently does not offer face or body scanning.</p>
+
+		<h3>what are womp’s terms & conditions regarding objects sent to their facilities for scanning?</h3>
+		<p class="mb2">womp is not responsible for any damages done to sent-in objects for scanning.</p>
+		<p class="mb2">womp is not responsible for any costs that apply for the shipment or return of any scanning object.</p>
+
+		<h2 class="mv2 pt4 bold">modeling</h2>
+		<h3>what is 3d modeling?</h3>
+		<p class="mb2">3d modeling programs allow you to draw digital 3d objects by manipulating their width, depth, and height (x,y,z).</p>
+
+		<h3>what is a 3d model?</h3>
+		<p class="mb2">a 3d model is a product of 3d modeling or 3d scanning. it’s the digital representation of an object. a 3d model can be generated for 3d printing or can remain in the digital realm for web platforms. there are two different types of 3d models: NURBS and meshes.</p>
+
+		<h3>what is the difference between NURBS and meshes?</h3>
+		<p class="mb2">a NURBS (non-uniform rational b-spline) file can be seen as a model that’s more focused on clean geometric form. NURBS files are drawn with a set of steps that allow for the shape and size to be easily adjusted without having to rewrite the entire file. <span class="i">NURBS files are much easier to edit than mesh files</span>.</p>
+		<p class="mb2">a mesh file can be seen as a model thats more focused on organic forms and/or representing texture of an object’s surface. the structural build of a mesh consists of interlocking polygons that appear to be wrapped around the object itself. <span class="i">mesh files are much harder to edit than NURBS files.</span></p>
+
+		<h3>what types of 3d files are upload-able?</h3>
+		<p class="mb2">.stl and .obj files</p>
+
+		<h3>what are the accepted units of measurement?</h3>
+		<p class="mb2">imperial or metric</p>
+
+		<h3>i have no 3d design experience, how can i design my own model?</h3>
+		<p class="mb2">womp will use all of your guidelines to model your designs. you can upload your instructions as text, images and/or drawings. be sure to also provide dimensions for reference. the more precise info you provide, the more satisfaction womp can guarantee.</p>
+
+		<h2 class="mv2 pt4 bold">printing</h2>
+		<h3>what is 3d printing?</h3>
+		<p class="mb2">3d printing enables you to create a physical object from a digital model with the use of cutting-edge machinery. there’s many different 3d printing technologies to choose from, but all have the same founding principles: 3d printers turn your digital model into a solid object by printing in consecutive layers that stack up until it’s complete.</p>
+		<p class="mb2">in terms of manufacturing, 3d printing is very influential because it completely changes the way we think about production. with 3d printing, one can expect shorter lead times, more design freedom, and more affordable pricing. it also enables you to produce using less material than traditional manufacturing methods.</p>
+
+		<h3>will womp fix any problems found in a 3d file i’ve provided for printing?</h3>
+		<p class="mb2">if womp finds inconsistencies in your uploaded model that could affect the quality of the print, two options will be provided to you:</p>
+		<p class="mb2">you can choose to print “at your own risk”. in this case, womp is <span class="i">not</span> responsible for any print failures.</p>
+		<p class="mb2">you can be charged an additional editing fee for womp to fix the problems for you. your project representative will personally discuss with you the pricing of these edits on a case by case basis.</p>
+
+		<h3>what is “at your own risk”?</h3>
+		<p class="mb2">if womp finds inconsistencies in your uploaded 3d model description for editing, model for printing, or submitted object for scanning that could affect the quality of the 3d model, scan, or print, you’ll be notified of these warnings. at this point, you can choose to continue “at your own risk” which means that you want to take the risk of us interpreting your information to 3d model, print, or scan it anyway, despite our warning notification. in this case, womp is <span class="i">not</span> responsible for any resulting outcome.</p>
+
+		<h3>what is a bounding box?</h3>
+		<p class="mb2">a bounding box is an imaginary box that represents a 3d printers maximum x, y, and z dimensions. it determines the size and scale of your printed model.</p>
+
+		<h3>how big/small can i print?</h3>
+		<p class="mb2">printing size is determined by the chosen material and its printers bounding box.</p>
+
+		<h2 class="mv2 pt4 bold">material</h2>
+		<h3>what is filament?</h3>
+		<p class="mb2">the relationship between filament and a 3d printer can be compared to the relationship between ink and a 2d printer. there are many different types of filament with different properties to choose from. check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> for more precise info on a filaments properties.</p>
+
+		<h3>why doesn’t womp use ABS?</h3>
+		<p class="mb2">using sustainability as a guiding principle, womp feels strongly about avoiding any petroleum based products.</p>
+
+		<h3>how much does material cost?</h3>
+		<p class="mb2">check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> where you can find information about pricing.</p>
+
+		<h3>what materials are food safe?</h3>
+		<p class="mb2">check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> and look for the food safe symbol.</p>
+
+		<h3>what materials are derived from renewable resources?</h3>
+		<p class="mb2">check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> and look for the renewable resource symbol.</p>
+
+		<h3>where can i find information on material care instructions?</h3>
+		<p class="mb2">check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> for detailed care instructions by type.</p>
+
+		<h3>where can i find information about minimal wall thicknesses?</h3>
+		<p class="mb2">check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> for detailed minimal wall thickness by type.</p>
+
+		<h3>where can i find information about a materials potential for detail?</h3>
+		<p class="mb2">check out our <%= link_to 'list of materials', asset_path('materials.pdf'), target: "_blank" %> for info about the level of detail by type.</p>
+
+		<h2 class="mv2 pt4 bold">placing an order</h2>
+		<h3>what happens after I place an order?</h3>
+		<h4>for scanning</h4>
+		<p class="mb2">the womp team will process your payment and start working as soon as the object is received. the completed scan will be uploaded to the project within 10 business days. You can then review and decide to carry your scan over to the modeling phase to request edits. a project representative will be available for any questions you may have along the way.</p>
+
+		<h4>for modeling</h4>
+		<p class="mb2">your project representative will let you know about lead times and rush options on a case by case basis. the womp team will generate your quote, process your payment and start working right away. a project representative will be available for any questions you may have along the way.</p>
+
+		<h4>for printing</h4>
+		<p class="mb2">your project representative will let you know about lead times and rush options on a case by case basis. the womp team will generate your quote, process your payment and start working right away. a project representative will be available for any questions you may have along the way.</p>
+
+		<h3>what payments are available to me?</h3>
+		<p class="mb2">credit card including visa, mastercard, american express, and discover.</p>
+
+		<h3>when will i be charged?</h3>
+		<p class="mb2">you’ll be charged as soon as you provide us with your preferred method of payment.</p>
+
+		<h3>does womp provide quotes for my orders?</h3>
+		<p class="mb2">yes, you’ll be provided with a quote for your orders. orders are then finalized with payment. upon receiving payment, womp will happily start working on your project!</p>
+
+		<h3>does womp accept deposits?</h3>
+		<p class="mb2">womp does <span class="i">not</span> accept deposits. full payment is required before a project is started. once payment is provided, womp guarantees 100% satisfaction.</p>
+
+		<h3>what currencies are available?</h3>
+		<p class="mb2">womp currently only accepts usd.</p>
+
+		<h3>when can i expect to receive my order?</h3>
+		<p class="mb2">the time it takes for you to receive your order varies depending on different variables, including, but not limited to: process, choice of material, location, and size. the womp team will be sure to let you know about lead times on a case by case basis.</p>
+
+		<h3>does womp rush orders?</h3>
+		<p class="mb2">yes, additional fees will apply. your project representative will let you know about additional fees on a case by case basis.</p>
+
+		<h3>what happens if womp can’t “make” my product?</h3>
+		<p class="mb2">when you upload your project, a womp representative will message you directly through the project’s messaging system to let you know of any issues that arise. within 24 hrs, the womp team will provide you with options on how to solve the problem.</p>
+
+		<h2 class="mv2 pt4 bold">existing orders</h2>
+		<h3>how can i check the status of my order?</h3>
+		<p class="mb2">log in to <%= link_to 'your dashboard', dashboard_path %> for the status on your orders. the womp team always makes sure to keep your dashboard updated so you can follow each step of the process.</p>
+
+		<h3>how can i change or cancel my order?</h3>
+		<p class="mb2">log in to <%= link_to 'your dashboard', dashboard_path %> to change and/or cancel your order. please note that after your payment has been received by womp, you’ll have 12 hrs to cancel or make any changes.</p>
+
+		<h2 class="mv2 pt4 bold">shipment/returns</h2>
+		<h3>what is womp’s shipping policy?</h3>
+		<p class="mb2">womp offers standard and express shipping and ships internationally. All shipping costs are to be paid by the client prior to shipment. womp is not responsible for any damages or issues that arise during or from shipment.</p>
+
+		<h3>do you ship internationally/worldwide?</h3>
+		<p class="mb2">yes. customers outside the US are responsible for any taxes, duties or fees associated with shipment. check out our <%= link_to 'terms & conditions', terms_and_conditions_path %> for more details.</p>
+
+		<h3>my order has more than one material with different lead times. will they be shipped together?</h3>
+		<p class="mb2">no, unless you specify to ship the projects together.</p>
+
+		<h3>how can i change my shipping address?</h3>
+		<p class="mb2">speak directly to your project representative through the project’s messaging system ASAP to notify them of any changes.</p>
+
+		<h3>what are womp’s terms & conditions regarding objects sent to their facilities for scanning?</h3>
+		<p class="mb2">womp is <span class="i">not</span> responsible for any damages done to sent-in objects for scanning.</p>
+		<p class="mb2">womp is <span class="i">not</span> responsible for any shipping costs.</p>
+
+		<h3>what is womp’s return policy?</h3>
+		<p class="mb2">womp guarantees 100% satisfaction. if womp can’t remedy a satisfactory solution for the client, womp will issue a full refund. refund requests need to be made within 10 days from the project completion date to qualify for a refund. if a refund request is made for a 3d print the print needs to be returned to womp and all applied return costs are the responsibilty of the client.</p>
+
+		<h3>how does womp process refunds?</h3>
+		<p class="mb2">womp processes refunds through the website platform. the total amount will be returned to the card used at the time of purchase.</p>
+
+		<h2 class="mv2 pt4 bold">discounts</h2>
+		<h3>do you offer discounts for students?</h3>
+		<p class="mb2">yes - 10% off any projects under the total amount of $500.</p>
+
+		<h3>does womp offer quanity/volume discounts?</h3>
+		<p class="mb4">yes - your project representative will let you know about any discounts that apply on a case by case basis.</p>
+	</div>
+</div>

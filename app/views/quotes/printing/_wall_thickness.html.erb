@@ -1,0 +1,25 @@
+<div class="fl w-100 pa2">
+	<%= form_for @quote, html: { class: 'mv4' } do |f| %>
+		<h1 class="f3 lh-title tc mv2">how thick are the walls?</h1>
+
+		<div class="w-third-l w-50-m w-100 tc center pv4-l">
+			<%#= f.label :wall_thickness, "Wall Thickness: 0.3mm" %>
+			<p>Wall Thickness (MM): <%= f.number_field :wall_thickness, min: 0.3, max: @quote.max_wall_thickness, step: 0.1, value: 1, required: true %></p><br/>
+			<%= f.range_field :wall_thickness, min: 0.3, max: @quote.max_wall_thickness, step: 0.1, value: 1, tabindex: 0, type: :range, class: 'w-100 mb4', id: 'quote_wall_thickness_slider' %><br/>
+
+			<div class="mt4">
+				<%= f.submit 'submit', class: 'fr button primary-button' %>
+				<%= link_to 'go back', quote_path(@quote, quote: { hollow_or_solid: nil }), method: :put, class: 'fl button secondary-button' %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
+<script>
+	$('#quote_wall_thickness_slider').on('input change', function() {
+		$('#quote_wall_thickness').val($(this).val());
+	});
+	$('#quote_wall_thickness').on('input change', function() {
+		$('#quote_wall_thickness_slider').val($(this).val());
+	});
+</script>

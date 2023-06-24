@@ -1,0 +1,36 @@
+<div id="<%= group.first %>-<%= material_type_group.first.gsub(" ", "-") %>-sample" class="mv4">
+	<% @materials.where(material_category: group.first, material_type: material_type_group.first).custom_group_by_finish(group.first).each do |finish_group| %>
+		<div class="flex flex-wrap <%= finish_group_class(group, material_type_group, finish_group) %>">
+			<% finish_group.second.each do |material| %>
+				<div class="w-20 mv2">
+					<% if params[:controller] == "quotes" && material.within_min_constraints(@quote.object_width, @quote.object_depth, @quote.object_height) && material.within_max_constraints(@quote.object_width, @quote.object_depth, @quote.object_height) %>
+						<p class="absolute"><%= number_to_currency(@quote.price_from_material(material)) %></p>
+					<% elsif params[:controller] == "printing_projects" && material.within_min_constraints(@printing_project.uploads.last.bounding_box_x, @printing_project.uploads.last.bounding_box_y, @printing_project.uploads.last.bounding_box_z) && material.within_max_constraints(@printing_project.uploads.last.bounding_box_x, @printing_project.uploads.last.bounding_box_y, @printing_project.uploads.last.bounding_box_z) %>
+						<p class="absolute"><%= number_to_currency(@printing_project.uploads.last.price_from_material(material)) %></p>
+					<% elsif params[:controller] == "admin/uploads" && @upload.is_viewer_ready? %>
+						<p class="absolute"><%= number_to_currency(@upload.price_from_material(material)) %></p>
+					<% end %>
+					<%= image_tag(material.preview_image_url, class: 'w-100 zoom') %>
+					<p class="tc"><%= material.name %></p>
+					<% if params[:controller] == "quotes" && material.within_min_constraints(@quote.object_width, @quote.object_depth, @quote.object_height) && material.within_max_constraints(@quote.object_width, @quote.object_depth, @quote.object_height) %>
+						<p class="tc"><%= link_to 'choose material', quote_path(@quote, quote: { material_id: material.id }), method: :put, class: 'button primary-button mt2' %></p>
+					<% elsif params[:controller] == "quotes" && !material.within_min_constraints(@quote.object_width, @quote.object_depth, @quote.object_height) %>
+						<p class="tc caption">your model is too small to print with this material</p>
+					<% elsif params[:controller] == "quotes" %>
+						<p class="tc caption">your model is too large to print with this material</p>
+					<% elsif params[:controller] == "printing_projects" && material.within_min_constraints(@printing_project.uploads.last.bounding_box_x, @printing_project.uploads.last.bounding_box_y, @printing_project.uploads.last.bounding_box_z) && material.within_max_constraints(@printing_project.uploads.last.bounding_box_x, @printing_project.uploads.last.bounding_box_y, @printing_project.uploads.last.bounding_box_z) %>
+						<% if group.first == "pla" && material.roll_inventory < 2 %>
+							<p class="tc caption">out of stock</p>
+						<% else %>
+							<p class="tc"><%= link_to 'choose material', printing_project_path(@printing_project, printing_project: { material_id: material.id }), method: :put, class: 'button primary-button mt2' %></p>
+						<% end %>
+					<% elsif params[:controller] == "printing_projects" && !material.within_min_constraints(@printing_project.uploads.last.bounding_box_x, @printing_project.uploads.last.bounding_box_y, @printing_project.uploads.last.bounding_box_z) %>
+						<p class="tc caption">your model is too small to print with this material</p>
+					<% elsif params[:controller] == "printing_projects" %>
+						<p class="tc caption">your model is too large to print with this material</p>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>

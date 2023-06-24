@@ -1,0 +1,6 @@
+$('#js-materials-wrapper').html("<%= j render 'home/materials/materials_wrapper', materials: @materials %>");
+$('#js-filters-wrapper').html("<%= j render 'home/materials/filters_wrapper' %>");
+initializeTabs();
+initializeJSAutoSubmit();
+
+history.pushState(null, null, "<%= request.original_url %>");

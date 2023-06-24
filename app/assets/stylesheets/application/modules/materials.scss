@@ -1,0 +1,16 @@
+// For Materials Navigation
+.top-2-1 { top: 2.1rem; }
+
+// For Centering Material Images on Info Tab
+.material-info-wrapper {
+	flex: 1;
+	text-align: center;
+}
+.ghost-material-info-wrapper { flex: 1; }
+
+// For Lighter Text && Grayscale Images
+.gray-text { color: $secondary-brand-color; }
+.gray-img {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+}

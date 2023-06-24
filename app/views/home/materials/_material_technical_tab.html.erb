@@ -1,0 +1,92 @@
+<div id="<%= group.first %>-<%= material_type_group.first.gsub(" ", "-") %>-technical">
+	<% @materials.where(material_category: group.first, material_type: material_type_group.first).custom_group_by_finish(group.first).each do |finish_group| %>
+		<div class="<%= finish_group_class(group, material_type_group, finish_group) %>">
+
+			<table class="w-80 center mv4">
+				<thead>
+					<th></th>
+					<th></th>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td class="w-20"><%= image_tag('materials/material tech - bounding box.png') %></td>
+						<td class="w-60">
+							<p><b>min size: <%= finish_group.second.first.min_size.strip == "depends on quantity" ? "depends on quantity" : "#{finish_group.second.first.min_size.strip} mm" %></b></p><br/>
+							<p><b>max size: <%= finish_group.second.first.max_size %> mm</b></p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="w-80 center womp-simple-table mv4">
+				<thead>
+					<th>min wall</th>
+					<th>min wire</th>
+					<% if finish_group.second.first.escape_hole_single.present? %>
+						<th>min escape hole</th>
+					<% else %>
+						<th class="gray-text">min escape hole</th>
+					<% end %>
+					<th>min detail</th>
+					<th>min clearance</th>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>
+							<%= image_tag('materials/material tech - min wall supported.png') %>
+							<%= trim_num(finish_group.second.first.min_wall_supported) %> mm
+						</td>
+						<td>
+							<%= image_tag('materials/material tech - min wire supported.png') %>
+							<%= trim_num(finish_group.second.first.min_wire_supported) %> mm
+						</td>
+						<td>
+							<% if finish_group.second.first.escape_hole_single.present? %>
+								<%= image_tag('materials/material tech - escape hole single.png') %>
+								<%= trim_num(finish_group.second.first.escape_hole_single) %> mm
+							<% else %>
+								<%= image_tag('materials/material tech - escape hole single.png', class: "gray-img") %>
+								<span class="gray-text">n/a</span>
+							<% end %>
+						</td>
+						<td>
+							<%= image_tag('materials/material tech - detail convex.png') %>
+							<%= trim_num(finish_group.second.first.min_detail_convex) %> mm
+						</td>
+						<td class="tc">
+							<%= image_tag('materials/material tech - clearance.png') %>
+							<%= trim_num(finish_group.second.first.clearance) %> mm
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<%= image_tag('materials/material tech - min wall unsupported.png') %>
+							<%= trim_num(finish_group.second.first.min_wall_unsupported) %> mm
+						</td>
+						<td>
+							<%= image_tag('materials/material tech - min wire unsupported.png') %>
+							<%= trim_num(finish_group.second.first.min_wire_unsupported) %> mm
+						</td>
+						<td>
+							<% if finish_group.second.first.escape_hole_multiple.present? %>
+								<%= image_tag('materials/material tech - escape hole multiple.png') %>
+								<%= trim_num(finish_group.second.first.escape_hole_multiple) %> mm
+							<% else %>
+								<%= image_tag('materials/material tech - escape hole multiple.png', class: 'gray-img') %>
+								<span class="gray-text">n/a</span>
+							<% end %>
+						</td>
+						<td>
+							<%= image_tag('materials/material tech - detail concave.png') %>
+							<%= trim_num(finish_group.second.first.min_detail_concave) %> mm
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	<% end %>
+</div>

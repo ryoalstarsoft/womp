@@ -1,0 +1,56 @@
+<div class="mw8 center pv5 ph2">
+	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "pa5 ba bw1 br4 b--black" }) do |f| %>
+		<h3 class="mb2">edit settings</h3>
+
+	  <%= render 'shared/error_messages', object: resource %>
+
+		<%= f.text_field :name, autofocus: true, class: "w-100 mb2" %>
+    <%= f.email_field :email, class: "w-100 mb2" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'password (leave blank if you don\'t want to change it)', class: 'w-100 mt2' %>
+    <% if @minimum_password_length %>
+      <p class="caption"><%= @minimum_password_length %> characters minimum</p>
+    <% end %>
+	  <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'password confirmation', class: 'w-100 mv2' %>
+
+		<h3 class="mt4 mb2">address</h3>
+		<%= f.text_field :address_line_one, autofocus: true, placeholder: 'address line one', class: "w-100 mv2" %>
+		<%= f.text_field :address_line_two, placeholder: 'address line two', class: "w-100 mv2" %>
+		<%= f.text_field :city, placeholder: 'city', class: "w-100 mv2" %>
+		<%= f.text_field :state, placeholder: 'state', class: "w-100 mv2" %>
+		<%= f.text_field :zip_code, placeholder: 'zip code', class: "w-100 mv2" %>
+		<%= f.text_field :country, placeholder: 'country', class: "w-100 mt1" %>
+
+		<h3 class="mt4 mb2">profile picture</h3>
+		<% if current_user.profile_picture.attached? %>
+			<div class="cf">
+				<div class="fl w-50">
+					<%= image_tag current_user.profile_picture, class: 'profile-picture' %>
+				</div>
+				<div class="fl w-50">
+					<fieldset class="mt4">
+						<%= f.file_field :profile_picture, direct_upload: true, multiple: false %>
+						<%= f.label :profile_picture do %>
+							<span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+						<% end %>
+					</fieldset>
+				</div>
+			</div>
+		<% else %>
+		<fieldset class="pa5 ba bw1 b--light-gray">
+			<%= f.file_field :profile_picture, direct_upload: true, multiple: false %>
+			<%= f.label :profile_picture do %>
+				<span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+			<% end %>
+		</fieldset>
+		<% end %>
+
+		<div class="cf w-100 mv4">
+			<%= f.submit "save settings", class: 'button primary-button fl mt4' %>
+		</div>
+	<% end %>
+
+	<div class="mt5 pa5 ba bw1 br4 b--red tc">
+		<h3>unhappy?</h3>
+		<%= button_to "cancel my account", registration_path(resource_name), data: { confirm: "are you sure? all of your data will be deleted. there is no coming back from this." }, method: :delete, class: 'button destructive-button mt2' %>
+	</div>
+</div>

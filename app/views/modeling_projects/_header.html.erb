@@ -1,0 +1,19 @@
+<div class="bg-white pv6 ph2">
+	<div class="cf mw8 center pv6">
+		<div class="fl w-50-l w-100 tc tl-l mt3 mb5 mv0-l">
+			<h2 class="f3 fw7 lh-title">3d modeling project</h2>
+			<div>
+				<span class="v-mid"><%= @modeling_project.created_at.strftime('%D') %> • <%= @modeling_project.name.present? ? @modeling_project.name : 'not named yet' %></span>
+			</div>
+		</div>
+		<div class="fr w-50-l w-100">
+      <ul class="progress-indicator">
+    		<li class="completed"><span class="bubble"></span> create<br/>project </li>
+    		<li class="<%= @modeling_project.create_project_complete? && @modeling_project.user_captioned? ? 'completed' : nil %>"><span class="bubble"></span> review </li>
+    		<li class="<%= @modeling_project.pricing_group.present? ? 'completed' : nil %>"><span class="bubble"></span> checkout </li>
+    		<li class="<%= @modeling_project.paid? ? 'completed' : nil %>"><span class="bubble"></span> modeling </li>
+    		<li class="<%= @modeling_project.uploads.where.not(admin_user_id: nil).where(accepted: true).present? ? 'completed' : nil %>"><span class="bubble"></span> complete </li>
+      </ul>
+		</div>
+	</div>
+</div>

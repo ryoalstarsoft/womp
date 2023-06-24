@@ -1,0 +1,26 @@
+<%= form_for @printing_project, html: { class: 'mw8 center pv5 ph2' } do |f| %>
+	<div class="w-100 mv4">
+		<%= f.text_field :name, placeholder: 'enter project name', autofocus: true, class: 'f6 lh-copy mb0', style: 'max-width: 24em' %>
+	</div>
+
+	<div class="ba bg-white bw1 b--black br4 cf">
+		<div class="dib fl w-100 w-50-l pv5 ph6 overflow-y-scroll">
+			<p class="f4 lh-copy fw7 mv0">file to print</p>
+			<p class="f6 fw6 lh-copy mv0">upload the file that you'd like us to print</p>
+			<p class="f7 lh-title mt0 mb4">(max file size is 350mb. you may only upload .stl, .obj</p>
+			<% if @printing_project.errors.present? %>
+				<p class="tc mb4 red"><%= @printing_project.errors.full_messages.to_sentence.downcase %></p>
+			<% end %>
+
+			<%= f.file_field :temp_uploads, direct_upload: true, multiple: false, data: { 'multiple-caption': '{count} files selected' }, class: 'js-instant-upload dn' %>
+			<%= f.label :temp_uploads do %>
+				<span class="button secondary-button mr2">choose file</span> <span class="update-text">no file chosen</span>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="cf mv4">
+		<%= link_to '< back', printing_project_path(@printing_project), method: :delete, data: { confirm: 'are you sure? this will delete the project' }, class: 'fl button secondary-button' %>
+		<%= f.submit 'next >', class: 'fr button primary-button', id: 'js-submit' %>
+	</div>
+<% end %>

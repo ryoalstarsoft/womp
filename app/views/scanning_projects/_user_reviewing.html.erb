@@ -1,0 +1,12 @@
+<%= form_for @scanning_project, html: { class: 'mw8 center js-auto-submit pv5 ph2' } do |f| %>
+  <h2 class="f4 lh-copy tc fw7 mv4">please review your info</h2>
+
+	<%= f.hidden_field :user_reviewed, value: true %>
+
+  <%= render 'scanning_projects/review_container' %>
+
+	<div class="cf mv4">
+		<%= link_to 'back', scanning_project_path(@scanning_project, scanning_project: { purge_scanning_images: true }), method: :put, class: 'button secondary-button fl' %>
+		<%= f.submit 'looks good', class: 'button primary-button fr' %>
+	</div>
+<% end %>

@@ -1,0 +1,11 @@
+<div class="fl w-100 pa2 mb4">
+  <% if @upload.file_type == "3d_model" %>
+    <%= render 'shared/viewer', upload: @upload, project: nil %>
+  <% else %>
+    <p class="mt4">you can only view 3d models</p>
+  <% end %>
+</div>
+
+<div class="fl w-100 pa2">
+	<%= render 'home/materials/materials_wrapper', materials: @materials %>
+</div>

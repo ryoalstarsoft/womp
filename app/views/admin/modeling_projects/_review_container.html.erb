@@ -1,0 +1,16 @@
+<div class="mb4">
+	<p class="bold">description</p>
+	<p><%= sanitize @modeling_project.description.present? ? @modeling_project.description : "the user didn't provide a description" %></p>
+</div>
+
+<div class="mb4">
+	<p class="bold">visual references</p>
+
+	<div id="js-upload-grid">
+		<% if @modeling_project.uploads.present? %>
+			<%= render 'admin/uploads/upload_grid', uploads: @modeling_project.uploads.order('created_at desc') %>
+		<% else %>
+			<p>the user didn't upload any visual references to this project</p>
+		<% end %>
+	</div>
+</div>

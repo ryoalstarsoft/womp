@@ -1,0 +1,153 @@
+.trio-icon-hover-content {
+	opacity: 0;
+	transition: opacity 0.4s ease-out;
+}
+.trio-icon-hover:hover > .trio-icon-hover-content {
+	opacity: 1;
+	transition: opacity 0.4s ease-out;
+}
+
+.trio-icon-hover.trio-icon-scanning .trio-icon-hover-image {
+	background-image: asset-url('scanning-icon.png');
+	transition: background-image 0.4s ease-out;
+}
+.trio-icon-hover.trio-icon-scanning:hover .trio-icon-hover-image {
+	background-image: asset-url('scanning-icon-hover.png');
+}
+.trio-icon-hover.trio-icon-modeling .trio-icon-hover-image {
+	background-image: asset-url('modeling-icon.png');
+	transition: background-image 0.4s ease-out;
+}
+.trio-icon-hover.trio-icon-modeling:hover .trio-icon-hover-image {
+	background-image: asset-url('modeling-icon-hover.png');
+}
+.trio-icon-hover.trio-icon-printing .trio-icon-hover-image {
+	background-image: asset-url('printing-icon.png');
+	transition: background-image 0.4s ease-out;
+}
+.trio-icon-hover.trio-icon-printing:hover .trio-icon-hover-image {
+	background-image: asset-url('printing-icon-hover.png');
+}
+
+@media screen and (max-width: 46em) { // all the way to iPhone 8 in Landscape
+	.trio-icon-hover > .trio-icon-hover-content {
+		opacity: 1;
+	}
+	.trio-icon-hover.trio-icon-scanning .trio-icon-hover-image {
+		background-image: asset-url('scanning-icon-hover.png');
+	}
+	.trio-icon-hover.trio-icon-modeling .trio-icon-hover-image {
+		background-image: asset-url('modeling-icon-hover.png');
+	}
+	.trio-icon-hover.trio-icon-printing .trio-icon-hover-image {
+		background-image: asset-url('printing-icon-hover.png');
+	}
+}
+
+.hero-womp {
+	min-height: 450px;
+	background-image: asset-url('home_page/home-page-banner-background-image-1.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.hero-womp:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-image: asset-url('home_page/home-page-banner-background-image-1.jpg');
+	background-size: cover;
+	background-position: center;
+}
+
+.hero-womp:after {
+	content: '';
+	// background-image: asset-url('home_page/home-page-banner-image-1.png');
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	background-repeat: no-repeat;
+	background-size: 50%;
+	background-position: center;
+}
+
+.js-scheme-1.hero-womp:after {
+	background-size: 150%;
+	background-position: -30% 90%;
+}
+.js-scheme-2.hero-womp:after {
+	background-size: 110%;
+	background-position: -120% 70%;
+}
+
+@media screen and (min-width: 500px) {
+	.js-scheme-1.hero-womp:after {
+		background-size: 83%;
+		background-position: 211% 50%;
+	}
+	.js-scheme-2.hero-womp:after {
+		background-size: 77%;
+		background-position: 97% 60%;
+	}
+}
+
+@media screen and (min-width: 650px) {
+	.js-scheme-1.hero-womp:after {
+		background-size: 73%;
+		background-position: 111% 44%;
+	}
+	.js-scheme-2.hero-womp:after {
+		background-size: 78%;
+		background-position: 66% 66%;
+	}
+}
+
+@media screen and (min-width: 750px) {
+	.js-scheme-1.hero-womp:after {
+		background-size: 65%;
+		background-position: 81% 54%;
+	}
+	.js-scheme-2.hero-womp:after {
+		background-size: 64%;
+		background-position: 51% 65%;
+	}
+}
+
+@media screen and (min-width: 850px) {
+	.js-scheme-1.hero-womp:after {
+		background-size: 65%;
+		background-position: 75% 42%;
+	}
+	.js-scheme-2.hero-womp:after {
+		background-size: 70%;
+		background-position: 55% 72%;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.js-scheme-1.hero-womp:after {
+		background-size: 55%;
+		background-position: 75% 40%;
+	}
+	.js-scheme-2.hero-womp:after {
+		background-size: 55%;
+		background-position: 55% 50%;
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.js-scheme-1.hero-womp:after {
+		background-size: 50%;
+		background-position: 64% 20%;
+	}
+	.js-scheme-2.hero-womp:after {
+		background-size: 50%;
+		background-position: 51% 50%;
+	}
+}

@@ -1,0 +1,23 @@
+<div class="cf mw8 center pv5 ph2">
+	<div class="cf mv4">
+		<%= render 'shared/viewer', upload: @printing_project.uploads.last, project: @printing_project %>
+	</div>
+
+  <div class="cf mv4">
+    <div class="fl w-20 pr3 cr" id="js-filters-wrapper">
+      <%= render 'home/materials/filters_wrapper' %>
+    </div>
+
+    <div class="fl w-80 pl3 bl b--light-gray" id="js-materials-wrapper">
+      <%= render 'home/materials/materials_wrapper', materials: @materials %>
+    </div>
+  </div>
+
+	<div class="cf mv4">
+		<%= link_to '< back', printing_project_path(@printing_project, printing_project: { delete_last_upload: true }), method: :put, data: { confirm: 'are you sure? this will delete your upload' }, class: 'fl button secondary-button' %>
+	</div>
+
+	<div class="cf mv4">
+    <%= render 'comments/comment_module', project_type: 'PrintingProject', project_id: @printing_project.id, project: @printing_project %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div id="projects" class="projects">
+	<h3>scanning projects</h3>
+	<% if @scanning_projects.present? %>
+		<%= render 'projects/table', target: @scanning_projects %>
+	<% else %>
+		<p class="tc mv4">you don't have any scanning projects yet</p>
+	<% end %>
+
+	<h3>modeling projects</h3>
+	<% if @modeling_projects.present? %>
+		<%= render 'projects/table', target: @modeling_projects %>
+	<% else %>
+		<p class="tc mv4">you don't have any modeling projects yet</p>
+	<% end %>
+
+	<h3>printing projects</h3>
+	<% if @printing_projects.present? %>
+		<%= render 'projects/table', target: @printing_projects %>
+	<% else %>
+		<p class="tc mv4">you don't have any printing projects yet</p>
+	<% end %>
+</div>
+
+<div id="files" class="files">
+	<% if @uploads.present? %>
+		<%= render 'dashboard/uploads_table', target: @uploads %>
+	<% else %>
+		<p class="tc mv4">you don't have any files yet</p>
+	<% end %>
+</div>

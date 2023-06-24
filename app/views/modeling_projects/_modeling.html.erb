@@ -1,0 +1,39 @@
+<div class="cf mw8 center pv5 ph2">
+  <% if @modeling_project.uploads.where(reviewable: true, released_to_user: true).present? %>
+    <div class="cf mb4">
+      <div class="fl w-100">
+        <p><%= @modeling_project.uploads.where(reviewable: true, released_to_user: true).count.ordinalize %> draft</p>
+
+        <%= render 'shared/viewer', upload: @modeling_project.uploads.where(reviewable: true, released_to_user: true).last, project: @modeling_project %>
+
+        <% if @modeling_project.uploads.where(reviewable: true, released_to_user: true).present? && @modeling_project.uploads.where(reviewable: true, released_to_user: true).last.accepted.nil? && @modeling_project.uploads.where(reviewable: true, released_to_user: true).last.is_viewer_ready? %>
+          <div class="cf tc mt4">
+            <%= link_to 'accept model', upload_path(@modeling_project.uploads.where(reviewable: true, released_to_user: true).last.id, upload: { accepted: true }), method: :put, class: 'button primary-button fr' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="cf">
+      <div class="fl w-50 tl mv4">
+        <h2>thank you for your payment</h2>
+        <p>sit tight! we're modeling your product. once we're done we'll upload it to our 3d viewer for you to approve. if you aren't satisfied we'll work with you until it's right.</p>
+      </div>
+
+      <div class="fl w-50 tr mv4">
+        <% if @modeling_project.paid_at.present? %>
+          <p>payment received on: <b><%= @modeling_project.paid_at.strftime('%D') %></b></p>
+          <p>estimated completion on: <b><%= @modeling_project.model_at.strftime('%D') %></b></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="ba bg-white bw1 b--black br4 cf">
+    <%= render 'modeling_projects/review_container', able_to_delete: false %>
+  </div>
+
+  <div class="fl w-100 mv4">
+    <%= render 'comments/comment_module', project_type: 'ModelingProject', project_id: @modeling_project.id, project: @modeling_project %>
+  </div>
+</div>

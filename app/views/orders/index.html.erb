@@ -1,0 +1,24 @@
+<div class="mw8 center ph2 pv6 tl w-100">
+	<h1 class="f3 fw7 lh-title">your orders</h1>
+</div>
+
+<div class="cf mw8 center pv5 ph2">
+	<% if @orders.present? %>
+		<% @orders.sort_by(&:created_at).reverse.each do |order| %>
+			<div class="fl w-100">
+				<p><%= order.created_at.strftime('%D') %> - <b>order <%= order.id %></b></p>
+				<%= render 'projects/table', target: order.scanning_projects + order.modeling_projects + order.printing_projects %>
+
+				<p class="w-100 fr tr">
+					<% if order.sales_tax > 0 %>
+						subtotal: <b><%= number_to_currency(order.subtotal) %></b><br/>
+						sales tax (8.88% for printing orders): <b><%= number_to_currency(order.sales_tax) %></b><br/>
+					<% end %>
+					total: <b><%= number_to_currency(order.total) %></b><br/><br/>
+				</p><br/>
+			</div>
+		<% end %>
+	<% else %>
+		<p>you don't have any orders yet</p>
+	<% end %>
+</div>

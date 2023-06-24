@@ -1,0 +1,26 @@
+<footer class="bg-white black">
+	<nav class="mw10 center cf pv6 p18">
+		<div class="fl w-100 cf ph6 ph0-l pv5 bw1-l b--black-l">
+			<div class="fl w-100 w-forth-l tl pv4 pv0-l bb bw1 b--black bn-l">
+				<%= image_tag 'womp-avatar.png', class: 'profile-picture profile-picture-comment', style: 'margin-top: -14px' %>
+				<%= link_to '© womp 3D inc. 2018 all rights reserved', '#', class: 'db f6 black dim link pb1 pb5-l', style: 'padding-top: 17px; line-height: 2.5' %>
+			</div>
+			<div class="fl w-100 w-forth-l pv4 pv0-l bb bw1 b--black bn-l">
+				<%= link_to 'about us', about_us_path, class: 'db f5 black dim link pb1 pb5-l' %>
+				<%= link_to 'contact', 'mailto:info@womp.xyz', class: 'db f5 black dim link pb1 pb5-l' %>
+				<%= link_to 'terms & conditions', asset_path('examples.pdf'), class: 'db f5 black dim link', target: "_blank" %>
+			</div>
+			<div class="fl w-100 w-forth-l pv4 pv0-l bb bw1 b--black bn-l">
+				<%= link_to 'how it works', how_it_works_path, class: 'db f5 black dim link pb1 pb5-l' %>
+				<%= link_to 'materials', asset_path('materials.pdf'), class: 'db f5 black dim link pb1 pb5-l', target: "_blank" %>
+				<%= link_to 'examples', asset_path('examples.pdf'), class: 'db f5 black dim link', target: "_blank" %>
+			</div>
+			<div class="fl w-100 w-forth-l pv4 pv0-l bb bw1 b--black bn-l">
+				<%= link_to 'facebook', 'https://www.facebook.com/wompxyz/', class: 'db f5 black dim link pb1 pb5-l', target: "_blank" %>
+				<%= link_to 'twitter', 'javascript:alert("Coming soon!")', class: 'db f5 black dim link pb1 pb5-l' %>
+				<%= link_to 'instagram', 'https://www.instagram.com/womp.xyz/', class: 'db f5 black dim link', target: "_blank" %>
+				<%= image_tag 'up-arrow.png', class: 'up-arrow' %>
+			</div>
+		</div>
+	</nav>
+</footer>

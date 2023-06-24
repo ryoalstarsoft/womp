@@ -1,0 +1,322 @@
+<%= render 'shared/page_hero', title: 'how it works', sub_title: nil %>
+
+<div class="cf ph2 ph6-ns pv7 w-100 mw8 center">
+	<ul class="db-l fl-l fn flex flex-row js-tabs list pa0 mb4 mb0-l mt0 tc tl-l w-100 w-20-l">
+		<li class="b--gray bb bb-0-l black br-l bw1 db flex-grow-1 pv2 ph0 ph3-l pv4-l">
+			<a class="color-inherit dim f7 f5-ns fw4 lh-title" href="#general">general</a>
+		</li>
+		<li class="b--gray bb bb-0-l black br-l bw1 db flex-grow-1 pv2 ph0 ph3-l pv4-l">
+			<a class="color-inherit dim f7 f5-ns fw4 lh-title" href="#scanning">3d scanning</a>
+		</li>
+		<li class="b--gray bb bb-0-l black br-l bw1 db flex-grow-1 pv2 ph0 ph3-l pv4-l">
+			<a class="color-inherit dim f7 f5-ns fw4 lh-title" href="#modeling">3d modeling</a>
+		</li>
+		<li class="b--gray bb bb-0-l black br-l bw1 db flex-grow-1 pv2 ph0 ph3-l pv4-l">
+			<a class="color-inherit dim f7 f5-ns fw4 lh-title" href="#printing">3d printing</a>
+		</li>
+	</ul>
+
+	<!-- Start General Tab Content -->
+	<div id="general" class="fl ph2 pl6-ns pv0 w-100 w-80-l">
+		<div class="center mw7">
+			<h2 class="f3 fw7 lh-title mt0 mb5 tc">1. start by giving us info, the more the better</h2>
+
+			<div class="cf tc w-100 mb7">
+				<div class="fl w-100 w-third-l">
+					<%= image_tag 'how_it_works/general 1.1.png', alt: '2d file schematics' %>
+					<h3 class="f5 fw7 lh-copy mv0">2d file</h3>
+					<p class="f5 fw4 lh-copy mv0 measure-narrow center">upload 2d files<br/>images, pdfs, or other documents</p>
+				</div>
+				<div class="fl w-100 w-third-l">
+					<%= image_tag 'how_it_works/general 1.2.png', alt: '3d file preview' %>
+					<h3 class="f5 fw7 lh-copy mv0">3d file</h3>
+					<p class="f5 fw4 lh-copy mv0 measure-narrow center">upload 3d files<br/>(.stl or .obj)</p>
+				</div>
+				<div class="fl w-100 w-third-l">
+					<%= image_tag 'how_it_works/general 1.3.png', alt: 'bowl and box' %>
+					<h3 class="f5 fw7 lh-copy mv0">real object</h3>
+					<p class="f5 fw4 lh-copy mv0 measure-narrow center">send in a real object for scanning or replicating</p>
+				</div>
+			</div>
+
+			<h2 class="f3 fw7 lh-title pt7 mv0 tc">2. we give you</h2>
+
+			<div class="tc w-100 mb7">
+				<%= image_tag 'how_it_works/general 2.1.png', class: 'mw6 center', alt: 'a 3d file with the word print' %>
+				<h3 class="f5 fw7 lh-copy mv2">your downloadable 3d file</h3>
+				<p class="f5 fw4 lh-copy mv0 measure center">check out your model on our 3d viewer and let us know what you think, we guarantee 100% satisfaction!</p><br>
+				<p class="f5 fw4 lh-copy mv0 measure center">like it? download your file anytime! it's 100% yours.</p>
+			</div>
+
+			<h2 class="f3 fw7 lh-title pt7 mv0 tc">3. you choose</h2>
+
+			<div class="tc w-100 mb7">
+				<%= image_tag 'how_it_works/general 3.1.png', class: 'mw6 center', alt: 'a variety of materials womp offers' %>
+				<h3 class="f5 fw7 lh-copy mv2">material for 3d printing</h3>
+				<p class="f5 fw4 lh-copy mv0 measure center">choose from a variety of materials to print with</p>
+				<%= link_to 'view our materials pdf', asset_path('materials.pdf'), class: 'button secondary-button mv3', target: "_blank" %>
+			</div>
+
+			<h2 class="f3 fw7 lh-title pt7 mv0 tc">4. wait for it in the mail</h2>
+
+			<div class="tc w-100 mb7">
+				<%= image_tag 'how_it_works/general 4.1.png', class: 'mw6 center', alt: 'a box with a variety of 3d printed materials' %>
+				<p class="f5 fw4 lh-copy mv0">we'll send you your 3d prints in any size and material you choose</p>
+				<p class="f5 fw4 lh-copy mv0 measure center">doesn't matter if it's for selling or for prototyping</p><br>
+				<p class="f5 fw4 lh-copy mv0 measure center">enjoy!</p>
+			</div>
+		</div>
+
+		<div class="w-100 tc">
+			<%= link_to 'start a project', new_project_path, class: 'button primary-button' %>
+		</div>
+	</div>
+	<!-- End General Tab Content -->
+
+	<!-- Start 3D Scanning Tab Content -->
+	<div id="scanning" class="fl ph2 pl6-ns pv0 w-100 w-80-l">
+		<div class="center mw7">
+			<h2 class="f3 fw7 lh-title mt0 mb7 tc measure-narrow center">mail us your object and get a 3d model within 8 business days</h2>
+
+			<table class="w-100 mt5 mb7 womp-simple-table">
+				<thead>
+					<tr>
+						<th class="f4 fw7 lh-title">size</th>
+						<th class="f4 fw7 lh-title">price</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>
+							<%= image_tag 'how_it_works/scanning icon 1.png', alt: 'an object in a hand' %>
+							<p>1" - 6"</p>
+							<p class="caption">25 - 150mm</p>
+						</td>
+						<td>$150 - $300</td>
+					</tr>
+					<tr class="bg-near-white">
+						<td>
+							<%= image_tag 'how_it_works/scanning icon 2.png', class: "mr4", alt: 'a small object next to a woman' %>
+							<p>7" - 24"</p>
+							<p class="caption">151 - 610mm</p>
+						</td>
+						<td>$150 - $400</td>
+					</tr>
+					<tr>
+						<td>
+							<%= image_tag 'how_it_works/scanning icon 3.png', class: "mr4", alt: 'a medium sized object next to a woman' %>
+							<p>25" - 32"</p>
+							<p class="caption">611 - 815mm</p>
+						</td>
+						<td>$250 - $600</td>
+					</tr>
+					<tr class="bg-near-white">
+						<td>
+							<%= image_tag 'how_it_works/scanning icon 4.png', class: "mr4", alt: 'a large object next to a woman' %>
+							<p>33" - 56"</p>
+							<p class="caption">816 - 1450mm</p>
+						</td>
+						<td>$300 - $800</td>
+					</tr>
+					<tr>
+						<td>
+							<%= image_tag 'how_it_works/scanning icon 5.png', class: "mr4", alt: 'alien' %>
+							<p>other</p>
+						</td>
+						<td>inquire for pricing</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 1</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">when you start a scanning project, you'll be asked to upload a photograph of your object and to answer a few questions about your project.<br/><br/>once your project is uploaded, your project representative will be there to answer any questions every step of the way.</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/scanning 1.1.png', alt: 'an iphone taking a picture of an object' %>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 mb7 bg-near-white br4 mb7 ph6 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/scanning 2.1.png', alt: 'an object next to a box' %>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 2</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">once you check out, be sure to place your object in a padded package to ensure it's safety during shipment.</p>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 3</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">when we receive your object,<br/>we'll get to scanning</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/scanning 3.1.png', alt: 'an object being scanned' %>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 bg-near-white br4 mb7 ph6 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/scanning 4.1.png', alt: 'a preview of a scanned object' %>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 4</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">within 8 business days, you'll be able to preview and inspect your scan on our 3d viewer along with receiving a downloadable 3d file.<br/><br/>note: if you'd like to request edits to your scan, your project will carry over to the modeling phase. more on that <%= link_to 'here', how_it_works_path(anchor: 'modeling') %>.</p>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 5</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">upon your final approval, we'll send you your 3d file and we'll ship you object back to you.</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/scanning 5.1.png', alt: 'an object next to a box' %>
+				</div>
+			</div>
+
+			<div class="w-100 tc">
+				<% if current_user.present? %>
+					<%= link_to 'start a 3d scanning project', scanning_projects_path(scanning_project: { user_id: current_user.id }), data: { turbolinks: false }, method: :post, class: "button primary-button" %>
+				<% else %>
+					<%= link_to 'start a 3d scanning project', new_project_path, class: 'button primary-button' %>
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+	<!-- End 3D Scanning Tab Content -->
+
+
+	<!-- Start 3D Modeling Tab Content -->
+	<div id="modeling" class="fl w-100 w-80-l pl6">
+		<div class="center mw7">
+			<h2 class="f3 fw7 lh-title measure mv0 tc">simple or complex, just send us those napkin drawings!</h2>
+			<p class="f5 fw4 lh-copy measure center mt2 mb5 tc">upload as much info as possible. the more info you provide, the more satisfaction we can guarantee</p>
+
+			<div class="db dt-l w-100 bg-near-white br4 mb7 ph6 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 1</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">upload 2d and/or 3d files and use our 2d editor to help illustrate your ideas.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">type in a detailed description of the use and purpose of your 3d model.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">once your project is uploaded, your project representative will be there to answer any questions every step of the way.</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/modeling 1.1.png', alt: 'schematics of an object' %>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/modeling 2.1.png', alt: 'two different priced objects' %>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 2</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">within 2 business days, you will receive a quote from your project representative.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">our flat rate pricing system is determined by complexity and form.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">once you check out, we'll get started on your modeling project right away.</p>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 bg-near-white br4 mb7 ph6 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 3</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">within 8 business days, you'll be able to preview and inspect your model on our 3d viewer along with receiving a downloadable 3d file.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">if you're not satisfied with the model, use the 2d editor to illustrate edits that need to be made. your project rep will take care of it until you're 100% satisfied.</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/modeling 3.1.png', alt: 'a 3d preview of an object' %>
+				</div>
+			</div>
+
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/modeling 4.1.png', alt: 'download 3d object' %>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 4</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">once you're happy with the results, you'll be able to download your model.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">if you'd like to print your model, your project will be carried over to the printing phase. more on how that works <%= link_to 'here', how_it_works_path(anchor: 'printing') %>.</p>
+				</div>
+			</div>
+
+
+			<div class="w-100 tc">
+				<% if current_user.present? %>
+					<%= link_to 'start a 3d modeling project', modeling_projects_path(modeling_project: { user_id: current_user.id }), data: { turbolinks: false }, method: :post, class: "button primary-button" %>
+				<% else %>
+					<%= link_to 'start a 3d modeling project', new_project_path, class: 'button primary-button' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<!-- End 3D Modeling Tab Content -->
+
+
+	<!-- Start 3D Printing Tab Content -->
+	<div id="printing" class="fl w-100 w-80-l pl6">
+		<div class="center mw7">
+			<h2 class="f3 fw7 lh-title measure mt0 mb7 tc center">whether it’s metal or plastic, 1 or 20,<br/>we’ll help you find the best solution for your print!</h2>
+
+			<div class="db dt-l w-100 bg-near-white br4 mb7 ph6 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 1</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">when you start a printing project, you'll be asked to upload a 3d model.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">.stl or .obj files are accepted</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">once your project is uploaded your project representative will be there to answer any questions every step of the way</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/printing 1.1.png', alt: '3d model preview' %>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/printing 2.1.png', alt: 'variety of materials' %>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 2</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">choose your 3d printing material</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center"><%= link_to "view our materials pdf", asset_path('materials.pdf'), class: 'pill-button', target: "_blank" %></p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">note: 3d printers have bounding boxes that can limit the size of your printed object. the material determines the printer. the printer determines the bounding box.</p>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 bg-near-white br4 mb7 ph6 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 3</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">use our 3d viewer to visualize different materials placed onto your object as well as the bounding boxes associated with them.</p><br/>
+					<p class="f5 fw4 lh-copy mv0 measure center">this tool will help you find the perfect material for your print.</p>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/printing 3.1.png', alt: '3d model preview' %>
+				</div>
+			</div>
+
+			<div class="db dt-l w-100 mb7 pv7">
+				<div class="db dtc-l v-mid w-100 w-50-l tc">
+					<%= image_tag 'how_it_works/printing 4.1.png', alt: 'objects next to box' %>
+				</div>
+				<div class="db dtc-l v-mid w-100 w-50-l tc tl-l">
+					<h2 class="f3 fw7 lh-title mv2 measure center">step 4</h2>
+					<p class="f5 fw4 lh-copy mv0 measure center">once you're happy with your choice, check out and we'll get to printing right away. your project representative will let you know when to expect your prints in the mail.</p>
+				</div>
+			</div>
+
+			<div class="w-100 tc">
+				<% if current_user.present? %>
+					<%= link_to 'start a 3d printing project', printing_projects_path(printing_project: { user_id: current_user.id }), data: { turbolinks: false }, method: :post, class: "button primary-button" %>
+				<% else %>
+					<%= link_to 'start a 3d printing project', new_project_path, class: 'button primary-button' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<!-- End 3D Printing Tab Content -->
+
+</div>

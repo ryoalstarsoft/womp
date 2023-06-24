@@ -1,0 +1,10 @@
+$('#js-upload-grid').html("<%= j render 'uploads/upload_grid', uploads: @upload.project.uploads.order('created_at desc'), able_to_delete: false %>");
+$('#js-comment-form').html("<%= j render 'comments/form', project_id: @upload.project.id %>")
+initializeCommentFileAttachment();
+initializeFileInputs();
+initializeModals();
+
+// $('.js-primary-workspace').hide();
+// $('.js-secondary-workspace').show();
+//
+// $('.js-secondary-workspace').html("<%= j render 'uploads/annotate' %>");

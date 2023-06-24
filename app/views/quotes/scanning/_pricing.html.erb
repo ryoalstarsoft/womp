@@ -1,0 +1,22 @@
+<div class="tc mv5">
+	<% if @quote.total_price.present? %>
+		<p>you're looking to scan an object that is <b><%= @quote.object_size.humanize(capitalize: false) %></b></p>
+		<p>this will cost between <b><%= @quote.total_price %></b> depending the exact size and the resolution of the scan</p><br/>
+	<% else %>
+		<p>you're looking to scan an object that is <b><%= @quote.object_size.humanize(capitalize: false) %></b></p><br/>
+		<p>
+			we can't provide automated pricing information for objects of this size.<br/>
+			womp's experts need to review projects like this on a case by case basis
+		</p><br/>
+	<% end %>
+
+	<div class="cf mt4">
+		<div class="fl w-50 tc">
+			<p><%= link_to 'go back', quote_path(@quote, quote: { object_size: nil }), method: :put, class: 'button secondary-button' %></p>
+		</div>
+
+		<div class="fl w-50 tc">
+			<p><%= link_to 'start a project', new_project_path, class: 'button primary-button' %></p>
+		</div>
+	</div>
+</div>
